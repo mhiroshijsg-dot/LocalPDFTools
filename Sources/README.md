@@ -21,7 +21,7 @@
 |---|---|
 | `LocalPDFTools.xcodeproj` | Xcode のプロジェクト。バージョン番号（MARKETING_VERSION）もここ |
 | `scripts/bundle_qpdf.sh` | Xcode のビルドの最後に毎回走り、Homebrew の qpdf とそのライブラリを .app に入れて署名する。⌘R でも配る形と同じ中身になる |
-| `scripts/make_app.sh` | 配る形（Release）の .app を `build/LocalPDFTools.app` に作る |
+| `scripts/make_app.sh` | 配る形（Release）の .app を `build/LocalPDFTools.app` に作り、Releases に載せる zip（`build/LocalPDFTools-<バージョン>.zip`）も作る |
 
 覚え方: **見た目は `Views`、ボタンを押したあとの動きは `Models`、PDF そのものの処理は `PDFEngine`**。
 こう分けておくと、見た目を変えても PDF の処理を壊さない。

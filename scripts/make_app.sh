@@ -1,6 +1,6 @@
 #!/bin/zsh
-# 配る形（Release）の .app を作る。
-# 出力: このリポジトリの build/LocalPDFTools.app（毎回作り直す）
+# 配る形（Release）の .app と、GitHub の Releases に載せる zip を作る。
+# 出力: このリポジトリの build/LocalPDFTools.app と build/LocalPDFTools-<バージョン>.zip（毎回作り直す）
 # 使い方: scripts/make_app.sh
 #
 # ビルドそのものは Xcode のプロジェクト（LocalPDFTools.xcodeproj）が行い、
@@ -27,4 +27,14 @@ echo "== 同梱の qpdf が単独で動くか"
 "$APP/Contents/Helpers/qpdf" --version | head -1
 
 VERSION=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$APP/Contents/Info.plist")
-echo "できました（バージョン $VERSION）: ${APP:A}"
+
+echo "== 配布用の zip"
+# MEMO(2026-11-25・by claude): ditto で固めると、署名や .app の中の情報が崩れない（Finder の「圧縮」と同じ形）
+ZIP=build/LocalPDFTools-$VERSION.zip
+rm -f "$ZIP"
+ditto -c -k --sequesterRsrc --keepParent "$APP" "$ZIP"
+shasum -a 256 "$ZIP"
+
+echo "できました（バージョン $VERSION）"
+echo "  .app: ${APP:A}"
+echo "  zip : ${ZIP:A}"
