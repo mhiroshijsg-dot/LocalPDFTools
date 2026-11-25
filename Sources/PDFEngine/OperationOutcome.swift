@@ -1,0 +1,18 @@
+import Foundation
+
+/// 保存が終わったときの結果（「元 4.9 MB → 新 1.1 MB」の表示に使う）
+public struct OperationOutcome: Sendable {
+    public let destination: URL
+    /// 入力の合計の大きさ（結合なら全ファイルの合計）
+    public let inputBytes: Int64
+    public let outputBytes: Int64
+    /// qpdf が出した警告（成功はしている）
+    public let warnings: [String]
+
+    public init(destination: URL, inputBytes: Int64, outputBytes: Int64, warnings: [String]) {
+        self.destination = destination
+        self.inputBytes = inputBytes
+        self.outputBytes = outputBytes
+        self.warnings = warnings
+    }
+}

@@ -1,0 +1,8 @@
+.build/
+build/
+.swiftpm/
+.DS_Store
+# MEMO(2026-11-25・by claude): メモリには個人の事情が書かれているので、公開するリポジトリには入れない
+.claude/
+__pycache__/
+xcuserdata/
