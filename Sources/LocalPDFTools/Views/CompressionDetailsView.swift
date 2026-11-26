@@ -15,6 +15,8 @@ struct CompressionDetailsView: View {
             Divider()
             lineThinning
             Divider()
+            FigureRasterizationSection(workspace: workspace)
+            Divider()
             breakdown
             Divider()
             estimate

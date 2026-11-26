@@ -8,6 +8,10 @@ public struct CompressionResult: Sendable {
     public var keptImages = 0
     /// 図の線を減らした数（消した線・間引いた点）
     public var vector = VectorThinningReport()
+    /// 画像にした図の数
+    public var flattenedFigures = 0
+    /// 画像にしても小さくならなかったので、元のまま残した図の数
+    public var keptFigures = 0
     /// qpdf の警告
     public var warnings: [String] = []
 
@@ -19,6 +23,8 @@ public struct CompressionResult: Sendable {
         sum.requalifiedImages += rhs.requalifiedImages
         sum.keptImages += rhs.keptImages
         sum.vector = sum.vector + rhs.vector
+        sum.flattenedFigures += rhs.flattenedFigures
+        sum.keptFigures += rhs.keptFigures
         sum.warnings += rhs.warnings
         return sum
     }

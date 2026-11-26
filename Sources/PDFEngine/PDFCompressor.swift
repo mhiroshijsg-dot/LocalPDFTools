@@ -3,7 +3,8 @@ import Foundation
 /// PDF を小さくする。
 /// - 画像: qpdf で画像のデータを取り出し → Mac 標準の画像処理で縮小・再圧縮 → qpdf で差し戻す（`--update-from-json`）
 /// - 構造の圧縮: qpdf で小さな部品をまとめて圧縮し、データの圧縮をし直す（見た目は一切変わらない）
-/// 文字・フォント・線の図には触れない。白黒スキャン（CCITT・JBIG2）なども触らない（PDFImageInfo.unsupportedReason）。
+/// - 重い図を画像にする（選んだときだけ）: 図の中身を、同じ枠いっぱいに置いた 1 枚の画像に置き換える（PDFFigureFlattener）
+/// 文字・フォントには触れない。白黒スキャン（CCITT・JBIG2）なども触らない（PDFImageInfo.unsupportedReason）。
 /// MEMO(2026-11-24・by claude): 計画 §3。gs を使わないのは、配布しやすさ（AGPL）と、決めたとおりにしか変わらないため。
 public struct PDFCompressor {
     /// 進み具合（0〜1）を知らせる
@@ -36,21 +37,32 @@ public struct PDFCompressor {
         var updates: [String: Any] = [:]
         var maxObjectID = 0
         var table: QPDFObjectTable?
-        if settings.touchesImages || settings.vector.isActive {
+        if settings.touchesImages || settings.vector.isActive || settings.figures.isActive {
             let loaded = try await QPDFObjectTable.load(input, runner: runner)
             table = loaded
             maxObjectID = loaded.objects.keys.compactMap { Int($0.split(separator: " ").first ?? "") }.max() ?? 0
         }
+        // 順番: 図を画像にする → 線を減らす（画像にした図は除く）→ 画像の縮小・画質（画像にした図の中の画像は除く）
+        var figureUpdates: [String: Any] = [:]
+        var replacedRefs = Set<String>()
+        if let table, settings.figures.isActive {
+            let flattened = try await PDFFigureFlattener(runner: runner)
+                .apply(input, table: table, settings: settings.figures, maxObjectID: maxObjectID, workDirectory: work)
+            figureUpdates = flattened.updates
+            replacedRefs = flattened.replacedRefs
+            result.flattenedFigures = flattened.flattened
+            result.keptFigures = flattened.kept
+        }
         if let table, settings.vector.isActive {
             let thinned = try await PDFVectorThinner(runner: runner)
-                .apply(input, table: table, thinning: settings.vector, workDirectory: work)
+                .apply(input, table: table, thinning: settings.vector, workDirectory: work, skipping: replacedRefs)
             updates.merge(thinned.updates) { _, new in new }
             result.vector = thinned.report
         }
         if let table, settings.touchesImages {
             let report = try PDFContentAnalyzer(runner: runner).analyze(input, table: table)
             let targets = report.images.filter { image in
-                image.isSupported && (image.resampledSize(targetDPI: settings.targetDPI) != nil
+                !replacedRefs.contains(image.ref) && image.isSupported && (image.resampledSize(targetDPI: settings.targetDPI) != nil
                                       || (image.encoding == .jpeg && settings.jpegQuality != nil))
             }
             for (index, image) in targets.enumerated() {
@@ -74,6 +86,8 @@ public struct PDFCompressor {
                 if replacement.wasResampled { result.resampledImages += 1 } else { result.requalifiedImages += 1 }
             }
         }
+        // 画像にした図の書き換えを最後に重ねる（同じ部品への指定があれば、こちらを優先）
+        updates.merge(figureUpdates) { _, new in new }
         try Task.checkCancellation()
         progress?(1)
 

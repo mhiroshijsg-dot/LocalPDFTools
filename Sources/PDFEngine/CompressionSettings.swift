@@ -11,13 +11,16 @@ public struct CompressionSettings: Equatable, Sendable {
     public var jpegQuality: JPEGQuality?
     /// 図の線を減らす（既定はすべてオフ）
     public var vector: VectorThinning
+    /// 重い図を画像にする（既定はオフ）
+    public var figures: FigureRasterization
 
     public init(structural: Bool = true, targetDPI: Int? = nil, jpegQuality: JPEGQuality? = nil,
-                vector: VectorThinning = VectorThinning()) {
+                vector: VectorThinning = VectorThinning(), figures: FigureRasterization = FigureRasterization()) {
         self.structural = structural
         self.targetDPI = targetDPI
         self.jpegQuality = jpegQuality
         self.vector = vector
+        self.figures = figures
     }
 
     /// 解像度を下げた画像を保存するときの画質

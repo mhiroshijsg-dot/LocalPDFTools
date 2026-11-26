@@ -42,9 +42,10 @@ struct PDFVectorThinner {
     }
 
     /// 書き換えた命令を作業用のフォルダに書き、qpdf の差し戻しの指定（"obj:N 0 R" → 中身）と、減らした数を返す
-    func apply(_ url: URL, table: QPDFObjectTable, thinning: VectorThinning,
-               workDirectory: URL) async throws -> (updates: [String: Any], report: VectorThinningReport) {
-        let streams = try await contentStreams(url, table: table)
+    /// skipping: 触らない部品の番号（画像にした図など）
+    func apply(_ url: URL, table: QPDFObjectTable, thinning: VectorThinning, workDirectory: URL,
+               skipping: Set<String> = []) async throws -> (updates: [String: Any], report: VectorThinningReport) {
+        let streams = try await contentStreams(url, table: table).filter { !skipping.contains($0.ref) }
         let classified = streams.map { ContentStreamThinner.classify($0.data) }
         let documentTicks = classified.reduce(into: Set<Double>()) { $0.formUnion(ContentStreamThinner.tickLengths($1.stats)) }
         var updates: [String: Any] = [:]

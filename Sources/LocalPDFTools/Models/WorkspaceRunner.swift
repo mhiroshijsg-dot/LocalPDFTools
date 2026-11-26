@@ -104,6 +104,7 @@ struct WorkspaceRunner {
         guard let compression = outcome.compression else { return }
         let name = outcome.destination.lastPathComponent
         var done: [String] = []
+        if compression.flattenedFigures > 0 { done.append("図 \(compression.flattenedFigures) 個を画像にし") }
         let lines = compression.vector
         if lines.gridLines > 0 { done.append("補助グリッド線 \(lines.gridLines) 本を消し") }
         if lines.tickMarks > 0 { done.append("補助目盛 \(lines.tickMarks) 本を消し") }
@@ -114,6 +115,7 @@ struct WorkspaceRunner {
         if compression.requalifiedImages > 0 { done.append("画像 \(compression.requalifiedImages) 個の JPEG の画質を下げ") }
         var text = done.isEmpty ? "\(name): 画像と図の線は変えていません" : "\(name): " + done.joined(separator: "、") + "ました"
         if compression.keptImages > 0 { text += "（作り直しても小さくならなかった \(compression.keptImages) 個は元のまま）" }
+        if compression.keptFigures > 0 { text += "（画像にしても小さくならなかった図 \(compression.keptFigures) 個は元のまま）" }
         workspace.messages.append(.note(text + "。"))
         // 計画 §4.2: 元より大きくなったら赤字で知らせる（元のファイルを黙って使ったりはしない）
         if outcome.outputBytes > outcome.inputBytes {

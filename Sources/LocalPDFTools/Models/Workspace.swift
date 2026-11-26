@@ -14,7 +14,11 @@ final class Workspace {
             if selected.contains(.merge) != oldValue.contains(.merge) { customName = nil }
             // 圧縮をオンにしたときに初めて中身を分析する（使わないなら読まない）
             if selected.contains(.compress) && !oldValue.contains(.compress) {
-                Task { await compression.analyze(files) }
+                Task {
+                    await compression.analyze(files)
+                    // 線を減らすのが既定でオンなので、圧縮をオンにした時点で減る本数を数えて見せる
+                    if compression.settings.vector.isActive { await compression.countLines(files) }
+                }
             }
         }
     }
