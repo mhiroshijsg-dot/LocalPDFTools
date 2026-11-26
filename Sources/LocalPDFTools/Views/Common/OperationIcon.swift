@@ -10,14 +10,7 @@ struct OperationIcon: View {
     var isEnabled = true
 
     var body: some View {
-        Image(systemName: operation.symbolName)
-            .font(.system(size: size * 0.5, weight: .semibold))
-            .foregroundStyle(.white)
-            .frame(width: size, height: size)
-            .background(
-                RoundedRectangle(cornerRadius: size * 0.26, style: .continuous)
-                    .fill((isEnabled ? Self.color(of: operation) : Color.gray).gradient)
-            )
+        SymbolTile(symbol: operation.symbolName, color: isEnabled ? Self.color(of: operation) : .gray, size: size)
     }
 
     static func color(of operation: Operation) -> Color {

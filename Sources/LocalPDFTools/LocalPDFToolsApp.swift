@@ -13,6 +13,14 @@ struct LocalPDFToolsApp: App {
             WorkspaceView(workspace: workspace)
                 .frame(minWidth: 860, minHeight: 560)
         }
+        .commands {
+            HelpCommands()
+        }
+        // ヘルプの窓（メニューの「ヘルプ」から開く）
+        Window("\(AppInfo.name) のヘルプ", id: HelpTopic.windowID) {
+            HelpWindowView()
+        }
+        .defaultSize(width: 880, height: 640)
         Settings {
             SettingsView()
         }

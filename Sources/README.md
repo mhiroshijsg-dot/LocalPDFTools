@@ -30,7 +30,7 @@
 ## 動く順番
 
 ```
-LocalPDFToolsApp.swift          起動の入口。作業台の窓 1 つと、設定の窓（⌘,）を作る
+LocalPDFToolsApp.swift          起動の入口。作業台の窓 1 つと、ヘルプの窓（⌘?）と、設定の窓（⌘,）を作る
    ↓
 Views/WorkspaceView.swift       作業台（窓全体）。左に PDF の並び、右にやること（操作のカード）、下に保存
    ↓ 「実行して保存…」が押されたら
@@ -55,13 +55,21 @@ PDFEngine/PDFTextExtractor.swift  文字の層は PDFKit で、OCR はページ�
 Models/TextExportRunner.swift   まとめて 1 つか、ファイルごとに保存ダイアログ
 ```
 
+ヘルプ（説明の文章は `Models/Help/Topics/` にだけ書く）:
+
+```
+メニュー「ヘルプ」→「LocalPDFTools のヘルプ」（Views/Help/HelpCommands.swift）
+   ↓ ヘルプの窓を開く（開いていた項目は設定 HelpTopic.selectionKey に覚えてある）
+Views/Help/HelpWindowView.swift  左に項目の一覧（Models/Help/HelpTopicGroup.swift）、右に説明（HelpTopicView）
+```
+
 ## LocalPDFTools/（アプリ本体）
 
 ### 入口と全体
 
 | ファイル | 役割 |
 |---|---|
-| `LocalPDFToolsApp.swift` | 起動の入口。作業台の窓を 1 つと設定の窓を作る。作業台の状態（`Workspace`）を 1 組だけ持つ |
+| `LocalPDFToolsApp.swift` | 起動の入口。作業台の窓を 1 つ・ヘルプの窓・設定の窓を作り、メニュー「ヘルプ」の中身を置き換える。作業台の状態（`Workspace`）を 1 組だけ持つ |
 | `AppDelegate.swift` | SwiftUI だけでは決められない振る舞い。窓を閉じたらアプリも終わる |
 | `AppInfo.swift` | アプリ名 |
 | `Assets.xcassets` | アプリのアイコン（AppIcon）。中の PNG は `scripts/make_icon.swift` が作るので、手で描き換えない |
@@ -89,7 +97,7 @@ Models/TextExportRunner.swift   まとめて 1 つか、ファイルごとに保
 | `PageTextView.swift` | 文字の抽出のシートの 1 ページ分（文字の層 / OCR / 層なしの札・文字・「OCR する」「読み直す」・コピー） |
 | `SettingsView.swift` | 設定の窓（⌘,）。操作を行う順番（解除はいつも最初・残りはドラッグか右クリックで並べ替え・順番の見本・おすすめの順に戻す） |
 
-`WorkspaceView.swift`・`RotatePagesSheet.swift`・`TextExtractionSheet.swift` の末尾の `#Preview` は、Xcode のプレビュー（右側にその場で描かれる画面）の設定。
+`WorkspaceView.swift`・`RotatePagesSheet.swift`・`TextExtractionSheet.swift`・`Help/HelpWindowView.swift` の末尾の `#Preview` は、Xcode のプレビュー（右側にその場で描かれる画面）の設定。
 
 ### Views/Previews/（プレビュー用。配る .app には入らない）
 
@@ -106,9 +114,37 @@ Models/TextExportRunner.swift   まとめて 1 つか、ファイルごとに保
 | `OutcomeView.swift` | 保存後の緑のカード（保存した名前と場所・「元 → 新」の大きさ・ファイル名の文字数・Finder で表示） |
 | `MessageList.swift` | エラー・警告（赤字）とお知らせの一覧。記号付きの帯で出す。右にコピーボタン |
 | `Badge.swift` | ファイル名の横の小さな札（記号と色付き） |
-| `OperationIcon.swift` | 操作の印（色の付いた角丸の四角に白い記号）。解除は橙・回転は青・結合は紫など、操作ごとの色もここで決める |
+| `SymbolTile.swift` | 色の付いた角丸の四角に白い記号。操作の印とヘルプの項目の印の共通の形 |
+| `OperationIcon.swift` | 操作の印（`SymbolTile`）。解除は橙・回転は青・結合は紫など、操作ごとの色もここで決める |
+| `OperationChip.swift` | 流れの矢印の中の、操作 1 つ分の小さな札（印＋短い名前）と矢印。「これから行うこと」とヘルプの順番の図で使う |
 | `OperationCard.swift` | 操作 1 つ分のカード（印・名前・一言・スイッチ。オンのときだけ詳しい内容） |
 | `FirstPageThumbnail.swift` | ファイルの行に出す 1 ページ目の小さな絵（パスワードが要る PDF は鍵の印） |
+
+### Views/Help/（ヘルプの窓）
+
+| ファイル | 役割 |
+|---|---|
+| `HelpCommands.swift` | メニュー「ヘルプ」→「LocalPDFTools のヘルプ」（⌘?）。標準の「ヘルプは利用できません」を置き換える |
+| `HelpWindowView.swift` | ヘルプの窓。左に項目の一覧（見出しごと）、右に説明。開いている項目は設定に覚える |
+| `HelpTopicView.swift` | 項目 1 つ分の説明（印と見出し・「見た目: 変わらない」などの札・図・段落のカード） |
+| `HelpSectionCard.swift` | 段落のまとまり 1 つ分のカード（見出し・文・箇条書き。**太字**・`命令`・リンクが効く） |
+| `HelpFlowFigure.swift` | 使い方の流れの図（PDF を入れる → 操作をオンにする → 実行して保存） |
+| `HelpOrderFigure.swift` | 操作の順番の図（今の設定の順） |
+| `HelpLicensesButton.swift` | 同梱した部品のライセンスの文を Finder で表示するボタン |
+
+### Models/Help/（ヘルプの中身）
+
+説明の文章はここにだけ書く。新しい操作を作ったら、`Topics/` に項目を足し、`HelpTopicGroup.swift` の並びにも入れる。
+
+| ファイル | 役割 |
+|---|---|
+| `HelpTopic.swift` | 項目 1 つ分（見出し・一言・影響の札・図・段落）。窓の id・開いている項目を覚える設定の名前 |
+| `HelpTopicGroup.swift` | サイドバーの見出し（使い方・操作・そのほか）と並び |
+| `HelpSection.swift` | 段落のまとまり 1 つ分（見出し・文・箇条書き） |
+| `HelpEffect.swift` | 「画質: 変わらない」などの札 1 枚（気を付けてほしい変化は橙） |
+| `HelpIcon.swift` | 項目の印（操作の項目は操作と同じ色、それ以外は灰色） |
+| `HelpAttachment.swift` | 文章の他に出すもの（流れの図・順番の図・ライセンスのボタン） |
+| `Topics/HelpTopic+*.swift` | 項目ごとの文章（はじめに・使い方の流れ・操作の順番・操作 5 つ・よくある質問・使っている部品） |
 
 ### Models/（画面の状態と、ボタンを押したときの動き）
 

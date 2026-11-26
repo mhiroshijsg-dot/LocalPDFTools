@@ -1,0 +1,26 @@
+/// ヘルプの窓のサイドバーの見出しと、その下に並ぶ項目
+struct HelpTopicGroup: Identifiable {
+    let title: String
+    let topics: [HelpTopic]
+
+    var id: String { title }
+
+    static let all: [HelpTopicGroup] = [
+        HelpTopicGroup(title: "使い方", topics: [.introduction, .flow, .order]),
+        HelpTopicGroup(title: "操作", topics: Operation.allCases.map(HelpTopic.operation)),
+        HelpTopicGroup(title: "そのほか", topics: [.faq, .components]),
+    ]
+}
+
+extension HelpTopic {
+    /// 操作ごとの項目
+    static func operation(_ operation: Operation) -> HelpTopic {
+        switch operation {
+        case .decrypt: return .decrypt
+        case .rotate: return .rotate
+        case .merge: return .merge
+        case .compress: return .compress
+        case .text: return .text
+        }
+    }
+}
