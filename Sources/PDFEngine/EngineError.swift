@@ -12,6 +12,7 @@ public enum EngineError: LocalizedError, Equatable {
     case outputNotCreated
     case passwordCancelled(path: String)
     case nothingToDo
+    case pageNotRendered(page: Int, path: String)
 
     public var errorDescription: String? {
         switch self {
@@ -35,6 +36,8 @@ public enum EngineError: LocalizedError, Equatable {
             return "パスワードの入力をやめたので、このファイルは処理しませんでした: \(path)"
         case .nothingToDo:
             return "行う操作がありません。"
+        case .pageNotRendered(let page, let path):
+            return "\(page) ページ目を画像にできなかったので、OCR できませんでした: \(path)"
         }
     }
 }

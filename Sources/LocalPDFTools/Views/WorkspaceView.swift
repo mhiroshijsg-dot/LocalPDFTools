@@ -6,6 +6,7 @@ import SwiftUI
 struct WorkspaceView: View {
     @Bindable var workspace: Workspace
     @State private var showsRotateSheet = false
+    @State private var showsTextSheet = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -13,7 +14,7 @@ struct WorkspaceView: View {
                 FileListView(workspace: workspace)
                     .frame(minWidth: 420, maxWidth: .infinity, maxHeight: .infinity)
                 Divider()
-                OperationListView(workspace: workspace, showsRotateSheet: $showsRotateSheet)
+                OperationListView(workspace: workspace, showsRotateSheet: $showsRotateSheet, showsTextSheet: $showsTextSheet)
                     .frame(width: 330)
                     .frame(maxHeight: .infinity, alignment: .top)
                     .background(Color(nsColor: .windowBackgroundColor))
@@ -60,6 +61,9 @@ struct WorkspaceView: View {
         }
         .sheet(isPresented: $showsRotateSheet) {
             RotatePagesSheet(workspace: workspace)
+        }
+        .sheet(isPresented: $showsTextSheet) {
+            TextExtractionSheet(workspace: workspace)
         }
     }
 

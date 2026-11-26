@@ -5,6 +5,7 @@ import SwiftUI
 struct OperationListView: View {
     @Bindable var workspace: Workspace
     @Binding var showsRotateSheet: Bool
+    @Binding var showsTextSheet: Bool
     @AppStorage(OperationOrder.storageKey) private var orderRaw = ""
 
     var body: some View {
@@ -19,6 +20,10 @@ struct OperationListView: View {
                     OperationCard(operation: Operation(step), isOn: binding(step)) {
                         details(step)
                     }
+                }
+                // 文字の抽出は PDF の保存の流れに入らないので、順番の設定とは別に最後に置く
+                OperationCard(operation: .text, isOn: $workspace.extractsText) {
+                    TextExtractionDetailsView(workspace: workspace, showsTextSheet: $showsTextSheet)
                 }
                 ForEach(Operation.upcoming) { operation in
                     OperationCard(operation: operation, isOn: .constant(false), isAvailable: false) { EmptyView() }

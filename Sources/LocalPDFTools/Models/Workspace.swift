@@ -20,6 +20,15 @@ final class Workspace {
     }
     /// 圧縮のやり方・分析・目安・試算
     let compression = CompressionModel()
+    /// 「文字の抽出」のスイッチ。PDF の保存の流れとは別（文字はシートで見てコピー・保存する。PDF は変えない）
+    var extractsText = false {
+        didSet {
+            // オンにしたときに初めて文字の層を読む（使わないなら読まない）
+            if extractsText && !oldValue { Task { await text.readLayers(files) } }
+        }
+    }
+    /// 文字の抽出の状態（読んだ文字・OCR・保存の結果）
+    let text = TextExtractionModel()
     /// 自分で書き換えた保存名（nil なら初期値を使う）
     private var customName: String?
     /// 「変更…」で選んだ保存先。その作業の間だけ使う（ファイルをすべて外すかアプリを閉じたら、元のファイルの場所に戻る）
@@ -65,9 +74,11 @@ final class Workspace {
             await compression.analyze(files)
             if compression.settings.vector.isActive { await compression.countLines(files) }
         }
+        if extractsText { await text.readLayers(files) }
     }
 
     func remove(_ file: WorkFile) {
+        text.forget(file)
         files.removeAll { $0.id == file.id }
         outcomes = []
         compression.invalidateTrial()
@@ -86,10 +97,18 @@ final class Workspace {
 
     private func clear() {
         compression.invalidateTrial()
+        text.reset()
         customName = nil
         chosenFolder = nil
         messages = []
         outcomes = []
+    }
+
+    // MARK: 文字の抽出
+
+    /// 指定したページを OCR する。「回転」がオンなら、回す指定をした向きに直してから読む
+    func startOCR(_ file: WorkFile, pages: [Int]) {
+        text.startOCR(file, pages: pages, quarterTurns: selected.contains(.rotate) ? file.plan.quarterTurns : [])
     }
 
     // MARK: 保存名と保存先

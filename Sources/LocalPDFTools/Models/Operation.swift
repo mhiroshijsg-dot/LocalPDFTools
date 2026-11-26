@@ -37,7 +37,7 @@ enum Operation: String, CaseIterable, Identifiable {
         }
     }
 
-    /// 処理の部品の側の名前。まだ作っていない操作は nil
+    /// 処理の部品の側の名前。PDF の保存の流れに入らない操作（文字の抽出）は nil
     var step: PipelineStep? {
         switch self {
         case .decrypt: return .decrypt
@@ -57,6 +57,7 @@ enum Operation: String, CaseIterable, Identifiable {
         }
     }
 
-    /// まだ作っていない操作（「今後のバージョンで追加」と出す）
-    static let upcoming: [Operation] = [.text]
+    /// まだ作っていない操作（「今後のバージョンで追加」と出す）。
+    /// MEMO(2026-11-26・by claude): 段階 3 で文字の抽出を作ったので、今は無い。今後の操作を足すときに使う
+    static let upcoming: [Operation] = []
 }

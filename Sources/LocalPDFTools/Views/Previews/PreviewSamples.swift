@@ -41,6 +41,26 @@ enum PreviewSamples {
         return model
     }
 
+    /// 文字の抽出のシート用: 文字の層があるファイル（2 ページ目は層なし）と、OCR したファイルと、パスワードが要るファイル
+    static func textWorkspace() -> Workspace {
+        let model = Workspace()
+        let plain = EncryptionReport(status: .notEncrypted, method: nil, deniedPermissions: [])
+        let report = WorkFile(url: URL(fileURLWithPath: "/見本/成績証明書 大学.pdf"),
+                              byteSize: 1_240_000, pageCount: 2, encryption: plain, hasOutline: false)
+        report.pageTexts = [
+            PageText(pageIndex: 0, source: .textLayer, text: "成績証明書\n氏名 見本 太郎\nGPA 3.85 / 4.00"),
+            PageText(pageIndex: 1, source: .none, text: ""),
+        ]
+        let scan = WorkFile(url: URL(fileURLWithPath: "/見本/推薦状 スキャン.pdf"),
+                            byteSize: 2_100_000, pageCount: 1, encryption: plain, hasOutline: false)
+        scan.pageTexts = [PageText(pageIndex: 0, source: .ocr, text: "To whom it may concern,\nI am pleased to recommend ...")]
+        let locked = WorkFile(url: URL(fileURLWithPath: "/見本/成績証明書 大学院.pdf"), byteSize: 860_000, pageCount: nil,
+                              encryption: EncryptionReport(status: .passwordRequired, method: nil, deniedPermissions: nil),
+                              hasOutline: false)
+        model.files = [report, scan, locked]
+        return model
+    }
+
     /// 向きが分かる見本の PDF（縦長・横長・縦長の 3 ページ。大きな番号と上辺の帯入り）を一時フォルダに作る
     static func samplePDF() -> URL {
         let url = FileManager.default.temporaryDirectory.appendingPathComponent("LocalPDFTools-preview.pdf")

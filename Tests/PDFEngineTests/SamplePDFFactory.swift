@@ -1,4 +1,5 @@
 import CoreGraphics
+import CoreText
 import Foundation
 import ImageIO
 import UniformTypeIdentifiers
@@ -175,5 +176,53 @@ struct SamplePDFFactory {
         guard [0, 3].contains(process.terminationStatus) else { throw SampleError("図の PDF を作れません") }
         return url
     }
-}
 
+    /// 文字の層がある PDF（letter）。pages の 1 つが 1 ページで、各行を上から書く（日本語は ヒラギノ角ゴ）
+    func makeWithText(name: String, pages: [[String]]) throws -> URL {
+        let url = directory.appendingPathComponent(name)
+        guard let context = CGContext(url as CFURL, mediaBox: nil, nil) else { throw SampleError("PDF を作れません: \(name)") }
+        for lines in pages {
+            var box = CGRect(x: 0, y: 0, width: 612, height: 792)
+            context.beginPage(mediaBox: &box)
+            draw(lines, in: context, scale: 1, pageHeight: 792)
+            context.endPage()
+        }
+        context.closePDF()
+        return url
+    }
+
+    /// スキャンした書類に似せた PDF（letter 1 ページ）: 文字を 200 dpi の画像に描いてページ全体に置く。文字の層は無い
+    func makeScanned(name: String, lines: [String]) throws -> URL {
+        let scale: CGFloat = 200 / 72
+        let width = Int(612 * scale), height = Int(792 * scale)
+        guard let bitmap = CGContext(data: nil, width: width, height: height, bitsPerComponent: 8, bytesPerRow: 0,
+                                     space: CGColorSpaceCreateDeviceGray(), bitmapInfo: CGImageAlphaInfo.none.rawValue)
+        else { throw SampleError("画像を作れません") }
+        bitmap.setFillColor(CGColor(gray: 1, alpha: 1))
+        bitmap.fill(CGRect(x: 0, y: 0, width: width, height: height))
+        draw(lines, in: bitmap, scale: scale, pageHeight: 792)
+        guard let image = bitmap.makeImage() else { throw SampleError("画像を作れません") }
+
+        let url = directory.appendingPathComponent(name)
+        guard let context = CGContext(url as CFURL, mediaBox: nil, nil) else { throw SampleError("PDF を作れません: \(name)") }
+        var box = CGRect(x: 0, y: 0, width: 612, height: 792)
+        context.beginPage(mediaBox: &box)
+        context.draw(image, in: box)
+        context.endPage()
+        context.closePDF()
+        return url
+    }
+
+    /// 行を左上から 24 ポイントの文字で書く（scale は画像に描くときの倍率）
+    private func draw(_ lines: [String], in context: CGContext, scale: CGFloat, pageHeight: CGFloat) {
+        let font = CTFontCreateWithName("HiraginoSans-W3" as CFString, 24 * scale, nil)
+        for (index, line) in lines.enumerated() {
+            let attributed = NSAttributedString(string: line, attributes: [
+                NSAttributedString.Key(kCTFontAttributeName as String): font,
+                NSAttributedString.Key(kCTForegroundColorAttributeName as String): CGColor(gray: 0, alpha: 1),
+            ])
+            context.textPosition = CGPoint(x: 60 * scale, y: (pageHeight - 90 - CGFloat(index) * 44) * scale)
+            CTLineDraw(CTLineCreateWithAttributedString(attributed), context)
+        }
+    }
+}

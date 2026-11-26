@@ -8,8 +8,7 @@ struct SaveBar: View {
         HStack(alignment: .center, spacing: 20) {
             VStack(alignment: .leading, spacing: 10) {
                 if workspace.files.isEmpty || workspace.selected.isEmpty {
-                    Text(workspace.files.isEmpty ? "PDF を入れて、やることをオンにしてください" : "やることをオンにしてください")
-                        .font(.callout.weight(.medium)).foregroundStyle(.secondary)
+                    Text(idleText).font(.callout.weight(.medium)).foregroundStyle(.secondary)
                 } else {
                     PlanSummaryView(workspace: workspace)
                 }
@@ -62,6 +61,14 @@ struct SaveBar: View {
             }
         }
         .disabled(workspace.isWorking)
+    }
+
+    /// やることを何もオンにしていないときの一言
+    private var idleText: String {
+        if workspace.files.isEmpty { return "PDF を入れて、やることをオンにしてください" }
+        // 文字の抽出だけなら、PDF は保存しない（文字はシートで保存する）
+        if workspace.extractsText { return "文字は「文字を見る…」のシートでコピー・保存します。PDF も加工するなら、ほかの操作もオンに" }
+        return "やることをオンにしてください"
     }
 
     private func fieldLabel(_ text: String) -> some View {

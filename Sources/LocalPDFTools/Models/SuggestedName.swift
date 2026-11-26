@@ -13,6 +13,16 @@ enum SuggestedName {
         baseName(url) + steps.compactMap(suffix).joined() + ".pdf"
     }
 
+    /// 文字の抽出（1 ファイル分）: 元の名前.txt
+    static func text(_ url: URL) -> String {
+        baseName(url) + ".txt"
+    }
+
+    /// 文字の抽出（複数のファイルをまとめて 1 つ）: 一番上のファイル名_merge.txt
+    static func mergedText(top: URL) -> String {
+        baseName(top) + "_merge.txt"
+    }
+
     private static func suffix(_ step: PipelineStep) -> String? {
         switch step {
         case .decrypt: return "_unlocked"

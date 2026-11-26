@@ -22,6 +22,10 @@ final class WorkFile: Identifiable {
     var analysisError: String?
     /// 図の線を減らすと減る数（「図の線を減らす」を初めてオンにしたときに数える）
     var thinningReport: VectorThinningReport?
+    /// ページごとの文字（「文字の抽出」をオンにしたときに初めて読む。パスワードが要るものはシートで頼まれたときに読む）
+    var pageTexts: [PageText]?
+    /// 文字を読めなかった理由
+    var textError: String?
     /// 縮小表示を作るときに初めて開く
     private(set) var document: PDFDocument?
     /// 保存に使う向き（ページごとに 0〜3 回の 90°）
@@ -55,6 +59,16 @@ final class WorkFile: Identifiable {
     var isLocked: Bool { encryption.status == .passwordRequired }
     var isEncrypted: Bool { encryption.status != .notEncrypted }
     var rotatedPageCount: Int { plan.quarterTurns.filter { $0 != 0 }.count }
+
+    /// 文字の出どころがその種類のページの数（まだ読んでいなければ 0）
+    func textPageCount(_ source: PageText.Source) -> Int {
+        pageTexts?.filter { $0.source == source }.count ?? 0
+    }
+
+    /// 文字の層が無く、まだ OCR していないページ
+    var pagesNeedingOCR: [Int] {
+        pageTexts?.filter { $0.source == .none }.map(\.pageIndex) ?? []
+    }
 
     /// 縮小表示のために開く（パスワードが要るものは開かない）
     func openDocument() -> PDFDocument? {

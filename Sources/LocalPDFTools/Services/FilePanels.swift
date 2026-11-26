@@ -36,4 +36,15 @@ struct FilePanels {
         if let folder { panel.directoryURL = folder }
         return panel.runModal() == .OK ? panel.url : nil
     }
+
+    /// 取り出した文字（.txt）の保存先を選ばせる（キャンセルなら nil）
+    func chooseTextDestination(suggestedName: String, in folder: URL?, message: String? = nil) -> URL? {
+        let panel = NSSavePanel()
+        panel.allowedContentTypes = [.plainText]
+        panel.nameFieldStringValue = suggestedName
+        panel.canCreateDirectories = true
+        if let message { panel.message = message }
+        if let folder { panel.directoryURL = folder }
+        return panel.runModal() == .OK ? panel.url : nil
+    }
 }

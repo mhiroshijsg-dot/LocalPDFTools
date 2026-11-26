@@ -43,6 +43,18 @@ PDFEngine/PDFDecryptor・PDFRotator・PDFMerger・PDFCompressor   それぞれ q
 PDFEngine/OutputWriter.swift    一時フォルダで作ってから保存先へ移す（入力と同じ場所には保存させない）
 ```
 
+文字の抽出は、この流れとは別（PDF を変えない）:
+
+```
+Views/OperationListView.swift   「文字の抽出」のスイッチをオン → 文字の層を読む（Models/TextExtractionModel.swift）
+   ↓ 「文字を見る…」
+Views/TextExtractionSheet.swift ページごとの文字。層の無いページは「OCR する」を押したときだけ読む
+   ↓
+PDFEngine/PDFTextExtractor.swift  文字の層は PDFKit で、OCR はページを画像にして（PageImageRenderer）Vision で（TextRecognizer）
+   ↓ 「.txt で保存…」
+Models/TextExportRunner.swift   まとめて 1 つか、ファイルごとに保存ダイアログ
+```
+
 ## LocalPDFTools/（アプリ本体）
 
 ### 入口と全体
@@ -61,22 +73,26 @@ PDFEngine/OutputWriter.swift    一時フォルダで作ってから保存先へ
 | `WorkspaceView.swift` | 窓全体（作業台）。左にファイルの並び、右にやること、下に結果と保存の欄。上のツールバーに「PDF を追加」（⌘O）と「すべて外す」。回転のシートを開く |
 | `FileListView.swift` | 入れた PDF の並び（ドラッグで並べ替え）と合計。空のときは大きな「ここにドロップ」 |
 | `FileRowView.swift` | 並びの 1 行（番号・1 ページ目の絵・名前・ページ数と大きさ・「制限あり」「要パスワード」「しおりあり」「○ ページ回転」の色付きの札・外すボタン） |
-| `OperationListView.swift` | やること＝操作のカードの並び（暗号化の解除・回転・結合・圧縮。文字の抽出は「今後のバージョンで追加」）。設定の順に並ぶ |
+| `OperationListView.swift` | やること＝操作のカードの並び（暗号化の解除・回転・結合・圧縮は設定の順。文字の抽出は PDF の保存の流れとは別なので、いつも最後） |
 | `CompressionDetailsView.swift` | 圧縮のカードの中身（構造の圧縮・解像度・JPEG の画質・図の線を減らす・大きさの内訳・目安・目標の大きさ・試算） |
 | `SaveBar.swift` | これから行うこと（`PlanSummaryView`）・保存名（結合のとき・1 ファイルのとき）・保存先と「変更…」・「実行して保存…」とできない理由 |
 | `PlanSummaryView.swift` | 「解除 → 回転 → 結合 → 1 つの PDF にして保存」のように、オンにした操作を実行する順に矢印でつないで見せる |
 | `RotatePagesSheet.swift` | 回転のシート。全ファイルのページを並べ、「すべて右に 90°」など |
 | `FilePagesSection.swift` | 回転のシートのファイル 1 つ分（ページの縮小表示。クリックで回す） |
 | `PageThumbnailView.swift` | 縮小表示 1 枚分（画像・ページ番号・「右に 90°」の札・回すページは青い枠） |
+| `TextExtractionDetailsView.swift` | 文字の抽出のカードの中身（「文字を見る…」・文字の層あり / なしのページ数） |
+| `TextExtractionSheet.swift` | 文字の抽出のシート。全ファイルのページごとの文字・読み間違いの注意・OCR の進み具合と中止・.txt の保存（まとめて 1 つ / ファイルごと）。閉じたら OCR は止める |
+| `FileTextSection.swift` | 文字の抽出のシートのファイル 1 つ分（「層なしのページを OCR」・すべてコピー・パスワードが要るときの「パスワードを入れて読む…」） |
+| `PageTextView.swift` | 文字の抽出のシートの 1 ページ分（文字の層 / OCR / 層なしの札・文字・「OCR する」「読み直す」・コピー） |
 | `SettingsView.swift` | 設定の窓（⌘,）。操作を行う順番（解除はいつも最初・残りはドラッグか右クリックで並べ替え・順番の見本・おすすめの順に戻す） |
 
-`WorkspaceView.swift`・`RotatePagesSheet.swift` の末尾の `#Preview` は、Xcode のプレビュー（右側にその場で描かれる画面）の設定。
+`WorkspaceView.swift`・`RotatePagesSheet.swift`・`TextExtractionSheet.swift` の末尾の `#Preview` は、Xcode のプレビュー（右側にその場で描かれる画面）の設定。
 
 ### Views/Previews/（プレビュー用。配る .app には入らない）
 
 | ファイル | 役割 |
 |---|---|
-| `PreviewSamples.swift` | プレビューに使う見本のデータ（架空のファイル名を並べた作業台・番号入りの見本 PDF を回した作業台） |
+| `PreviewSamples.swift` | プレビューに使う見本のデータ（架空のファイル名を並べた作業台・番号入りの見本 PDF を回した作業台・文字を読んだ後の作業台） |
 
 ### Views/Common/（いくつかの画面で使う部品）
 
@@ -97,11 +113,13 @@ PDFEngine/OutputWriter.swift    一時フォルダで作ってから保存先へ
 |---|---|
 | `Workspace.swift` | 作業台の状態（ファイルの並び・チェックした操作・保存名・保存先・結果）と、実行できない理由・保護が外れるファイル |
 | `WorkspaceRunner.swift` | 「実行して保存…」の流れ。結合ありなら保存ダイアログ 1 回、結合なしならファイルごとに保存ダイアログ（キャンセルしたものは飛ばして最後に知らせる） |
-| `WorkFile.swift` | 入れた PDF 1 つ分（情報・暗号化の状態・ページの回し方・縮小表示・圧縮の分析の結果）。パスワードは持たない |
+| `WorkFile.swift` | 入れた PDF 1 つ分（情報・暗号化の状態・ページの回し方・縮小表示・圧縮の分析の結果・ページごとの文字）。パスワードは持たない |
+| `TextExtractionModel.swift` | 文字の抽出の状態。文字の層を読む（スイッチをオンにしたとき）・OCR（押したときだけ。中止できる）・.txt の保存の結果 |
+| `TextExportRunner.swift` | 文字を .txt に保存する流れ（まとめて 1 つ / ファイルごとに保存ダイアログ。キャンセルしたものは飛ばして知らせる） |
 | `CompressionModel.swift` | 圧縮のやり方の選択・分析（圧縮をオンにしたときに初めて行う）・目安・試算（押したときだけ。中止できる） |
-| `Operation.swift` | 操作の名前とアイコン（まだ作っていない圧縮・文字の抽出も） |
+| `Operation.swift` | 操作の名前と一言とアイコン（文字の抽出は PDF の保存の流れに入らないので `step` が nil） |
 | `OperationOrder.swift` | 操作の順番の設定（解除はいつも最初・おすすめは 回転 → 結合 → 圧縮） |
-| `SuggestedName.swift` | 保存名の初期値（`一番上の名前_merge.pdf`・`元の名前_unlocked_rotated_compressed.pdf` など） |
+| `SuggestedName.swift` | 保存名の初期値（`一番上の名前_merge.pdf`・`元の名前_unlocked_rotated_compressed.pdf`・文字は `元の名前.txt`・まとめたら `一番上の名前_merge.txt`） |
 | `ThumbnailCache.swift` | 縮小表示を作って覚えておく（同じページを何度も描かない） |
 | `OutputName.swift` | 保存名に `.pdf` を付ける・文字数を数える・上限を超えたかを判定する |
 | `UserMessage.swift` | 画面に出すお知らせ 1 件（エラー・警告・お知らせの区別と文） |
@@ -110,7 +128,7 @@ PDFEngine/OutputWriter.swift    一時フォルダで作ってから保存先へ
 
 | ファイル | 役割 |
 |---|---|
-| `FilePanels.swift` | 「開く」「フォルダを選ぶ」「保存」のダイアログ |
+| `FilePanels.swift` | 「開く」「フォルダを選ぶ」「保存」（PDF・.txt）のダイアログ |
 | `PasswordPrompt.swift` | パスワードが要る時点で 1 回聞く小窓。読んだらすぐ入力欄を空にし、どこにも保存しない |
 | `UnlockConfirmation.swift` | 「PDF の保護を外します。よろしいですか？」の確認 |
 | `DesktopActions.swift` | Finder でファイルを表示する・文字をコピーする |
@@ -138,6 +156,13 @@ PDFEngine/OutputWriter.swift    一時フォルダで作ってから保存先へ
 | `ImagePlacementScanner.swift` | ページの描画の命令を読み、画像がページ上でどの大きさに描かれているかを調べる（図の中の画像もたどる） |
 | `QPDFObjectTable.swift` | `qpdf --json` の部品の一覧の読み取り（参照のたどり方・ページの資源） |
 | `PipelineFile.swift` | 続けて処理するファイル 1 つ分（場所・暗号化の状態・回し方） |
+| `PDFTextExtractor.swift` | 文字の抽出。文字の層は PDFKit でそのまま、層の無いページは頼まれたときだけ OCR。パスワードが要る PDF は qpdf で一時フォルダに解除した写しを読み、すぐ消す（PDFKit は日本語のパスワードを開けないため） |
+| `PageText.swift` | 1 ページ分の文字と出どころ（文字の層 / OCR / まだ読んでいない） |
+| `PageImageRenderer.swift` | ページを白い背景の画像に描く（300 dpi・長い辺 5000 ピクセルまで）。ページの向きと作業台の回転の指定を反映する |
+| `TextRecognizer.swift` | Vision で画像の文字を読む（日本語・英語。ネットワークは使わない） |
+| `RecognizedBlock.swift` | Vision が返す文字の塊 1 つ（文字と位置） |
+| `OCRLineAssembler.swift` | 文字の塊を、同じ高さのものを 1 行にまとめて左から並べ直す（表の列の順番が崩れないように） |
+| `TextExportFormatter.swift` | .txt の中身を作る（ページの見出し・OCR の印・文字の無いページや読んでいないファイルも黙って空にしない） |
 | `PDFMerger.swift` | 結合。`qpdf --empty --pages a.pdf b.pdf -- 出力.pdf` |
 | `PDFRotator.swift` | 回転。`qpdf 入力 出力 --rotate=+90:1,3` |
 | `RotationPlan.swift` | ページごとに「時計回りに何回 90° 回すか」と、それを qpdf の引数にする処理 |
@@ -168,7 +193,8 @@ Xcode では ⌘U。結果は左の「テスト」の欄（◇ の印）に、1 
 | `EncryptionTests.swift` | 暗号化の判定と解除（ETS 型・パスワード・日本語のパスワード・間違ったパスワード） |
 | `VectorThinningTests.swift` | 図の線を減らす（数える・全部・グリッド線だけ・オフなら変わらない・ずれ 0.1pt を超える点は残す） |
 | `CompressTests.swift` | 圧縮（解像度の判定・図の中の画像・目安・150/72 dpi・画質だけ・構造だけ・暗号化を保つ・続けて処理・中止） |
+| `TextExtractionTests.swift` | 文字の抽出（文字の層・層なし・OCR の日本語と英語・向きを直して読む・画像の大きさ・コピー禁止の PDF・日本語のパスワード・行の並べ直し・.txt の形） |
 | `PipelineTests.swift` | 続けて処理（一度にした結果 = 1 つずつ・結合の後に回す・パスワードは要るときだけ聞く・やめたら何も残らない） |
 | `TestWorkspace.swift` | テスト 1 件分の作業場所（一時フォルダ・見本の PDF・使う qpdf）。終わったら消す |
-| `SamplePDFFactory.swift` | 検査に使う PDF を合成する（個人の書類は使わない）。画像入り（300 ppi の JPEG・150 ppi の灰色）と、それを縮めて図として置いたもの、matplotlib の対数軸の図に似せたものも |
+| `SamplePDFFactory.swift` | 検査に使う PDF を合成する（個人の書類は使わない）。画像入り（300 ppi の JPEG・150 ppi の灰色）と、それを縮めて図として置いたもの、matplotlib の対数軸の図に似せたもの、文字入り（日本語・英語）、スキャン風（文字を画像にしたもの）も |
 | `SampleError.swift` | 見本の PDF を作れなかったときのエラー |
