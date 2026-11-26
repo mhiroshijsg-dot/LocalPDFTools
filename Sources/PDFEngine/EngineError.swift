@@ -10,6 +10,8 @@ public enum EngineError: LocalizedError, Equatable {
     case wrongPassword(path: String)
     case stillEncrypted(path: String)
     case outputNotCreated
+    case passwordCancelled(path: String)
+    case nothingToDo
 
     public var errorDescription: String? {
         switch self {
@@ -22,13 +24,17 @@ public enum EngineError: LocalizedError, Equatable {
         case .unreadablePDF(let path):
             return "PDF として読めません: \(path)"
         case .passwordRequired(let path):
-            return "開くのにパスワードが要る PDF です。先に「暗号化の解除」でパスワードを外してください: \(path)"
+            return "開くのにパスワードが要る PDF です。「暗号化の解除」にチェックを入れてください: \(path)"
         case .wrongPassword(let path):
             return "パスワードが違います: \(path)"
         case .stillEncrypted(let path):
             return "解除したはずの出力がまだ暗号化されていたので、保存をやめました: \(path)"
         case .outputNotCreated:
             return "出力のファイルができていません。"
+        case .passwordCancelled(let path):
+            return "パスワードの入力をやめたので、このファイルは処理しませんでした: \(path)"
+        case .nothingToDo:
+            return "行う操作がありません。"
         }
     }
 }

@@ -9,29 +9,48 @@ struct PageThumbnailView: View {
     let quarterTurns: Int
     /// 画面で傾ける角度（90° 単位・丸めない）。回る方向を押した向きと合わせるため
     let displayTurns: Int
+    @State private var isHovered = false
 
     var body: some View {
-        VStack(spacing: 4) {
+        VStack(spacing: 8) {
             ZStack {
                 if let image {
                     Image(nsImage: image)
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 120, height: 120)
-                        .shadow(radius: 1)
+                        .background(Color.white)
+                        .shadow(color: .black.opacity(0.22), radius: 3, y: 1)
+                        .frame(width: 118, height: 118)
                         .rotationEffect(.degrees(Double(displayTurns) * 90))
-                        .animation(.easeInOut(duration: 0.15), value: displayTurns)
+                        .animation(.spring(duration: 0.3, bounce: 0.15), value: displayTurns)
                 } else {
                     ProgressView().controlSize(.small)
                 }
             }
-            .frame(width: 140, height: 140)
-            .background(RoundedRectangle(cornerRadius: 6)
-                .strokeBorder(quarterTurns == 0 ? Color.clear : Color.accentColor, lineWidth: 2))
-            Text("\(pageNumber)").monospacedDigit()
-            Text(turnLabel).font(.caption).foregroundStyle(Color.accentColor)
+            .frame(width: 144, height: 144)
+            .background(
+                RoundedRectangle(cornerRadius: 12, style: .continuous)
+                    .fill(isHovered ? Color.primary.opacity(0.06) : Color.clear)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 12, style: .continuous)
+                    .strokeBorder(Color.accentColor, lineWidth: quarterTurns == 0 ? 0 : 2.5)
+            )
+            HStack(spacing: 6) {
+                Text("\(pageNumber)").font(.callout.weight(.medium)).monospacedDigit()
+                if quarterTurns != 0 {
+                    Text(turnLabel)
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 6).padding(.vertical, 1)
+                        .background(Capsule().fill(Color.accentColor))
+                }
+            }
+            .frame(height: 18)
         }
+        .animation(.snappy(duration: 0.2), value: quarterTurns)
         .contentShape(Rectangle())
+        .onHover { isHovered = $0 }
     }
 
     private var turnLabel: String {
@@ -39,7 +58,7 @@ struct PageThumbnailView: View {
         case 1: return "右に 90°"
         case 2: return "180°"
         case 3: return "左に 90°"
-        default: return " "
+        default: return ""
         }
     }
 }

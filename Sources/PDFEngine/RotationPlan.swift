@@ -8,6 +8,22 @@ public struct RotationPlan: Equatable, Sendable {
         quarterTurns = Array(repeating: 0, count: pageCount)
     }
 
+    /// ページごとの回数をそのまま渡して作る（0〜3 に丸める）
+    public init(quarterTurns: [Int]) {
+        self.quarterTurns = quarterTurns.map(Self.normalized)
+    }
+
+    /// 結合した後の PDF 用に、ファイルごとの指定を通しのページ番号につなげる。
+    /// pageCounts は各ファイルの実際のページ数。指定の方が短ければ「回さない」で埋め、長ければ切る。
+    public static func joined(_ plans: [RotationPlan], pageCounts: [Int]) -> RotationPlan {
+        var turns: [Int] = []
+        for (plan, count) in zip(plans, pageCounts) {
+            let own = Array(plan.quarterTurns.prefix(count))
+            turns += own + Array(repeating: 0, count: count - own.count)
+        }
+        return RotationPlan(quarterTurns: turns)
+    }
+
     public var pageCount: Int { quarterTurns.count }
     public var hasChanges: Bool { quarterTurns.contains { $0 != 0 } }
 

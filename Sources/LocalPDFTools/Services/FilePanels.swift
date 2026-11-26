@@ -13,17 +13,27 @@ struct FilePanels {
         return panel.runModal() == .OK ? panel.urls : []
     }
 
-    /// 保存先を選ばせる（キャンセルなら nil）。
+    /// 保存先のフォルダを選ばせる（キャンセルなら nil）
+    func chooseFolder(startingAt folder: URL?) -> URL? {
+        let panel = NSOpenPanel()
+        panel.canChooseFiles = false
+        panel.canChooseDirectories = true
+        panel.canCreateDirectories = true
+        panel.allowsMultipleSelection = false
+        panel.prompt = "このフォルダに保存"
+        panel.directoryURL = folder
+        return panel.runModal() == .OK ? panel.url : nil
+    }
+
+    /// 保存先を選ばせる（キャンセルなら nil）。folder のフォルダ・suggestedName の名前で開き、そこで選び直せる。
     /// 既にあるファイルを選ぶと、ダイアログが上書きしてよいかを確認する。
-    func chooseDestination(suggestedName: String, nextTo reference: URL?) -> URL? {
+    func chooseDestination(suggestedName: String, in folder: URL?, message: String? = nil) -> URL? {
         let panel = NSSavePanel()
         panel.allowedContentTypes = [.pdf]
         panel.nameFieldStringValue = suggestedName
         panel.canCreateDirectories = true
-        // 既定の保存先は決めない。最初は入力と同じフォルダを開くだけ
-        if let reference {
-            panel.directoryURL = reference.deletingLastPathComponent()
-        }
+        if let message { panel.message = message }
+        if let folder { panel.directoryURL = folder }
         return panel.runModal() == .OK ? panel.url : nil
     }
 }

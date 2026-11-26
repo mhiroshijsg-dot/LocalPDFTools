@@ -15,21 +15,27 @@ public struct PDFDecryptor {
     /// 保存先へ移す前に、出力が本当に暗号化なしかを確かめる（まだ暗号化されていたら保存しない）。
     public func decrypt(_ input: URL, password: String?, to destination: URL) async throws -> OperationOutcome {
         try await writer.write(to: destination, inputs: [input]) { temporary in
-            let passwordArguments = password == nil ? [] : QPDFPassword.arguments
-            let output = try await runner.run(passwordArguments + ["--decrypt", input.path, temporary.path],
-                                              input: password.map { QPDFPassword.input($0) })
-            if output.isInvalidPassword {
-                throw EngineError.wrongPassword(path: input.path)
-            }
-            guard output.succeeded else {
-                throw EngineError.qpdfFailed(exitCode: output.exitCode,
-                                             message: output.standardError.trimmingCharacters(in: .whitespacesAndNewlines))
-            }
-            let check = try await PDFEncryptionInspector(runner: runner).inspect(temporary)
-            guard check.status == .notEncrypted else {
-                throw EngineError.stillEncrypted(path: destination.path)
-            }
-            return output.warningLines
+            try await decryptFile(input, password: password, into: temporary)
         }
+    }
+
+    /// 一時ファイル output に暗号化なしの PDF を作る（結合・回転と続けて行うときに使う）。qpdf の警告の行を返す。
+    /// MEMO(2026-11-26・by claude): パスワードはこの関数の引数として受け取り、qpdf の標準入力へ渡すだけ。どこにも残さない。
+    public func decryptFile(_ input: URL, password: String?, into output: URL) async throws -> [String] {
+        let passwordArguments = password == nil ? [] : QPDFPassword.arguments
+        let result = try await runner.run(passwordArguments + ["--decrypt", input.path, output.path],
+                                          input: password.map { QPDFPassword.input($0) })
+        if result.isInvalidPassword {
+            throw EngineError.wrongPassword(path: input.path)
+        }
+        guard result.succeeded else {
+            throw EngineError.qpdfFailed(exitCode: result.exitCode,
+                                         message: result.standardError.trimmingCharacters(in: .whitespacesAndNewlines))
+        }
+        let check = try await PDFEncryptionInspector(runner: runner).inspect(output)
+        guard check.status == .notEncrypted else {
+            throw EngineError.stillEncrypted(path: input.path)
+        }
+        return result.warningLines
     }
 }

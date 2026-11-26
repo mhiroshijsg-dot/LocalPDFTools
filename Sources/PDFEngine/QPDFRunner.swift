@@ -8,8 +8,11 @@ public final class QPDFRunner: @unchecked Sendable {
     /// qpdf を1回走らせた結果
     public struct Output: Sendable {
         public let exitCode: Int32
-        public let standardOutput: String
+        /// 標準出力そのもの（画像のデータのように文字でないものもある）
+        public let standardOutputData: Data
         public let standardError: String
+
+        public var standardOutput: String { String(decoding: standardOutputData, as: UTF8.self) }
 
         /// qpdf の終了コード: 0 = 成功、3 = 成功したが警告あり、2 = 失敗
         public var succeeded: Bool { exitCode == 0 || exitCode == 3 }
@@ -104,7 +107,7 @@ public final class QPDFRunner: @unchecked Sendable {
         process.waitUntilExit()
 
         return Output(exitCode: process.terminationStatus,
-                      standardOutput: String(decoding: outData, as: UTF8.self),
+                      standardOutputData: outData,
                       standardError: String(decoding: errData, as: UTF8.self))
     }
 }

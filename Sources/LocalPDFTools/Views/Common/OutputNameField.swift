@@ -8,16 +8,16 @@ struct OutputNameField: View {
 
     var body: some View {
         let fullName = OutputName.withPDFExtension(name)
-        HStack {
-            Text("保存名")
+        let exceeds = OutputName.exceeds(fullName, limit: limit)
+        HStack(spacing: 8) {
             TextField("output.pdf", text: $name)
                 .textFieldStyle(.roundedBorder)
-                .frame(minWidth: 200)
+                .frame(minWidth: 200, maxWidth: 340)
             Text("\(OutputName.length(fullName)) 文字")
-                .monospacedDigit()
-                .foregroundStyle(OutputName.exceeds(fullName, limit: limit) ? Color.red : Color.secondary)
+                .font(.callout.weight(exceeds ? .semibold : .regular)).monospacedDigit()
+                .foregroundStyle(exceeds ? Color.red : Color.secondary)
                 .help("拡張子 .pdf も含めた文字数")
-            Text("上限")
+            Text("上限").font(.callout).foregroundStyle(.secondary)
             TextField("なし", value: $limit, format: .number)
                 .textFieldStyle(.roundedBorder)
                 .frame(width: 50)

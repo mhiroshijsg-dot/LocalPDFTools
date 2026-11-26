@@ -8,11 +8,21 @@ public struct OperationOutcome: Sendable {
     public let outputBytes: Int64
     /// qpdf が出した警告（成功はしている）
     public let warnings: [String]
+    /// 圧縮したときだけ: 作り直した画像の数など
+    public let compression: CompressionResult?
 
-    public init(destination: URL, inputBytes: Int64, outputBytes: Int64, warnings: [String]) {
+    public init(destination: URL, inputBytes: Int64, outputBytes: Int64, warnings: [String],
+                compression: CompressionResult? = nil) {
         self.destination = destination
         self.inputBytes = inputBytes
         self.outputBytes = outputBytes
         self.warnings = warnings
+        self.compression = compression
+    }
+
+    /// 圧縮の結果を付けた写し
+    func with(compression: CompressionResult?) -> OperationOutcome {
+        OperationOutcome(destination: destination, inputBytes: inputBytes, outputBytes: outputBytes,
+                         warnings: warnings, compression: compression)
     }
 }

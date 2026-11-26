@@ -14,9 +14,14 @@ public struct PDFMerger {
 
     public func merge(_ inputs: [URL], to destination: URL) async throws -> OperationOutcome {
         try await writer.write(to: destination, inputs: inputs) { temporary in
-            // パスはすべて「/」で始まる絶対パスなので、qpdf がページ範囲やオプションと取り違えることはない
-            let arguments = ["--empty", "--pages"] + inputs.map(\.path) + ["--", temporary.path]
-            return try await runner.runChecked(arguments).warningLines
+            try await mergeFiles(inputs, into: temporary)
         }
+    }
+
+    /// 一時ファイル output に結合した PDF を作る。qpdf の警告の行を返す。
+    public func mergeFiles(_ inputs: [URL], into output: URL) async throws -> [String] {
+        // パスはすべて「/」で始まる絶対パスなので、qpdf がページ範囲やオプションと取り違えることはない
+        let arguments = ["--empty", "--pages"] + inputs.map(\.path) + ["--", output.path]
+        return try await runner.runChecked(arguments).warningLines
     }
 }

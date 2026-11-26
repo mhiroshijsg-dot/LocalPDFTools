@@ -1,5 +1,7 @@
 import CoreGraphics
 import Foundation
+import ImageIO
+import UniformTypeIdentifiers
 
 /// 検査用の PDF を合成する（個人の書類は使わない）
 struct SamplePDFFactory {
@@ -72,4 +74,106 @@ struct SamplePDFFactory {
         guard process.terminationStatus == 0 else { throw SampleError("暗号化に失敗: \(name)") }
         return url
     }
+
+    /// 画像入りの PDF（letter 1 ページ）:
+    /// - 写真風の JPEG（1275×900 ピクセル）を 306×216 ポイントに置く → 300 ppi
+    /// - 灰色の可逆圧縮の画像（600×400 ピクセル）を 288×192 ポイントに置く → 150 ppi
+    /// MEMO(2026-11-26・by claude): Core Graphics は JPEG から読んだ画像を、作り直さずに JPEG のまま PDF に入れる。
+    func makeWithImages(name: String) throws -> URL {
+        let url = directory.appendingPathComponent(name)
+        guard let context = CGContext(url as CFURL, mediaBox: nil, nil) else { throw SampleError("PDF を作れません: \(name)") }
+        var box = CGRect(x: 0, y: 0, width: 612, height: 792)
+        context.beginPage(mediaBox: &box)
+        context.draw(try jpegImage(pattern(width: 1275, height: 900, gray: false)),
+                     in: CGRect(x: 40, y: 400, width: 306, height: 216))
+        context.draw(try pattern(width: 600, height: 400, gray: true), in: CGRect(x: 40, y: 40, width: 288, height: 192))
+        context.endPage()
+        context.closePDF()
+        return url
+    }
+
+    /// 別の PDF の 1 ページ目を、縮めて図（Form XObject）として置いた PDF。中の画像はページ上でより細かくなる
+    func makeWithNestedPage(name: String, source: URL, scale: CGFloat) throws -> URL {
+        let url = directory.appendingPathComponent(name)
+        guard let sourceDocument = CGPDFDocument(source as CFURL), let page = sourceDocument.page(at: 1),
+              let context = CGContext(url as CFURL, mediaBox: nil, nil) else { throw SampleError("PDF を作れません: \(name)") }
+        var box = CGRect(x: 0, y: 0, width: 612, height: 792)
+        context.beginPage(mediaBox: &box)
+        context.scaleBy(x: scale, y: scale)
+        context.drawPDFPage(page)
+        context.endPage()
+        context.closePDF()
+        return url
+    }
+
+    /// 細かい模様の画像（JPEG にしてもそれなりの大きさになるように）
+    private func pattern(width: Int, height: Int, gray: Bool) throws -> CGImage {
+        let space = gray ? CGColorSpaceCreateDeviceGray() : CGColorSpaceCreateDeviceRGB()
+        let info = gray ? CGImageAlphaInfo.none.rawValue : CGImageAlphaInfo.noneSkipLast.rawValue
+        guard let context = CGContext(data: nil, width: width, height: height, bitsPerComponent: 8, bytesPerRow: 0,
+                                      space: space, bitmapInfo: info) else { throw SampleError("画像を作れません") }
+        for y in stride(from: 0, to: height, by: 6) {
+            for x in stride(from: 0, to: width, by: 6) {
+                let v = CGFloat((x * 7 + y * 13) % 255) / 255
+                context.setFillColor(CGColor(red: v, green: CGFloat(y % 255) / 255, blue: 1 - v, alpha: 1))
+                context.fill(CGRect(x: x, y: y, width: 6, height: 6))
+            }
+        }
+        guard let image = context.makeImage() else { throw SampleError("画像を作れません") }
+        return image
+    }
+
+    private func jpegImage(_ image: CGImage) throws -> CGImage {
+        let data = NSMutableData()
+        guard let destination = CGImageDestinationCreateWithData(data, UTType.jpeg.identifier as CFString, 1, nil) else {
+            throw SampleError("JPEG を作れません")
+        }
+        CGImageDestinationAddImage(destination, image, [kCGImageDestinationLossyCompressionQuality: 0.92] as CFDictionary)
+        guard CGImageDestinationFinalize(destination),
+              let source = CGImageSourceCreateWithData(data, nil),
+              let decoded = CGImageSourceCreateImageAtIndex(source, 0, nil) else { throw SampleError("JPEG を作れません") }
+        return decoded
+    }
+
+    /// matplotlib の対数軸の図に似せた PDF（描画の命令を文字で書き、qpdf に目録を作らせる）:
+    /// 破線の補助グリッド線 30 本・短い補助目盛 40 本・長い主目盛 6 本・手描き風の破線 5 本（太さが違う）・
+    /// ほぼまっすぐな 200 点の折れ線・文字「Hello Plot」
+    func makeLinePlot(name: String, qpdf: URL) throws -> URL {
+        var content = ""
+        for i in 0..<30 { content += "q\n0.5 w\n[0.8 1.32] 0 d\n50 \(100 + i * 10) m\n550 \(100 + i * 10) l\nS\nQ\n" }
+        for i in 0..<40 { content += "q\n0.6 w\n1 0 0 1 \(60 + i * 12) 90 cm\n0 0 m\n0 -2 l\nB\nQ\n" }
+        for i in 0..<6 { content += "q\n0.8 w\n1 0 0 1 \(60 + i * 80) 90 cm\n0 0 m\n0 -3.5 l\nB\nQ\n" }
+        for i in 0..<5 { content += "q\n1 w\n[3 3] 0 d\n50 \(450 + i * 10) m\n550 \(450 + i * 10) l\nS\nQ\n" }
+        content += "q\n1 w\n100 300 m\n"
+        for i in 1..<200 {
+            let wobble = i % 2 == 0 ? 0.004 : -0.004
+            content += String(format: "%.3f %.3f l\n", 100 + Double(i) * 2, 300 + Double(i) + wobble)
+        }
+        content += "S\nQ\nBT /F1 12 Tf 100 700 Td (Hello Plot) Tj ET\n"
+
+        let raw = directory.appendingPathComponent("raw-" + name)
+        let text = """
+        %PDF-1.4
+        1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj
+        2 0 obj << /Type /Pages /Kids [3 0 R] /Count 1 >> endobj
+        3 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >> endobj
+        4 0 obj << /Length \(content.utf8.count) >> stream
+        \(content)endstream endobj
+        5 0 obj << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> endobj
+        trailer << /Root 1 0 R /Size 6 >>
+        %%EOF
+
+        """
+        try Data(text.utf8).write(to: raw)
+        let url = directory.appendingPathComponent(name)
+        let process = Process()
+        process.executableURL = qpdf
+        process.arguments = [raw.path, url.path]
+        process.standardError = FileHandle.nullDevice
+        try process.run()
+        process.waitUntilExit()
+        guard [0, 3].contains(process.terminationStatus) else { throw SampleError("図の PDF を作れません") }
+        return url
+    }
 }
+

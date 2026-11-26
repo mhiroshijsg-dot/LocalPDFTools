@@ -4,12 +4,17 @@ import SwiftUI
 @main
 struct LocalPDFToolsApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
+    /// 作業台の状態。窓が 1 つなので 1 組だけ持つ
+    @State private var workspace = Workspace()
 
     var body: some Scene {
-        // 窓は 1 つだけ（⌘N で増えない）。各機能の状態は ContentView が 1 組だけ持つので、窓が増えると同じ中身が並んでしまう
+        // 窓は 1 つだけ（⌘N で増えない）
         Window(AppInfo.name, id: "main") {
-            ContentView()
-                .frame(minWidth: 760, minHeight: 520)
+            WorkspaceView(workspace: workspace)
+                .frame(minWidth: 860, minHeight: 560)
+        }
+        Settings {
+            SettingsView()
         }
     }
 }

@@ -6,3 +6,4 @@ build/
 .claude/
 __pycache__/
 xcuserdata/
+*.profraw
