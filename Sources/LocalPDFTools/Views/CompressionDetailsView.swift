@@ -1,27 +1,72 @@
 import PDFEngine
 import SwiftUI
 
-/// 圧縮のカードの中身: やり方の選択・内訳・目安・目標の大きさ・試算
+/// 圧縮のカードの中身: 品質（高・中・低）・「詳細」（開くとやり方の選択・線・図・内訳）・目安・目標の大きさ・試算
+/// MEMO(2026-11-26・by claude): 村田さんの指示で、詳細を開かない限りは品質の 3 つから選ぶだけの形にした（iLovePDF と同じ）。
 struct CompressionDetailsView: View {
     @Bindable var workspace: Workspace
     /// 提出先の大きさの上限（MB。0 は無し）。アプリを閉じても覚えておく
     @AppStorage("targetSizeMB") private var targetMB = 0.0
+    /// 「詳細」を開いているか（最初は閉じている）
+    @State private var showsDetails = false
 
     private var model: CompressionModel { workspace.compression }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            choices
-            Divider()
-            lineThinning
-            Divider()
-            FigureRasterizationSection(workspace: workspace)
-            Divider()
-            breakdown
+            quality
+            DisclosureGroup(isExpanded: $showsDetails.animation(.snappy(duration: 0.2))) {
+                VStack(alignment: .leading, spacing: 10) {
+                    choices
+                    Divider()
+                    lineThinning
+                    Divider()
+                    FigureRasterizationSection(workspace: workspace)
+                    Divider()
+                    breakdown
+                }
+                .padding(.top, 6)
+            } label: {
+                Text("詳細").fontWeight(.medium)
+            }
             Divider()
             estimate
             trial
             notes
+        }
+    }
+
+    // MARK: 品質
+
+    private var quality: some View {
+        @Bindable var model = workspace.compression
+        let current = CompressionPreset.matching(model.settings)
+        return VStack(alignment: .leading, spacing: 5) {
+            HStack(spacing: 8) {
+                Text("品質").foregroundStyle(.secondary)
+                Picker("品質", selection: Binding(
+                    get: { current },
+                    set: { preset in
+                        if let preset { model.settings = preset.settings(keeping: model.settings) }
+                    }
+                )) {
+                    ForEach(CompressionPreset.allCases) { Text($0.title).tag(CompressionPreset?.some($0)) }
+                }
+                .pickerStyle(.segmented)
+                .labelsHidden()
+                .fixedSize()
+            }
+            // MEMO(2026-11-27・by claude): 品質ごとの説明文は、村田さん「詳細を見ればわかる」で出さない。
+            // 詳細で変えたとき（どの品質でもないとき）だけ、そのことを一言出す
+            if current == nil {
+                Text("「詳細」で変えた設定です。品質を選ぶと、品質の設定に置き換わります")
+                    .font(.caption).foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            if model.settings.figures.isEnabled {
+                Label("図を画像にする: オン（詳細で選んだ図）", systemImage: "exclamationmark.triangle.fill")
+                    .font(.caption).foregroundStyle(.orange)
+            }
         }
     }
 
@@ -67,12 +112,11 @@ struct CompressionDetailsView: View {
             Text("図の線を減らす").fontWeight(.medium)
             Text("matplotlib などで作ったグラフ向け。他の PDF にはほとんど当てはまりません。")
                 .font(.caption).foregroundStyle(.secondary)
-            thinningToggle("補助グリッド線を消す", isOn: $model.settings.vector.removeMinorGrid,
-                           count: counted ? "\(total.gridLines) 本" : nil, changesLook: true,
-                           help: "同じ形の破線が 20 本以上繰り返すものを消します（数本の参照線は残します）")
-            thinningToggle("補助目盛を消す", isOn: $model.settings.vector.removeMinorTicks,
-                           count: counted ? "\(total.tickMarks) 本" : nil, changesLook: true,
-                           help: "文書の中で一番短い目盛で、同じ形が 20 本以上繰り返すものを消します（主目盛は残します）")
+            // MEMO(2026-11-26・by claude): 村田さん「補助グリッド、目盛りは一つの項目にしてしまってくれ」で 1 つにまとめた。
+            // エンジン（VectorThinning）は 2 つの指定のままで、ここで両方を同時に付け外しする
+            thinningToggle("補助グリッド線と補助目盛を消す", isOn: minorLines,
+                           count: counted ? "\(total.gridLines + total.tickMarks) 本" : nil, changesLook: true,
+                           help: "同じ形の破線が 20 本以上繰り返すもの（補助グリッド線）と、文書の中で一番短い目盛で同じ形が 20 本以上繰り返すもの（補助目盛）を消します。数本の参照線と主目盛は残します")
             thinningToggle("曲線の点を間引く", isOn: $model.settings.vector.simplifyCurves,
                            count: counted ? "\(total.pointsBefore) → \(total.pointsAfter) 点" : nil, changesLook: false,
                            help: "折れ線の点を、元の線からのずれが 0.1 ポイント以内に収まるように減らします。見た目はほぼ変わりません")
@@ -89,6 +133,18 @@ struct CompressionDetailsView: View {
         .task(id: model.settings.vector.isActive) {
             if model.settings.vector.isActive { await model.countLines(workspace.files) }
         }
+    }
+
+    /// 「補助グリッド線と補助目盛を消す」: 補助グリッド線と補助目盛の 2 つの指定を、まとめて付け外しする
+    private var minorLines: Binding<Bool> {
+        let model = workspace.compression
+        return Binding(
+            get: { model.settings.vector.removeMinorGrid || model.settings.vector.removeMinorTicks },
+            set: { isOn in
+                model.settings.vector.removeMinorGrid = isOn
+                model.settings.vector.removeMinorTicks = isOn
+            }
+        )
     }
 
     private func thinningToggle(_ title: String, isOn: Binding<Bool>, count: String?, changesLook: Bool,

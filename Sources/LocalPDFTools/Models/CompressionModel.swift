@@ -7,11 +7,10 @@ import PDFEngine
 @MainActor
 @Observable
 final class CompressionModel {
-    /// MEMO(2026-11-26・by claude): 村田さんの指示で、圧縮をオンにしたときは「図の線を減らす」の 3 つすべてにチェックが付いた状態で始める。
+    /// MEMO(2026-11-26・by claude): 村田さんの指示で、圧縮をオンにしたときは「図の線を減らす」のすべて（補助グリッド線と補助目盛・曲線の点）にチェックが付いた状態で始める。
     /// エンジンの `VectorThinning` の既定（すべてオフ）は変えず、画面の初期値だけを変えている。①②は「見た目が変わります」の表示が出る。
-    var settings = CompressionSettings(
-        vector: VectorThinning(removeMinorGrid: true, removeMinorTicks: true, simplifyCurves: true)
-    ) {
+    /// MEMO(2026-11-26・by claude): 品質（高・中・低）を入れてからは、最初は品質「高」の設定で始める（線を減らすも全部オンのまま）。
+    var settings = CompressionPreset.initial.settings(keeping: CompressionSettings()) {
         didSet { if settings != oldValue { invalidateTrial() } }
     }
     private(set) var isAnalyzing = false

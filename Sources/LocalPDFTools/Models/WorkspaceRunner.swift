@@ -113,6 +113,11 @@ struct WorkspaceRunner {
         }
         if compression.resampledImages > 0 { done.append("画像 \(compression.resampledImages) 個の解像度を下げ") }
         if compression.requalifiedImages > 0 { done.append("画像 \(compression.requalifiedImages) 個の JPEG の画質を下げ") }
+        // いつも行う 3 つ（見た目は変わらない・ほぼ変わらない）
+        if compression.grayImages > 0 { done.append("色の無い画像 \(compression.grayImages) 個を灰色で保存し直し") }
+        if compression.mergedDuplicates > 0 { done.append("重複していた部品 \(compression.mergedDuplicates) 個を 1 つにまとめ") }
+        if compression.convertedFonts > 0 { done.append("フォント \(compression.convertedFonts) 個を小さな形式（CFF）に作り直し") }
+        if compression.removedExtras > 0 { done.append("編集用のデータなど要らないデータ \(compression.removedExtras) 個を捨て") }
         var text = done.isEmpty ? "\(name): 画像と図の線は変えていません" : "\(name): " + done.joined(separator: "、") + "ました"
         if compression.keptImages > 0 { text += "（作り直しても小さくならなかった \(compression.keptImages) 個は元のまま）" }
         if compression.keptFigures > 0 { text += "（画像にしても小さくならなかった図 \(compression.keptFigures) 個は元のまま）" }

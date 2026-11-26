@@ -25,6 +25,8 @@ public struct PDFImageInfo: Sendable {
     public let placedSize: CGSize?
     /// 触れない理由（触れるなら nil）
     public let unsupportedReason: String?
+    /// 形式としては作り直せるか（ページ上の場所が分からないだけなら true）。灰色にするのは場所が分からなくてもできる
+    public let isRewritable: Bool
 
     /// ページ上の解像度（縦横の低い方）。描かれている場所が分からなければ nil
     public var effectivePPI: Double? {

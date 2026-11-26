@@ -68,31 +68,31 @@ public struct PDFContentAnalyzer {
         let components = Self.components(of: dictionary["/ColorSpace"], table: table)
         let bits = Int(table.number(dictionary["/BitsPerComponent"]) ?? 0)
 
-        let reason: String?
+        // 形式の理由（ページ上の場所は別に見る）
+        let formatReason: String?
         if isMask {
-            reason = "透明度や形の抜きに使う画像"
+            formatReason = "透明度や形の抜きに使う画像"
         } else if (dictionary["/ImageMask"] as? Bool) == true {
-            reason = "形だけの画像（ImageMask）"
+            formatReason = "形だけの画像（ImageMask）"
         } else if case .other(let name) = encoding {
             switch name {
-            case "CCITTFaxDecode", "JBIG2Decode": reason = "白黒スキャン（\(name == "JBIG2Decode" ? "JBIG2" : "CCITT")）"
-            case "JPXDecode": reason = "JPEG 2000"
-            case "": reason = "圧縮されていない画像"
-            default: reason = "対応していない形式（\(name)）"
+            case "CCITTFaxDecode", "JBIG2Decode": formatReason = "白黒スキャン（\(name == "JBIG2Decode" ? "JBIG2" : "CCITT")）"
+            case "JPXDecode": formatReason = "JPEG 2000"
+            case "": formatReason = "圧縮されていない画像"
+            default: formatReason = "対応していない形式（\(name)）"
             }
         } else if components == 4 {
-            reason = "印刷用の色（CMYK）"
+            formatReason = "印刷用の色（CMYK）"
         } else if components == nil {
-            reason = "対応していない色の形式"
+            formatReason = "対応していない色の形式"
         } else if bits != 8 {
-            reason = "1 色 \(bits) ビットの画像"
+            formatReason = "1 色 \(bits) ビットの画像"
         } else if dictionary["/Decode"] != nil {
-            reason = "色の読み替え（/Decode）付き"
-        } else if placedSize == nil {
-            reason = "ページ上で描かれている場所が分からない画像"
+            formatReason = "色の読み替え（/Decode）付き"
         } else {
-            reason = nil
+            formatReason = nil
         }
+        let reason = formatReason ?? (placedSize == nil ? "ページ上で描かれている場所が分からない画像" : nil)
 
         return PDFImageInfo(ref: ref,
                             pixelWidth: Int(table.number(dictionary["/Width"]) ?? 0),
@@ -101,7 +101,8 @@ public struct PDFContentAnalyzer {
                             encoding: encoding,
                             components: components,
                             placedSize: placedSize,
-                            unsupportedReason: reason)
+                            unsupportedReason: reason,
+                            isRewritable: formatReason == nil)
     }
 
     static func filters(_ value: Any?, table: QPDFObjectTable) -> [String] {

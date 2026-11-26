@@ -74,7 +74,7 @@ Models/TextExportRunner.swift   まとめて 1 つか、ファイルごとに保
 | `FileListView.swift` | 入れた PDF の並び（ドラッグで並べ替え）と合計。空のときは大きな「ここにドロップ」 |
 | `FileRowView.swift` | 並びの 1 行（番号・1 ページ目の絵・名前・ページ数と大きさ・「制限あり」「要パスワード」「しおりあり」「○ ページ回転」の色付きの札・外すボタン） |
 | `OperationListView.swift` | やること＝操作のカードの並び（暗号化の解除・回転・結合・圧縮は設定の順。文字の抽出は PDF の保存の流れとは別なので、いつも最後） |
-| `CompressionDetailsView.swift` | 圧縮のカードの中身（構造の圧縮・解像度・JPEG の画質・図の線を減らす・図を画像にする・大きさの内訳・目安・目標の大きさ・試算） |
+| `CompressionDetailsView.swift` | 圧縮のカードの中身。品質（高・中・低）と「詳細」（開くと構造の圧縮・解像度・JPEG の画質・図の線を減らす・図を画像にする・大きさの内訳）、その下に目安・目標の大きさ・試算 |
 | `FigureRasterizationSection.swift` | 圧縮のカードの中の「図を画像にする」（スイッチ・重い図の数・目安・解像度・「図を選ぶ…」）。既定はオフ |
 | `FigureListSheet.swift` | 図を選ぶシート（全ファイルの重い図をファイルごとに並べ、画像にする図にチェックを付ける） |
 | `FigureRowView.swift` | 図を選ぶシートの 1 行（チェック・縮小表示・ページ・描く命令の数・今の大きさ → 目安・効果なし） |
@@ -120,6 +120,7 @@ Models/TextExportRunner.swift   まとめて 1 つか、ファイルごとに保
 | `TextExtractionModel.swift` | 文字の抽出の状態。文字の層を読む（スイッチをオンにしたとき）・OCR（押したときだけ。中止できる）・.txt の保存の結果 |
 | `TextExportRunner.swift` | 文字を .txt に保存する流れ（まとめて 1 つ / ファイルごとに保存ダイアログ。キャンセルしたものは飛ばして知らせる） |
 | `CompressionModel.swift` | 圧縮のやり方の選択・分析（圧縮をオンにしたときに初めて行う。重い図を探すのもここ）・目安・試算（押したときだけ。中止できる）・図の選択と縮小表示（シートを開いたときだけ描く） |
+| `CompressionPreset.swift` | 圧縮の品質（高 300 dpi・中 150 dpi と JPEG 中・低 100 dpi と JPEG 低）。選ぶと詳細の設定をまとめて書き換える。今の設定がどの品質かも判定する |
 | `Operation.swift` | 操作の名前と一言とアイコン（文字の抽出は PDF の保存の流れに入らないので `step` が nil） |
 | `OperationOrder.swift` | 操作の順番の設定（解除はいつも最初・おすすめは 回転 → 結合 → 圧縮） |
 | `SuggestedName.swift` | 保存名の初期値（`一番上の名前_merge.pdf`・`元の名前_unlocked_rotated_compressed.pdf`・文字は `元の名前.txt`・まとめたら `一番上の名前_merge.txt`） |
@@ -144,8 +145,26 @@ Models/TextExportRunner.swift   まとめて 1 つか、ファイルごとに保
 | `QPDFPassword.swift` | qpdf にパスワードを渡す方法。引数ではなく標準入力で渡す（引数は他のプログラムから見えるため） |
 | `PDFPipeline.swift` | 解除 → 回転 → 結合 → 圧縮 を指定の順に続けて行い、最後の 1 つだけ保存先へ置く。パスワードは要る時点で聞き（違えば聞き直す）、そのまま qpdf に渡す。結合の後に回すときは通しのページ番号に直す |
 | `PipelineStep.swift` | 続けて行える操作（解除・回転・結合・圧縮） |
-| `PDFCompressor.swift` | 圧縮。順番は 図を画像にする → 線を減らす → 画像の縮小・再圧縮。すべて `qpdf --update-from-json` で差し戻す。構造の圧縮は `--object-streams=generate --recompress-flate --compression-level=9`。中止できる |
-| `ImageRecompressor.swift` | 画像 1 つの作り直し（Mac 標準の画像処理）。JPEG は縮小・画質、可逆の画像は縮小だけ。小さくならなければ作り直さない |
+| `PDFCompressor.swift` | 圧縮。順番は 重複を探す → 図を画像にする → 線を減らす → 画像の縮小・再圧縮・灰色 → Type1 フォントを CFF に → 重複の付け替えと要らないデータを捨てる。すべて `qpdf --update-from-json` で差し戻す。構造の圧縮は `--object-streams=generate --recompress-flate --compression-level=9`。中止できる。要らないデータ・重複・色の無い画像・フォントの作り直しの 4 つは、選ぶ欄なしでいつも行う |
+| `ImageRecompressor.swift` | 画像 1 つの作り直し（Mac 標準の画像処理）。JPEG は縮小・画質、可逆の画像は縮小だけ。色の無い RGB の画像は灰色にする（JPEG は灰色にするだけなら 1 割以上小さくなるときだけ）。小さくならなければ作り直さない |
+| `ColorlessPixels.swift` | RGB の画像が色の無い画像かの判定（可逆はぴったり同じとき・JPEG は少しのぶれを許すが印鑑などの色があれば不可） |
+| `ExtraDataStripper.swift` | 要らないデータを辞書から外す（/PieceInfo・ページの /Thumb・文書全体以外の /Metadata） |
+| `DuplicateObjectFinder.swift` | 中身がまったく同じ部品を探す。データを持つ部品は長さと辞書で候補 → 候補のデータだけ qpdf で取り出して SHA-256 で比べる。データを持たない小さな部品（フォントの辞書・字幅など）も比べる（ページ・注釈・しおり・フォームの欄・レイヤーは除く）。まとめると同じになる部品があるので、変わらなくなるまで繰り返す。重複 → 残す方の対応を返す |
+| `PDFFontConverter.swift` | 圧縮の段: Type1 のフォント（/FontFile）を CFF（/FontFile3 /Type1C）に作り直して差し替える。作り直せない・小さくならないフォントは元のまま |
+| `Type1ToCFFConverter.swift` | Type1 → CFF の作り直しの流れ（読む → 字形ごとに形にする → CFF の描き方にする → 組み立てる）。読めなければ nil |
+| `Type1Font.swift` | 読み取った Type1 フォントの中身（名前・行列・枠・文字の割り当て・Private の値・Subrs・CharStrings） |
+| `Type1FontParser.swift` | Type1 フォントを読む（平文の部分と、eexec の暗号を解いた部分。字形の描き方の暗号も解く） |
+| `PostScriptTokens.swift` | Type1 の平文の部分を語に区切る |
+| `Type1BinaryScanner.swift` | Type1 の暗号を解いた部分を語に区切る（RD の後のバイトは長さのとおりに読む） |
+| `Type1CharStringInterpreter.swift` | Type1 の字形の描き方を実行して形にする（下請け・flex・手がかりの入れ替え・seac・div） |
+| `GlyphOutline.swift` | 字形 1 つの形（線と曲線・送り幅・ステムの手がかり） |
+| `Type2CharStringEncoder.swift` | 字形の形を CFF の描き方（Type2）にする（重ならない手がかりだけ写す） |
+| `CFFWriter.swift` | CFF のフォントを組み立てる（名前・Top DICT・字形の名前・文字の割り当て・字形・Private DICT） |
+| `CFFPrimitives.swift` | CFF の部品の書き方（辞書の数・INDEX・字形の描き方の数） |
+| `StandardEncodingNames.swift` | Adobe の StandardEncoding（seac の字の番号を名前にする） |
+| `Array+SafeIndex.swift` | 範囲外なら nil を返す添字 |
+| `ReferenceRewriter.swift` | qpdf の JSON の値の中の参照（"5 0 R"）を、対応表のとおりに付け替える |
+| `ObjectCleanupPass.swift` | 圧縮の最後に、すべての部品で重複への参照を付け替え、要らないデータを外す（それまでの段で書き換えた部品にも重ねる） |
 | `CompressionSettings.swift` | 圧縮のやり方（構造の圧縮・目標の dpi・JPEG の画質・図の線を減らす・図を画像にする） |
 | `FigureRasterization.swift` | 図を画像にするやり方（スイッチ・選んだ図の指紋・150/200/300 dpi。既定はオフ） |
 | `FigureScanner.swift` | ページの描画の命令を読み、ページに置かれた図（Form XObject）ごとに描く命令の数・置かれた大きさ・中の部品を数える（Core Graphics） |
@@ -160,10 +179,10 @@ Models/TextExportRunner.swift   まとめて 1 つか、ファイルごとに保
 | `ContentStreamThinner.swift` | 描画の命令の書き換え。`make_compact_pdf.py` の判定を移したもの（20 本以上の繰り返し・文書全体で一番短い目盛・Ramer–Douglas–Peucker で 0.1pt 以内） |
 | `PDFVectorThinner.swift` | ページと図（Form XObject）の描画の命令を集めて ContentStreamThinner をかけ、qpdf で差し戻す指定を作る |
 | `JPEGQuality.swift` | JPEG の画質の段階（高 0.85・中 0.75・低 0.6・最低 0.5）と目安の割合 |
-| `CompressionResult.swift` | 圧縮した結果の数（縮めた画像・画質を下げた画像・元のまま残した画像・消した線と間引いた点・画像にした図・元のまま残した図） |
+| `CompressionResult.swift` | 圧縮した結果の数（縮めた画像・画質を下げた画像・元のまま残した画像・消した線と間引いた点・画像にした図・元のまま残した図・外した要らないデータ・まとめた重複・灰色にした画像） |
 | `PDFContentAnalyzer.swift` | 大きさの内訳（画像・フォント・その他）と画像の一覧を作る。触れない画像（白黒スキャン・CMYK など）は理由を付ける |
 | `PDFContentReport.swift` | 内訳 1 ファイル分と、目安の計算（式による見積もり） |
-| `PDFImageInfo.swift` | 画像 1 つ分（形式・ピクセル数・ページ上の大きさと解像度・触れない理由） |
+| `PDFImageInfo.swift` | 画像 1 つ分（形式・ピクセル数・ページ上の大きさと解像度・触れない理由・形式として作り直せるか） |
 | `ImagePlacementScanner.swift` | ページの描画の命令を読み、画像がページ上でどの大きさに描かれているかを調べる（図の中の画像もたどる） |
 | `QPDFObjectTable.swift` | `qpdf --json` の部品の一覧の読み取り（参照のたどり方・ページの資源） |
 | `PipelineFile.swift` | 続けて処理するファイル 1 つ分（場所・暗号化の状態・回し方） |
@@ -204,6 +223,10 @@ Xcode では ⌘U。結果は左の「テスト」の欄（◇ の印）に、1 
 | `EncryptionTests.swift` | 暗号化の判定と解除（ETS 型・パスワード・日本語のパスワード・間違ったパスワード） |
 | `VectorThinningTests.swift` | 図の線を減らす（数える・全部・グリッド線だけ・オフなら変わらない・ずれ 0.1pt を超える点は残す） |
 | `CompressTests.swift` | 圧縮（解像度の判定・図の中の画像・目安・150/72 dpi・画質だけ・構造だけ・暗号化を保つ・続けて処理・中止） |
+| `CompressCleanupTests.swift` | 圧縮でいつも行うこと（要らないデータ・重複・色の無い画像。数・要らないデータが無くなり文書全体の説明は残る・重複が 1 つになる・灰色にするもの/しないもの・描いた見た目がほとんど変わらない・当てはまらない PDF では何もしない） |
+| `CleanupSampleFactory.swift` | その検査用の PDF（編集用のデータ・縮小画像・同じ画像 2 つ・灰色/色の可逆の画像・灰色/印鑑入りの JPEG）をバイトで書いて qpdf で整える |
+| `FontConversionTests.swift` | Type1 → CFF（作り直す・元の Type1 は無くなる・描いた見た目が同じ・作り直せないフォントは元のまま） |
+| `Type1FontFactory.swift` | 検査用の小さな Type1 フォント（flex・seac・手がかりの入れ替え・div などを使う字形）と、それを 2 つの書体で使う PDF |
 | `FigureRasterizationTests.swift` | 重い図を画像にする（見つける・軽い図は入らない・小さくなり本文の文字は残る・同じ位置・2 か所・結合しても同じ図と分かる・線を減らすと一緒・縮小表示・暗号化を保つ） |
 | `FigureSampleFactory.swift` | 検査用の論文風 PDF（散布図を Form XObject にして本文の下に置く）を文字で書いて qpdf で整える |
 | `TextExtractionTests.swift` | 文字の抽出（文字の層・層なし・OCR の日本語と英語・向きを直して読む・画像の大きさ・コピー禁止の PDF・日本語のパスワード・行の並べ直し・.txt の形） |

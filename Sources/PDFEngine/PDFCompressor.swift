@@ -4,6 +4,9 @@ import Foundation
 /// - 画像: qpdf で画像のデータを取り出し → Mac 標準の画像処理で縮小・再圧縮 → qpdf で差し戻す（`--update-from-json`）
 /// - 構造の圧縮: qpdf で小さな部品をまとめて圧縮し、データの圧縮をし直す（見た目は一切変わらない）
 /// - 重い図を画像にする（選んだときだけ）: 図の中身を、同じ枠いっぱいに置いた 1 枚の画像に置き換える（PDFFigureFlattener）
+/// - いつも行う 3 つ（村田さんの指示で選ぶ欄は無い・2026-11-26）: 要らないデータを捨てる（ExtraDataStripper）・
+///   重複の部品をまとめる（DuplicateObjectFinder）・色の無い RGB の画像を灰色にする（ColorlessPixels）
+/// - いつも行う（2026-11-27 追加）: Type1 フォントを CFF に作り直す（PDFFontConverter）
 /// 文字・フォントには触れない。白黒スキャン（CCITT・JBIG2）なども触らない（PDFImageInfo.unsupportedReason）。
 /// MEMO(2026-11-24・by claude): 計画 §3。gs を使わないのは、配布しやすさ（AGPL）と、決めたとおりにしか変わらないため。
 public struct PDFCompressor {
@@ -37,10 +40,21 @@ public struct PDFCompressor {
         var updates: [String: Any] = [:]
         var maxObjectID = 0
         var table: QPDFObjectTable?
-        if settings.touchesImages || settings.vector.isActive || settings.figures.isActive {
+        // 部品の一覧は、要らないデータ・重複・色の無い画像のためにいつも読む。
+        // 読めないとき（パスワードが要るなど）は、選ばれた方法がそれを要るときだけ止め、そうでなければこの 3 つを飛ばす
+        let requiresTable = settings.touchesImages || settings.vector.isActive || settings.figures.isActive
+        do {
             let loaded = try await QPDFObjectTable.load(input, runner: runner)
             table = loaded
             maxObjectID = loaded.objects.keys.compactMap { Int($0.split(separator: " ").first ?? "") }.max() ?? 0
+        } catch {
+            if requiresTable || error is CancellationError { throw error }
+        }
+        // 重複の部品（いつも行う）。見つけた重複は、この後の画像の作り直しからも外す
+        var duplicates: [String: String] = [:]
+        if let table {
+            duplicates = try await DuplicateObjectFinder(runner: runner).find(input, table: table, workDirectory: work)
+            result.mergedDuplicates = duplicates.count
         }
         // 順番: 図を画像にする → 線を減らす（画像にした図は除く）→ 画像の縮小・画質（画像にした図の中の画像は除く）
         var figureUpdates: [String: Any] = [:]
@@ -59,19 +73,32 @@ public struct PDFCompressor {
             updates.merge(thinned.updates) { _, new in new }
             result.vector = thinned.report
         }
+        // 画像: 解像度・画質の指定があればそのとおりに。指定が無くても、RGB の画像は色が無ければ灰色にする（いつも行う）
+        let report: PDFContentReport?
         if let table, settings.touchesImages {
-            let report = try PDFContentAnalyzer(runner: runner).analyze(input, table: table)
+            report = try PDFContentAnalyzer(runner: runner).analyze(input, table: table)
+        } else if let table {
+            report = try? PDFContentAnalyzer(runner: runner).analyze(input, table: table)
+        } else {
+            report = nil
+        }
+        if let table, let report {
             let targets = report.images.filter { image in
-                !replacedRefs.contains(image.ref) && image.isSupported && (image.resampledSize(targetDPI: settings.targetDPI) != nil
-                                      || (image.encoding == .jpeg && settings.jpegQuality != nil))
+                guard !replacedRefs.contains(image.ref), duplicates[image.ref] == nil, image.isRewritable else { return false }
+                return image.resampledSize(targetDPI: settings.targetDPI) != nil
+                    || (image.encoding == .jpeg && settings.jpegQuality != nil)
+                    || image.components == 3
             }
             for (index, image) in targets.enumerated() {
                 try Task.checkCancellation()
                 progress?(Double(index) / Double(max(targets.count, 1)))
                 let data = try await streamData(of: image, in: input)
+                // 解像度・画質を変える指定があった画像か（灰色にするだけの画像は、作り直せなくても「元のまま」と数えない）
+                let wasRequested = image.resampledSize(targetDPI: settings.targetDPI) != nil
+                    || (image.encoding == .jpeg && settings.jpegQuality != nil)
                 guard let replacement = ImageRecompressor().recompress(image, data: data, settings: settings),
                       var dictionary = table.streamDictionary(image.ref) else {
-                    result.keptImages += 1
+                    if wasRequested { result.keptImages += 1 }
                     continue
                 }
                 let file = work.appendingPathComponent("image-\(index).bin")
@@ -82,12 +109,35 @@ public struct PDFCompressor {
                 dictionary["/Filter"] = replacement.filter
                 dictionary["/DecodeParms"] = nil
                 dictionary["/Length"] = nil
+                if replacement.madeGray {
+                    dictionary["/ColorSpace"] = "/DeviceGray"
+                    result.grayImages += 1
+                }
                 updates["obj:" + image.ref] = ["stream": ["dict": dictionary, "datafile": file.path]]
-                if replacement.wasResampled { result.resampledImages += 1 } else { result.requalifiedImages += 1 }
+                if replacement.wasResampled {
+                    result.resampledImages += 1
+                } else if image.encoding == .jpeg && settings.jpegQuality != nil {
+                    result.requalifiedImages += 1
+                }
             }
         }
         // 画像にした図の書き換えを最後に重ねる（同じ部品への指定があれば、こちらを優先）
         updates.merge(figureUpdates) { _, new in new }
+        // Type1 フォントを CFF に作り直す（いつも行う。見た目は変わらない）。新しい部品の番号は、図の段で使った番号の後から
+        if let table {
+            let usedIDs = updates.keys.compactMap { Int($0.dropFirst(4).split(separator: " ").first ?? "") }
+            let fonts = try await PDFFontConverter(runner: runner)
+                .apply(input, table: table, duplicates: duplicates, nextObjectID: max(maxObjectID, usedIDs.max() ?? 0) + 1,
+                       workDirectory: work)
+            updates.merge(fonts.updates) { _, new in new }
+            result.convertedFonts = fonts.converted
+        }
+        // 最後に、すべての部品で重複への参照を付け替え、要らないデータを外す（いつも行う）
+        if let table {
+            let cleaned = ObjectCleanupPass(table: table, duplicates: duplicates).apply(to: updates)
+            updates = cleaned.updates
+            result.removedExtras = cleaned.removedExtras
+        }
         try Task.checkCancellation()
         progress?(1)
 
