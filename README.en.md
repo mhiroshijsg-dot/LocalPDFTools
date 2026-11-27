@@ -1,6 +1,6 @@
 # LocalPDFTools
 
-A Mac app that **merges, rotates, unlocks, compresses, and extracts text from** PDFs **entirely on your Mac**.
+A Mac app that **merges, splits, rotates, unlocks, compresses, and extracts text from** PDFs **entirely on your Mac**.
 Your files are never uploaded to the internet, so you can safely work with important documents such as transcripts and ID cards.
 
 *日本語: [README.md](README.md)*
@@ -16,12 +16,15 @@ Add PDFs to the window, turn on the actions you want, and click “Run and Save�
 | **Unlock** | Removes restrictions from PDFs that open but prohibit printing or copying. PDFs that need a password to open can be unlocked too, if you enter the password |
 | **Rotate** | Click page thumbnails to turn pages 90° at a time. You can also rotate all pages at once |
 | **Merge** | Combines several PDFs into one. Drag to change the order |
+| **Split** | Splits one PDF into several PDFs: one page each, every N pages, by page ranges you enter, or at cut points you choose while viewing the pages. The split PDFs are saved together in a new folder |
 | **Compress** | Makes files smaller. Just pick a quality (High, Medium, Low). Compression that doesn’t change the appearance is always done, and you can also lower image resolution or JPEG quality, rasterize heavy charts, and more. You can check how small the file will get before saving |
 | **Extract Text** | Gets the text out of PDFs so you can copy it or save it as .txt. Scanned PDFs are read with the Mac’s built-in text recognition (OCR) |
 
-Unlock, Rotate, and Merge work without rebuilding the pages, so text, image quality, and file size stay almost the same.
+Unlock, Rotate, Merge, and Split work without rebuilding the pages, so text, image quality, and file size stay almost the same.
 
-For detailed instructions, open the app’s **Help** menu → **LocalPDFTools Help** (⌘?).
+For detailed instructions, open the app’s **Help** menu → **LocalPDFTools Help** (⌘?). You can search the help with the field at the top left of the Help window.
+
+The interface is available in Japanese and English (see [Display language](#display-language)).
 
 ## Requirements
 
@@ -59,9 +62,10 @@ You are asked where to save and what name to use every time. **Original files ar
 
 - **With Merge on**, the result is saved as one PDF.
 - **With Merge off**, each file is saved separately, with a save dialog for each one (the default name is the original name plus `_unlocked`, `_rotated`, and so on).
+- **With Split on**, you choose a location just once. The app creates a new folder there and puts all the split PDFs in it.
 
 ### Order of operations
-- You can change the order of Rotate, Merge, and Compress in **Settings (⌘,)** by dragging rows. The default is Rotate → Merge → Compress.
+- You can change the order of Rotate, Merge, Split, and Compress in **Settings (⌘,)** by dragging rows. The default is Rotate → Merge → Split → Compress.
 - Unlock always comes first.
 
 ### Unlock
@@ -81,6 +85,19 @@ You are asked where to save and what name to use every time. **Original files ar
 ### Merge
 - PDFs are combined in the order they appear in the list on the left.
 - **Bookmarks (table of contents) and links within the document are lost when merging**. Web links are kept. The app lets you know when a PDF has bookmarks.
+- Merge can’t be used together with Split (only one of them can be on).
+
+### Split
+- There are four ways to split:
+  - **One page each**: A 10-page PDF becomes 10 PDFs.
+  - **Every N pages**: With 3, the pages are split as 1–3, 4–6, and so on. The last PDF gets the remaining pages.
+  - **Enter ranges**: Write ranges like `1-3, 4-7, 8-`. Each range becomes one PDF, in the order you write them (`8-` means page 8 to the end). Write just one range to take out only some of the pages.
+  - **Choose cut points**: Click “View and split pages…” to see page thumbnails, then click between pages to cut there.
+- Enter ranges and Choose cut points work only with one PDF. With several PDFs, each one is split the same way.
+- When you save, the app creates a new folder (by default `original name_split`) in the location you choose and saves the pieces with names like `original name_p1-3.pdf`. If a folder with the same name already exists, it creates a new one with a number added, such as “name 2”.
+- After saving, the app shows the number of files, the total size, the size of the largest file, and the list of files.
+- Text, image quality, and web links don’t change. **Bookmarks (table of contents), links to pages within the PDF, and restrictions on editing, printing, and so on are not kept** (the app asks you to confirm before splitting a restricted PDF).
+- Fonts, and images used on many pages, are included in each split PDF, so the total can be larger than the original. Size limits of the site you upload to apply to each file, so check “Largest file”. If Compress is also on, each split PDF is compressed.
 
 ### Compress
 - Usually you just pick a **quality**: High, Medium, or Low (High is the default).
