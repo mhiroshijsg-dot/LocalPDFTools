@@ -109,6 +109,12 @@ public final class QPDFRunner: @unchecked Sendable {
         finished.wait()
         process.waitUntilExit()
 
+        // MEMO(2026-11-27・by claude): qpdf が落ちた（シグナルで終わった）ときは、terminationStatus に終了コードではなく
+        // シグナルの番号が入る。そのまま返すと、呼ぶ側が「失敗」や「パスワードが要る」などと取り違えるので、落ちたことをエラーにする。
+        if process.terminationReason == .uncaughtSignal {
+            throw EngineError.qpdfCrashed(signal: process.terminationStatus)
+        }
+
         return Output(exitCode: process.terminationStatus,
                       standardOutputData: outData,
                       standardError: String(decoding: errData, as: UTF8.self))

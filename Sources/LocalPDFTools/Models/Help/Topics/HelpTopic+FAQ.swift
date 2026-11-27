@@ -52,6 +52,18 @@ extension HelpTopic {
                     "画面に出たエラーの文は、右のボタンでコピーできます。[Issues](https://github.com/mhiroshijsg-dot/LocalPDFTools/issues) に、エラーの文と、何をしたかを書いてください。書類そのものや、個人の情報は載せないでください。",
                 ]
             ),
+            HelpSection(
+                heading: "アプリが突然終わった（落ちた）",
+                paragraphs: [
+                    "アプリが落ちると、Mac がそのときの様子を「クラッシュレポート」というファイルに自動で残します。このアプリが落ちたときは「LocalPDFTools」、PDF の処理に使っている qpdf が落ちたときは「qpdf」で始まる名前で、終わりは「.ips」です。",
+                    "落ちたときに Mac が出す窓の「報告」で送ったものは Apple に届き、作者には届きません。直すために、[Issues](https://github.com/mhiroshijsg-dot/LocalPDFTools/issues) にそのファイルを付けて、何をしたかを書いてください。",
+                ],
+                bullets: [
+                    "**コンソール**（アプリケーション → ユーティリティ）を開き、左の **クラッシュレポート** を選ぶと一覧が出ます",
+                    "Finder で探すときは、**移動** → **フォルダへ移動…** に `~/Library/Logs/DiagnosticReports` と入れます",
+                    "付ける前にテキストエディットで開き、ユーザー名やファイル名など、載せたくないものが入っていたら消してください",
+                ]
+            ),
         ]
     )
 }

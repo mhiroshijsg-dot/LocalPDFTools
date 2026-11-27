@@ -69,6 +69,16 @@
         }
       }
     },
+    "qpdf が途中で落ちました（シグナル %d）。この PDF で qpdf の不具合に当たった可能性があります。落ちたときのレポートの探し方は、ヘルプの「よくある質問」にあります。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "qpdf crashed partway through (signal %d). This PDF may have hit a bug in qpdf. To find the crash report, see “Frequently asked questions” in Help."
+          }
+        }
+      }
+    },
     "RC4（%lld ビット）" : {
       "localizations" : {
         "en" : {

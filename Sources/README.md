@@ -21,7 +21,7 @@
 |---|---|
 | `LocalPDFTools.xcodeproj` | Xcode のプロジェクト。バージョン番号（MARKETING_VERSION）もここ |
 | `scripts/bundle_qpdf.sh` | Xcode のビルドの最後に毎回走り、Homebrew の qpdf とそのライブラリを .app に入れて署名する。⌘R でも配る形と同じ中身になる |
-| `scripts/make_app.sh` | 配る形（Release）の .app を `build/LocalPDFTools.app` に作り、Releases に載せる zip（`build/LocalPDFTools-<バージョン>.zip`）も作る |
+| `scripts/make_app.sh` | 配る形（Release）の .app を `build/LocalPDFTools.app` に作り、Releases に載せる zip（`build/LocalPDFTools-<バージョン>.zip`）も作る。クラッシュレポートを読むための dSYM は `build/dSYMs/LocalPDFTools-<バージョン>-<ID の頭 8 文字>/` に残す（配らない） |
 | `scripts/make_icon.swift` | アプリのアイコンを図形で描いて `Sources/LocalPDFTools/Assets.xcassets/AppIcon.appiconset/` に書き出す（`swift scripts/make_icon.swift`）。色や形はこのファイルの数値で決まる |
 
 覚え方: **見た目は `Views`、ボタンを押したあとの動きは `Models`、PDF そのものの処理は `PDFEngine`**。
@@ -201,7 +201,7 @@ Views/Help/HelpWindowView.swift  左に項目の一覧（Models/Help/HelpTopicGr
 | `Localizable.xcstrings` | エンジンの文（エラーなど）の英訳 |
 | `EngineBundle.swift` | エンジンの文の訳を引く場所（`String(localized: "…", bundle: .engine)`） |
 | `ListText.swift` | 語を並べる区切り（日本語「、」「・」・英語「, 」）と箇条書きの頭 |
-| `QPDFRunner.swift` | qpdf のコマンドを呼ぶ。.app の中（Xcode の ⌘R も含む）では同梱の qpdf、テストでは Homebrew の qpdf を使う |
+| `QPDFRunner.swift` | qpdf のコマンドを呼ぶ。.app の中（Xcode の ⌘R も含む）では同梱の qpdf、テストでは Homebrew の qpdf を使う。qpdf が落ちたときは終了コードとして返さずエラーにする |
 | `QPDFPassword.swift` | qpdf にパスワードを渡す方法。引数ではなく標準入力で渡す（引数は他のプログラムから見えるため） |
 | `PDFPipeline.swift` | 解除 → 回転 → 結合 → 圧縮 を指定の順に続けて行い、最後の 1 つだけ保存先へ置く。パスワードは要る時点で聞き（違えば聞き直す）、そのまま qpdf に渡す。結合の後に回すときは通しのページ番号に直す |
 | `PipelineStep.swift` | 続けて行える操作（解除・回転・結合・分割・圧縮） |
@@ -297,6 +297,7 @@ Xcode では ⌘U。結果は左の「テスト」の欄（◇ の印）に、1 
 | `FigureRasterizationTests.swift` | 重い図を画像にする（見つける・軽い図は入らない・小さくなり本文の文字は残る・同じ位置・2 か所・結合しても同じ図と分かる・線を減らすと一緒・縮小表示・暗号化を保つ） |
 | `FigureSampleFactory.swift` | 検査用の論文風 PDF（散布図を Form XObject にして本文の下に置く）を文字で書いて qpdf で整える |
 | `TextExtractionTests.swift` | 文字の抽出（文字の層・層なし・OCR の日本語と英語・向きを直して読む・画像の大きさ・コピー禁止の PDF・日本語のパスワード・行の並べ直し・.txt の形） |
+| `QPDFRunnerTests.swift` | qpdf の呼び出し（途中で落ちたら終了コードとして返さずエラーにする・普通の終了コードはそのまま返す） |
 | `PipelineTests.swift` | 続けて処理（一度にした結果 = 1 つずつ・結合の後に回す・パスワードは要るときだけ聞く・やめたら何も残らない） |
 | `TestWorkspace.swift` | テスト 1 件分の作業場所（一時フォルダ・見本の PDF・使う qpdf）。終わったら消す |
 | `SamplePDFFactory.swift` | 検査に使う PDF を合成する（個人の書類は使わない）。画像入り（300 ppi の JPEG・150 ppi の灰色）と、それを縮めて図として置いたもの、matplotlib の対数軸の図に似せたもの、文字入り（日本語・英語）、スキャン風（文字を画像にしたもの）も |

@@ -4,6 +4,7 @@ import Foundation
 public enum EngineError: LocalizedError, Equatable {
     case qpdfNotFound(searched: [String])
     case qpdfFailed(exitCode: Int32, message: String)
+    case qpdfCrashed(signal: Int32)
     case outputSameAsInput(path: String)
     case unreadablePDF(path: String)
     case passwordRequired(path: String)
@@ -21,6 +22,8 @@ public enum EngineError: LocalizedError, Equatable {
             return String(localized: "qpdf が見つかりません。探した場所: \(searched.joined(separator: ", "))", bundle: .engine)
         case .qpdfFailed(let exitCode, let message):
             return String(localized: "qpdf が失敗しました（終了コード \(exitCode)）。qpdf の報告: \(message)", bundle: .engine)
+        case .qpdfCrashed(let signal):
+            return String(localized: "qpdf が途中で落ちました（シグナル \(signal)）。この PDF で qpdf の不具合に当たった可能性があります。落ちたときのレポートの探し方は、ヘルプの「よくある質問」にあります。", bundle: .engine)
         case .outputSameAsInput(let path):
             return String(localized: "保存先が入力のファイルと同じです。元のファイルを壊さないため、別の名前か場所を選んでください: \(path)", bundle: .engine)
         case .unreadablePDF(let path):
