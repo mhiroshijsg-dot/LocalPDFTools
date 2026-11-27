@@ -20,7 +20,7 @@ struct FilePanels {
         panel.canChooseDirectories = true
         panel.canCreateDirectories = true
         panel.allowsMultipleSelection = false
-        panel.prompt = "このフォルダに保存"
+        panel.prompt = String(localized: "このフォルダに保存")
         panel.directoryURL = folder
         return panel.runModal() == .OK ? panel.url : nil
     }
@@ -32,7 +32,7 @@ struct FilePanels {
         panel.canChooseDirectories = true
         panel.canCreateDirectories = true
         panel.allowsMultipleSelection = false
-        panel.prompt = "ここに作る"
+        panel.prompt = String(localized: "ここに作る")
         panel.message = message
         panel.directoryURL = folder
         return panel.runModal() == .OK ? panel.url : nil

@@ -115,10 +115,10 @@ struct CompressionDetailsView: View {
             // MEMO(2026-11-26・by claude): 村田さん「補助グリッド、目盛りは一つの項目にしてしまってくれ」で 1 つにまとめた。
             // エンジン（VectorThinning）は 2 つの指定のままで、ここで両方を同時に付け外しする
             thinningToggle("補助グリッド線と補助目盛を消す", isOn: minorLines,
-                           count: counted ? "\(total.gridLines + total.tickMarks) 本" : nil, changesLook: true,
+                           count: counted ? String(localized: "\(total.gridLines + total.tickMarks) 本") : nil, changesLook: true,
                            help: "同じ形の破線が 20 本以上繰り返すもの（補助グリッド線）と、文書の中で一番短い目盛で同じ形が 20 本以上繰り返すもの（補助目盛）を消します。数本の参照線と主目盛は残します")
             thinningToggle("曲線の点を間引く", isOn: $model.settings.vector.simplifyCurves,
-                           count: counted ? "\(total.pointsBefore) → \(total.pointsAfter) 点" : nil, changesLook: false,
+                           count: counted ? String(localized: "\(total.pointsBefore) → \(total.pointsAfter) 点") : nil, changesLook: false,
                            help: "折れ線の点を、元の線からのずれが 0.1 ポイント以内に収まるように減らします。見た目はほぼ変わりません")
             if model.isCountingLines {
                 HStack(spacing: 6) {
@@ -147,8 +147,8 @@ struct CompressionDetailsView: View {
         )
     }
 
-    private func thinningToggle(_ title: String, isOn: Binding<Bool>, count: String?, changesLook: Bool,
-                                help: String) -> some View {
+    private func thinningToggle(_ title: LocalizedStringKey, isOn: Binding<Bool>, count: String?, changesLook: Bool,
+                                help: LocalizedStringKey) -> some View {
         VStack(alignment: .leading, spacing: 1) {
             HStack(spacing: 6) {
                 Toggle(title, isOn: isOn).toggleStyle(.checkbox)
@@ -182,7 +182,7 @@ struct CompressionDetailsView: View {
             let fontBytes = reports.reduce(0) { $0 + $1.fontBytes }
             let otherBytes = reports.reduce(0) { $0 + $1.otherBytes }
             Grid(alignment: .leading, horizontalSpacing: 8, verticalSpacing: 3) {
-                row("画像", "\(FileSize.text(imageBytes))（\(images.count) 個）")
+                row("画像", String(localized: "\(FileSize.text(imageBytes))（\(images.count) 個）"))
                 row("フォント", FileSize.text(fontBytes))
                 row("その他", FileSize.text(otherBytes))
             }
@@ -202,7 +202,7 @@ struct CompressionDetailsView: View {
         }
     }
 
-    private func row(_ label: String, _ value: String) -> some View {
+    private func row(_ label: LocalizedStringKey, _ value: String) -> some View {
         GridRow {
             Text(label).foregroundStyle(.secondary)
             Text(value)
@@ -214,10 +214,18 @@ struct CompressionDetailsView: View {
         for report in reports {
             for (reason, count) in report.unsupportedSummary { counts[reason, default: 0] += count }
         }
-        return "そのまま残す画像:\n" + counts.sorted { $0.key < $1.key }.map { "・\($0.key): \($0.value) 個" }.joined(separator: "\n")
+        return String(localized: "そのまま残す画像:") + "\n"
+            + counts.sorted { $0.key < $1.key }.map { ListText.bullet + String(localized: "\($0.key): \($0.value) 個") }.joined(separator: "\n")
     }
 
     // MARK: 目安と目標
+
+    /// 例: 「4.2 MB → 約 2.4 MB（合計）」。試算のときは「約」を付けない
+    private func estimateText(before: Int64, after: Int64, isTrial: Bool, separate: Bool) -> String {
+        let text = isTrial ? "\(FileSize.text(before)) → \(FileSize.text(after))"
+                           : String(localized: "\(FileSize.text(before)) → 約 \(FileSize.text(after))")
+        return separate ? text + String(localized: "（合計）") : text
+    }
 
     private var targetBytes: Int64? {
         targetMB > 0 ? Int64(targetMB * 1_000_000) : nil
@@ -234,7 +242,7 @@ struct CompressionDetailsView: View {
             Grid(alignment: .leading, horizontalSpacing: 8, verticalSpacing: 4) {
                 GridRow {
                     Text(isTrial ? "試算" : "目安").foregroundStyle(.secondary)
-                    Text("\(FileSize.text(before)) → \(isTrial ? "" : "約 ")\(FileSize.text(after))\(separate ? "（合計）" : "")")
+                    Text(estimateText(before: before, after: after, isTrial: isTrial, separate: separate))
                         .monospacedDigit()
                         .fontWeight(.semibold)
                         .foregroundStyle(separate ? Color.primary : color(for: after))
@@ -299,7 +307,7 @@ struct CompressionDetailsView: View {
         }
         let failed = workspace.files.filter { $0.analysisError != nil }
         if !failed.isEmpty {
-            Text("中身を調べられなかった PDF: " + failed.map(\.fileName).joined(separator: "、"))
+            Text(String(localized: "中身を調べられなかった PDF: \(ListText.join(failed.map(\.fileName)))"))
                 .font(.caption).foregroundStyle(.red)
                 .help(failed.compactMap(\.analysisError).joined(separator: "\n"))
         }

@@ -75,7 +75,7 @@ struct WorkspaceView: View {
 
     /// 窓の題名の下に出す一言
     private var subtitle: String {
-        workspace.files.isEmpty ? "PDF はこの Mac の中だけで処理します" : "\(workspace.files.count) ファイル"
+        workspace.files.isEmpty ? String(localized: "PDF はこの Mac の中だけで処理します") : String(localized: "\(workspace.files.count) ファイル")
     }
 }
 

@@ -45,7 +45,7 @@ struct FileListView: View {
     }
 
     private var summary: String {
-        let pages = workspace.totalPages.map { "\($0) ページ" } ?? "ページ数は一部不明"
-        return "\(workspace.files.count) ファイル · \(pages) · \(FileSize.text(workspace.totalBytes))"
+        let pages = workspace.totalPages.map { String(localized: "\($0) ページ") } ?? String(localized: "ページ数は一部不明")
+        return String(localized: "\(workspace.files.count) ファイル") + " · \(pages) · \(FileSize.text(workspace.totalBytes))"
     }
 }

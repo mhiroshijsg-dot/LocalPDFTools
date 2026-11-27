@@ -70,13 +70,13 @@ struct SaveBar: View {
 
     /// やることを何もオンにしていないときの一言
     private var idleText: String {
-        if workspace.files.isEmpty { return "PDF を入れて、やることをオンにしてください" }
+        if workspace.files.isEmpty { return String(localized: "PDF を入れて、やることをオンにしてください") }
         // 文字の抽出だけなら、PDF は保存しない（文字はシートで保存する）
-        if workspace.extractsText { return "文字は「文字を見る…」のシートでコピー・保存します。PDF も加工するなら、ほかの操作もオンに" }
-        return "やることをオンにしてください"
+        if workspace.extractsText { return String(localized: "文字は「文字を見る…」のシートでコピー・保存します。PDF も加工するなら、ほかの操作もオンに") }
+        return String(localized: "やることをオンにしてください")
     }
 
-    private func fieldLabel(_ text: String) -> some View {
+    private func fieldLabel(_ text: LocalizedStringKey) -> some View {
         Text(text).foregroundStyle(.secondary).gridColumnAlignment(.trailing)
     }
 
@@ -118,6 +118,6 @@ struct SaveBar: View {
         if let folder = workspace.saveFolder {
             return (folder.path as NSString).abbreviatingWithTildeInPath
         }
-        return workspace.files.isEmpty ? "—" : "それぞれの元のファイルのフォルダ（保存のときに選び直せます）"
+        return workspace.files.isEmpty ? "—" : String(localized: "それぞれの元のファイルのフォルダ（保存のときに選び直せます）")
     }
 }

@@ -21,10 +21,10 @@ public struct EncryptionReport: Sendable, Equatable {
         self.deniedPermissions = deniedPermissions
     }
 
-    /// 禁止されている操作を「・」でつないだ文。印刷そのものが禁止なら「高画質の印刷」は省く
+    /// 禁止されている操作をつないだ文（日本語は「・」）。印刷そのものが禁止なら「高画質の印刷」は省く
     public var deniedSummary: String? {
         guard let denied = deniedPermissions else { return nil }
         let shown = denied.contains(.printLow) ? denied.filter { $0 != .printHigh } : denied
-        return shown.isEmpty ? "なし" : shown.map(\.title).joined(separator: "・")
+        return shown.isEmpty ? String(localized: "なし", bundle: .engine) : ListText.joinShort(shown.map(\.title))
     }
 }

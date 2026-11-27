@@ -24,7 +24,8 @@ struct SplitOutcomeView: View {
                     Text("元 \(FileSize.text(outcome.inputBytes)) → 合計 \(FileSize.text(outcome.totalBytes))")
                     // 提出先の上限は 1 ファイルごとに効くので、一番大きいものも出す
                     Text("一番大きいファイル \(FileSize.text(outcome.largestBytes))")
-                    Text("ファイル名 最長 \(OutputName.length(longest)) 文字" + (limit > 0 ? "（上限 \(limit)）" : ""))
+                    Text(limit > 0 ? String(localized: "ファイル名 最長 \(OutputName.length(longest)) 文字（上限 \(limit)）")
+                                   : String(localized: "ファイル名 最長 \(OutputName.length(longest)) 文字"))
                         .foregroundStyle(OutputName.exceeds(longest, limit: limit) ? Color.red : Color.secondary)
                 }
                 .font(.callout).monospacedDigit()

@@ -49,8 +49,8 @@ struct OperationListView: View {
     /// 結合と分割は同時にオンにできない（片方がオンなら、もう片方のスイッチを押せなくする）
     private func blockedReason(_ step: PipelineStep) -> String? {
         switch step {
-        case .merge where workspace.splits: return "分割と同時には使えません"
-        case .split where workspace.merges: return "結合と同時には使えません"
+        case .merge where workspace.splits: return String(localized: "分割と同時には使えません")
+        case .split where workspace.merges: return String(localized: "結合と同時には使えません")
         default: return nil
         }
     }

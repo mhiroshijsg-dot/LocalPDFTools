@@ -71,28 +71,28 @@ public struct PDFContentAnalyzer {
         // 形式の理由（ページ上の場所は別に見る）
         let formatReason: String?
         if isMask {
-            formatReason = "透明度や形の抜きに使う画像"
+            formatReason = String(localized: "透明度や形の抜きに使う画像", bundle: .engine)
         } else if (dictionary["/ImageMask"] as? Bool) == true {
-            formatReason = "形だけの画像（ImageMask）"
+            formatReason = String(localized: "形だけの画像（ImageMask）", bundle: .engine)
         } else if case .other(let name) = encoding {
             switch name {
-            case "CCITTFaxDecode", "JBIG2Decode": formatReason = "白黒スキャン（\(name == "JBIG2Decode" ? "JBIG2" : "CCITT")）"
+            case "CCITTFaxDecode", "JBIG2Decode": formatReason = String(localized: "白黒スキャン（\(name == "JBIG2Decode" ? "JBIG2" : "CCITT")）", bundle: .engine)
             case "JPXDecode": formatReason = "JPEG 2000"
-            case "": formatReason = "圧縮されていない画像"
-            default: formatReason = "対応していない形式（\(name)）"
+            case "": formatReason = String(localized: "圧縮されていない画像", bundle: .engine)
+            default: formatReason = String(localized: "対応していない形式（\(name)）", bundle: .engine)
             }
         } else if components == 4 {
-            formatReason = "印刷用の色（CMYK）"
+            formatReason = String(localized: "印刷用の色（CMYK）", bundle: .engine)
         } else if components == nil {
-            formatReason = "対応していない色の形式"
+            formatReason = String(localized: "対応していない色の形式", bundle: .engine)
         } else if bits != 8 {
-            formatReason = "1 色 \(bits) ビットの画像"
+            formatReason = String(localized: "1 色 \(bits) ビットの画像", bundle: .engine)
         } else if dictionary["/Decode"] != nil {
-            formatReason = "色の読み替え（/Decode）付き"
+            formatReason = String(localized: "色の読み替え（/Decode）付き", bundle: .engine)
         } else {
             formatReason = nil
         }
-        let reason = formatReason ?? (placedSize == nil ? "ページ上で描かれている場所が分からない画像" : nil)
+        let reason = formatReason ?? (placedSize == nil ? String(localized: "ページ上で描かれている場所が分からない画像", bundle: .engine) : nil)
 
         return PDFImageInfo(ref: ref,
                             pixelWidth: Int(table.number(dictionary["/Width"]) ?? 0),

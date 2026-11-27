@@ -1,4 +1,5 @@
 import AppKit
+import PDFEngine
 
 /// PDF の保護（暗号化）を外す前の確認。
 /// MEMO(2026-11-26・by claude): 村田さんの指示「保護を外すけどいいんだね？という確認をポップアップで出す」。
@@ -8,14 +9,22 @@ struct UnlockConfirmation {
     func ask(fileNames: [String], droppedBy operation: Operation?) -> Bool {
         let alert = NSAlert()
         alert.alertStyle = .warning
-        alert.messageText = "PDF の保護を外します。よろしいですか？"
-        let list = fileNames.map { "・" + $0 }.joined(separator: "\n")
-        let reason = operation.map { "次の PDF は編集・印刷などが制限されています。\($0.title)すると、できあがる PDF にはこの制限が残りません。" }
-            ?? "次の PDF の暗号化（開くときのパスワード、編集・印刷などの制限）を外した PDF を保存します。"
+        alert.messageText = String(localized: "PDF の保護を外します。よろしいですか？")
+        let list = fileNames.map { ListText.bullet + $0 }.joined(separator: "\n")
+        // MEMO(2026-11-27・by claude): 英訳で「〜すると」を語ごとに組み立てられないので、操作ごとに文を 1 つずつ持つ
+        let reason: String
+        switch operation {
+        case nil:
+            reason = String(localized: "次の PDF の暗号化（開くときのパスワード、編集・印刷などの制限）を外した PDF を保存します。")
+        case .split?:
+            reason = String(localized: "次の PDF は編集・印刷などが制限されています。分割すると、できあがる PDF にはこの制限が残りません。")
+        default:
+            reason = String(localized: "次の PDF は編集・印刷などが制限されています。結合すると、できあがる PDF にはこの制限が残りません。")
+        }
         alert.informativeText = reason + "\n\n" + list + "\n\n"
-            + "自分が権利を持つ書類（自分の成績証明書やスコアレポートなど）にだけ使ってください。元のファイルは変わりません。"
-        alert.addButton(withTitle: "外して続ける")
-        alert.addButton(withTitle: "やめる")
+            + String(localized: "自分が権利を持つ書類（自分の成績証明書やスコアレポートなど）にだけ使ってください。元のファイルは変わりません。")
+        alert.addButton(withTitle: String(localized: "外して続ける"))
+        alert.addButton(withTitle: String(localized: "やめる"))
         alert.buttons[1].keyEquivalent = "\u{1b}"  // esc でやめる
         return alert.runModal() == .alertFirstButtonReturn
     }

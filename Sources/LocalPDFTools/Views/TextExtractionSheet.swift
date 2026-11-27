@@ -23,8 +23,7 @@ struct TextExtractionSheet: View {
             Divider()
             ScrollView {
                 VStack(alignment: .leading, spacing: 28) {
-                    Label("OCR は読み間違えることがあります（ローマ数字の Ⅰ・Ⅱ、〇、数字など）。式や表は崩れることがあります。"
-                          + "提出物に使う前に、元の PDF と見比べてください。横倒しのページは、先に「回転」で向きを直すと読めます。",
+                    Label("OCR は読み間違えることがあります（ローマ数字の Ⅰ・Ⅱ、〇、数字など）。式や表は崩れることがあります。提出物に使う前に、元の PDF と見比べてください。横倒しのページは、先に「回転」で向きを直すと読めます。",
                           systemImage: "exclamationmark.triangle.fill")
                         .font(.callout)
                         .foregroundStyle(.orange)

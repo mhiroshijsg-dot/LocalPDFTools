@@ -44,7 +44,7 @@ struct FileRowView: View {
     }
 
     private var details: String {
-        let pages = file.pageCount.map { "\($0) ページ" } ?? "— ページ"
+        let pages = file.pageCount.map { String(localized: "\($0) ページ") } ?? String(localized: "— ページ")
         return "\(pages) · \(FileSize.text(file.byteSize))"
     }
 

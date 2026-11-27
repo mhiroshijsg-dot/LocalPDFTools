@@ -6,10 +6,10 @@ enum SplitMode: String, CaseIterable, Identifiable {
 
     var title: String {
         switch self {
-        case .eachPage: return "1 ページずつ"
-        case .everyPages: return "N ページごと"
-        case .ranges: return "範囲を書く"
-        case .cuts: return "切れ目を選ぶ"
+        case .eachPage: return String(localized: "1 ページずつ")
+        case .everyPages: return String(localized: "N ページごと")
+        case .ranges: return String(localized: "範囲を書く")
+        case .cuts: return String(localized: "切れ目を選ぶ")
         }
     }
 

@@ -25,12 +25,12 @@ struct PlanSummaryView: View {
         if workspace.splits {
             if workspace.files.count == 1, let count = workspace.files[0].pageCount,
                case .success(let ranges) = workspace.split.ranges(pageCount: count) {
-                return "\(ranges.count) つの PDF に分けて、新しいフォルダに保存"
+                return String(localized: "\(ranges.count) つの PDF に分けて、新しいフォルダに保存")
             }
-            return "ファイルごとに分けて、新しいフォルダに保存"
+            return String(localized: "ファイルごとに分けて、新しいフォルダに保存")
         }
-        if workspace.merges { return "1 つの PDF にして保存" }
-        return workspace.files.count > 1 ? "\(workspace.files.count) つの PDF を別々に保存" : "PDF を保存"
+        if workspace.merges { return String(localized: "1 つの PDF にして保存") }
+        return workspace.files.count > 1 ? String(localized: "\(workspace.files.count) つの PDF を別々に保存") : String(localized: "PDF を保存")
     }
 
 }

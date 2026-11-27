@@ -13,7 +13,7 @@ struct PageTextView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack(spacing: 8) {
-                Text("\(page.pageNumber) ページ").font(.callout.weight(.semibold)).monospacedDigit()
+                Text(String(format: String(localized: "page.number", defaultValue: "%lld ページ"), page.pageNumber)).font(.callout.weight(.semibold)).monospacedDigit()
                 sourceBadge
                 Spacer()
                 if isQueued {

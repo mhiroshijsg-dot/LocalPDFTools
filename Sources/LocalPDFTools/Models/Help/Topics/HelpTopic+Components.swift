@@ -2,7 +2,7 @@ extension HelpTopic {
     /// 部品と命令の名前は、この項目にだけ書く（他の項目は一般の言葉で書く。計画 G の決めること 2）
     static let components = HelpTopic(
         id: "components",
-        title: "使っている部品",
+        title: String(localized: "使っている部品"),
         icon: .symbol("shippingbox.fill"),
         lead: "インターネットにつながず、次の部品だけで処理します",
         attachment: .licenses,

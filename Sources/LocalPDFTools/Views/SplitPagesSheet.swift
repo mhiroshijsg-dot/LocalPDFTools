@@ -62,8 +62,8 @@ struct SplitPagesSheet: View {
     }
 
     private var subtitle: String {
-        if workspace.files.count > 1 { return "すべての PDF を、右の同じ分け方で分けます" }
-        if workspace.split.mode == .ranges { return "範囲は右の欄に書きます" }
-        return "ページの間をクリックすると、そこで切ります"
+        if workspace.files.count > 1 { return String(localized: "すべての PDF を、右の同じ分け方で分けます") }
+        if workspace.split.mode == .ranges { return String(localized: "範囲は右の欄に書きます") }
+        return String(localized: "ページの間をクリックすると、そこで切ります")
     }
 }

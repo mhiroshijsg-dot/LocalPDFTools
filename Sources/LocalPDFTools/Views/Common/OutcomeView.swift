@@ -23,7 +23,8 @@ struct OutcomeView: View {
                     // MEMO(2026-11-26・by claude): 印（internaldrive・character.cursor.ibeam）は外した。
                     // 日本語の Mac では「あI」と出て意味が伝わらず、文字だけで足りるため（村田さんの判断）
                     Text("元 \(FileSize.text(outcome.inputBytes)) → 新 \(FileSize.text(outcome.outputBytes))")
-                    Text("ファイル名 \(OutputName.length(name)) 文字" + (limit > 0 ? "（上限 \(limit)）" : ""))
+                    Text(limit > 0 ? String(localized: "ファイル名 \(OutputName.length(name)) 文字（上限 \(limit)）")
+                                   : String(localized: "ファイル名 \(OutputName.length(name)) 文字"))
                         .foregroundStyle(OutputName.exceeds(name, limit: limit) ? Color.red : Color.secondary)
                 }
                 .font(.callout).monospacedDigit()

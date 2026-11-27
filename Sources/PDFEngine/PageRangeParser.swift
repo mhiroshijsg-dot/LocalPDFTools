@@ -17,7 +17,7 @@ public enum PageRangeParser {
             .split(whereSeparator: { $0 == "," || $0.isWhitespace })
             .map(String.init)
         guard !items.isEmpty else {
-            throw EngineError.invalidPageRanges(reason: "範囲を書いてください（例: 1-3, 4-7）")
+            throw EngineError.invalidPageRanges(reason: String(localized: "範囲を書いてください（例: 1-3, 4-7）", bundle: .engine))
         }
         return try items.map { try range(of: $0, pageCount: pageCount) }
     }
@@ -33,21 +33,21 @@ public enum PageRangeParser {
             let start = try number(pieces[0], in: item)
             let end = pieces[1].isEmpty ? pageCount : try number(pieces[1], in: item)
             guard start <= end else {
-                throw EngineError.invalidPageRanges(reason: "「\(item)」は始めのページが終わりより後です")
+                throw EngineError.invalidPageRanges(reason: String(localized: "「\(item)」は始めのページが終わりより後です", bundle: .engine))
             }
             range = start...end
         default:
-            throw EngineError.invalidPageRanges(reason: "「\(item)」が読めません")
+            throw EngineError.invalidPageRanges(reason: String(localized: "「\(item)」が読めません", bundle: .engine))
         }
         guard range.lowerBound >= 1, range.upperBound <= pageCount else {
-            throw EngineError.invalidPageRanges(reason: "「\(item)」はページの外です（全部で \(pageCount) ページ）")
+            throw EngineError.invalidPageRanges(reason: String(localized: "「\(item)」はページの外です（全部で \(pageCount) ページ）", bundle: .engine))
         }
         return range
     }
 
     private static func number(_ text: String, in item: String) throws -> Int {
         guard let value = Int(text) else {
-            throw EngineError.invalidPageRanges(reason: "「\(item)」が読めません")
+            throw EngineError.invalidPageRanges(reason: String(localized: "「\(item)」が読めません", bundle: .engine))
         }
         return value
     }

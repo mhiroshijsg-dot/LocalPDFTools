@@ -1,7 +1,7 @@
 extension HelpTopic {
     static let introduction = HelpTopic(
         id: "introduction",
-        title: "はじめに",
+        title: String(localized: "はじめに"),
         icon: .symbol("house.fill"),
         lead: "PDF の加工を、この Mac の中だけで行うアプリです",
         sections: [
@@ -13,8 +13,7 @@ extension HelpTopic {
             HelpSection(
                 heading: "ファイルを外に送りません",
                 paragraphs: [
-                    "このアプリはインターネットに接続しません。PDF もパスワードも、外に送ることはありません。"
-                        + "成績証明書や身分証明書のような大事な書類も、そのまま扱えます。",
+                    "このアプリはインターネットに接続しません。PDF もパスワードも、外に送ることはありません。成績証明書や身分証明書のような大事な書類も、そのまま扱えます。",
                 ]
             ),
             HelpSection(
@@ -26,14 +25,19 @@ extension HelpTopic {
             HelpSection(
                 heading: "パスワードは保存しません",
                 paragraphs: [
-                    "開くのにパスワードが要る PDF は、必要になった時点で小さな窓で聞きます。"
-                        + "入れたパスワードはその場の処理に使うだけで、どこにも保存しません。",
+                    "開くのにパスワードが要る PDF は、必要になった時点で小さな窓で聞きます。入れたパスワードはその場の処理に使うだけで、どこにも保存しません。",
                 ]
             ),
             HelpSection(
                 heading: "このヘルプの開き方",
                 paragraphs: [
                     "メニューの「ヘルプ」→「LocalPDFTools のヘルプ」（⌘?）で、いつでも開けます。",
+                ]
+            ),
+            HelpSection(
+                heading: "画面の言語",
+                paragraphs: [
+                    "画面は日本語と英語に対応しています。最初は Mac の言語の設定に合わせます。設定（⌘,）の「言語」で、このアプリだけを日本語か English にできます。変えたら、アプリを終了して開き直すと切り替わります。",
                 ]
             ),
         ]

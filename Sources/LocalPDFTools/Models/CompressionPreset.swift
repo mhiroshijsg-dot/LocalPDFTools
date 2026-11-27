@@ -12,9 +12,9 @@ enum CompressionPreset: String, CaseIterable, Identifiable {
 
     var title: String {
         switch self {
-        case .high: return "高"
-        case .medium: return "中"
-        case .low: return "低"
+        case .high: return String(localized: "高")
+        case .medium: return String(localized: "中")
+        case .low: return String(localized: "低")
         }
     }
 

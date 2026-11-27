@@ -1,7 +1,7 @@
 extension HelpTopic {
     static let order = HelpTopic(
         id: "order",
-        title: "操作の順番",
+        title: String(localized: "操作の順番"),
         icon: .symbol("arrow.up.arrow.down"),
         lead: "オンにした操作は、決まった順番で続けて行います",
         attachment: .order,
@@ -9,8 +9,7 @@ extension HelpTopic {
             HelpSection(
                 heading: "暗号化の解除はいつも最初",
                 paragraphs: [
-                    "解除を後にすると、結合するときに、パスワードを他のプログラムからも見える形で渡すしかなくなります。"
-                        + "パスワードを守るため、解除は最初から動かせないようにしています。",
+                    "解除を後にすると、結合するときに、パスワードを他のプログラムからも見える形で渡すしかなくなります。パスワードを守るため、解除は最初から動かせないようにしています。",
                 ]
             ),
             HelpSection(

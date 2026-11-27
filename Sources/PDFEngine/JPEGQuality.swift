@@ -5,10 +5,10 @@ public enum JPEGQuality: String, CaseIterable, Sendable {
 
     public var title: String {
         switch self {
-        case .high: return "高"
-        case .medium: return "中"
-        case .low: return "低"
-        case .lowest: return "最低"
+        case .high: return String(localized: "高", bundle: .engine)
+        case .medium: return String(localized: "中", bundle: .engine)
+        case .low: return String(localized: "低", bundle: .engine)
+        case .lowest: return String(localized: "最低", bundle: .engine)
         }
     }
 

@@ -1,3 +1,4 @@
+import PDFEngine
 import SwiftUI
 
 /// 分割のシートの縮小表示 1 枚分（画像・ページ番号・何番目のファイルに入るか）。
@@ -44,6 +45,6 @@ struct SplitPageCell: View {
     }
 
     private var pieceLabel: String {
-        pieces.isEmpty ? "入れない" : pieces.map { "\($0) つ目" }.joined(separator: "・")
+        pieces.isEmpty ? String(localized: "入れない") : ListText.joinShort(pieces.map { String(localized: "\($0) つ目") })
     }
 }

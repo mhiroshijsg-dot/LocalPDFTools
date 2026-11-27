@@ -1,3 +1,5 @@
+import Foundation
+
 /// ヘルプの項目 1 つ分。
 /// 説明の文章は、この型と `Topics/` の各ファイル（項目 1 つに 1 ファイル）にだけ書く。
 /// MEMO(2026-11-26・by claude): 操作のカードに「説明」ボタンを付ける案は、村田さん「付ける必要はない」で外した。ヘルプはメニューからだけ開く。
@@ -14,6 +16,19 @@ struct HelpTopic: Identifiable, Hashable {
     /// 文章の他に出す図やボタン
     var attachment: HelpAttachment? = nil
     let sections: [HelpSection]
+
+    /// title は String（操作の項目は `Operation.title` を使うため。それ以外は `String(localized:)` で書く）。
+    /// lead は訳せる形で受け取る（HelpSection と同じ）
+    init(id: String, title: String, icon: HelpIcon, lead: LocalizedStringResource,
+         effects: [HelpEffect] = [], attachment: HelpAttachment? = nil, sections: [HelpSection]) {
+        self.id = id
+        self.title = title
+        self.icon = icon
+        self.lead = String(localized: lead)
+        self.effects = effects
+        self.attachment = attachment
+        self.sections = sections
+    }
 
     /// ヘルプの窓の id（メニューの「ヘルプ」から開く）
     static let windowID = "help"

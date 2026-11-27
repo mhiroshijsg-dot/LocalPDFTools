@@ -13,12 +13,12 @@ public enum SplitPlan: Equatable, Sendable {
 
     /// 出力 1 つ分ずつのページの範囲。範囲が読めない・ページ数を超えるときは EngineError.invalidPageRanges
     public func ranges(pageCount: Int) throws -> [ClosedRange<Int>] {
-        guard pageCount > 0 else { throw EngineError.invalidPageRanges(reason: "ページがありません") }
+        guard pageCount > 0 else { throw EngineError.invalidPageRanges(reason: String(localized: "ページがありません", bundle: .engine)) }
         switch self {
         case .eachPage:
             return Self.chunks(of: 1, pageCount: pageCount)
         case .everyPages(let size):
-            guard size >= 1 else { throw EngineError.invalidPageRanges(reason: "何ページごとに分けるかは 1 以上にしてください") }
+            guard size >= 1 else { throw EngineError.invalidPageRanges(reason: String(localized: "何ページごとに分けるかは 1 以上にしてください", bundle: .engine)) }
             return Self.chunks(of: size, pageCount: pageCount)
         case .ranges(let text):
             return try PageRangeParser.parse(text, pageCount: pageCount)

@@ -9,15 +9,15 @@ enum PasswordPrompt {
     /// isRetry は「前に入れたパスワードが違った」。キャンセルなら nil
     static func ask(_ file: URL, _ isRetry: Bool) async -> String? {
         let alert = NSAlert()
-        alert.messageText = "「\(file.lastPathComponent)」を開くパスワード"
-        alert.informativeText = (isRetry ? "パスワードが違いました。もう一度入力してください。\n\n" : "")
-            + "パスワードはこの Mac の中で qpdf に渡すだけで、保存も送信もしません。"
+        alert.messageText = String(localized: "「\(file.lastPathComponent)」を開くパスワード")
+        alert.informativeText = (isRetry ? String(localized: "パスワードが違いました。もう一度入力してください。") + "\n\n" : "")
+            + String(localized: "パスワードはこの Mac の中で qpdf に渡すだけで、保存も送信もしません。")
         if isRetry { alert.alertStyle = .warning }
         let field = NSSecureTextField(frame: NSRect(x: 0, y: 0, width: 260, height: 24))
-        field.placeholderString = "パスワード"
+        field.placeholderString = String(localized: "パスワード")
         alert.accessoryView = field
-        alert.addButton(withTitle: "OK")
-        alert.addButton(withTitle: "このファイルをやめる")
+        alert.addButton(withTitle: String(localized: "OK"))
+        alert.addButton(withTitle: String(localized: "このファイルをやめる"))
         alert.buttons[1].keyEquivalent = "\u{1b}"  // esc でやめる
         alert.window.initialFirstResponder = field
 
