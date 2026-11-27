@@ -1,0 +1,5008 @@
+{
+  "sourceLanguage" : "ja",
+  "strings" : {
+    "%@ · 効果なし（画像にしても小さくならない見込み）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ · no effect (not expected to get smaller as an image)"
+          }
+        }
+      }
+    },
+    "%@ → 約 %@" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ → 約 %2$@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ → about %2$@"
+          }
+        }
+      }
+    },
+    "%@ → 約 %@（目安）" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ → 約 %2$@（目安）"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ → about %2$@ (estimate)"
+          }
+        }
+      }
+    },
+    "%@ の %@ ページ" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ の %2$@ ページ"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, page %2$@"
+          }
+        }
+      }
+    },
+    "%@ のヘルプ" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Help"
+          }
+        }
+      }
+    },
+    "%@ は元より大きくなりました（元 %@ → 新 %@）。元のファイルを使うことも考えてください。" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ は元より大きくなりました（元 %2$@ → 新 %3$@）。元のファイルを使うことも考えてください。"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ got larger than the original (original %2$@ → new %3$@). Consider using the original file."
+          }
+        }
+      }
+    },
+    "%@: %@" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$@"
+          }
+        }
+      }
+    },
+    "%@: %@ました" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$@ました"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$@"
+          }
+        }
+      }
+    },
+    "%@: %lld 個" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$lld 個"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$lld"
+          }
+        }
+      }
+    },
+    "%@: 画像と図の線は変えていません" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@: images and figure lines were not changed"
+          }
+        }
+      }
+    },
+    "%@（%lld 個）" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@（%2$lld 個）"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ (%2$lld)"
+          }
+        }
+      }
+    },
+    "%lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        }
+      }
+    },
+    "%lld dpi" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld dpi"
+          }
+        }
+      }
+    },
+    "%lld → %lld 点" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld → %2$lld 点"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld → %2$lld points"
+          }
+        }
+      }
+    },
+    "%lld つの PDF を別々に保存" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save %lld PDFs separately"
+          }
+        }
+      }
+    },
+    "%lld ファイル" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld file"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld files"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld ページ" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld page"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld pages"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld ページを回す予定" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld page to rotate"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld pages to rotate"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld ページ回転" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld page rotated"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld pages rotated"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld ページ目の図" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Figure on page %lld"
+          }
+        }
+      }
+    },
+    "%lld 個を画像にする予定・約 %@ 減る見込み（目安）" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld 個を画像にする予定・約 %2$@ 減る見込み（目安）"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld to rasterize · about %2$@ smaller (estimate)"
+          }
+        }
+      }
+    },
+    "%lld 文字" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld character"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld characters"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld 本" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld line"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld lines"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "**%@** — %@" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**%1$@** — %2$@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**%@** — %@"
+          }
+        }
+      }
+    },
+    "**Core Graphics** — OCR の前にページを絵にする、図を画像にするときに図を描く、画像がページのどこに置かれているかを調べる" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Core Graphics** — Renders pages as images before OCR, draws figures when rasterizing them, and finds where images are placed on a page"
+          }
+        }
+      }
+    },
+    "**CryptoKit** — 圧縮のときに、重複した部品を見つけるための指紋（SHA-256）を作る" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**CryptoKit** — Creates fingerprints (SHA-256) used to find duplicate parts when compressing"
+          }
+        }
+      }
+    },
+    "**ImageIO** — 圧縮のときの画像の縮小と再圧縮" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**ImageIO** — Downscales and recompresses images when compressing"
+          }
+        }
+      }
+    },
+    "**JPEG の画質** — 写真やカラーのスキャンのような、もともと JPEG の画像を、選んだ画質で保存し直します。**画像が少しぼやけます**" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**JPEG quality** — Re-saves images that are already JPEG, such as photos and color scans, at the quality you choose. **Images get slightly blurrier**"
+          }
+        }
+      }
+    },
+    "**PDFKit** — ページの縮小表示と、文字の層の読み取り" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**PDFKit** — Page thumbnails and reading the text layer"
+          }
+        }
+      }
+    },
+    "**Vision** — 文字認識（OCR）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Vision** — Text recognition (OCR)"
+          }
+        }
+      }
+    },
+    "**qpdf** — PDF の中身を読み書きする部品。解除・回転・結合・圧縮で使います（Apache License 2.0）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**qpdf** — A component that reads and writes the contents of PDFs. Used for Unlock, Rotate, Merge, and Compress (Apache License 2.0)"
+          }
+        }
+      }
+    },
+    "**しおり**（目次）と、**PDF の中の別のページへのリンク**は、結合すると残りません" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Bookmarks** (table of contents) and **links to other pages within the PDF** aren’t kept when you merge"
+          }
+        }
+      }
+    },
+    "**システム設定** → **プライバシーとセキュリティ** を開きます" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open **System Settings** → **Privacy & Security**"
+          }
+        }
+      }
+    },
+    "**フォントを小さな形式に作り直す**（見た目は変わりません）— LaTeX で作った PDF などに入っている Type1 という形式のフォントを、同じ形の CFF という小さな形式に作り直します。字の形は同じ座標のまま書き写すので、見た目は変わりません。Type1 のフォントは中身が暗号化されていて圧縮が効かず、使わない部品も入っているため、数分の 1 になることがあります（iLovePDF なども同じことをしています）。作り直せない形のフォントは、元のまま残します" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Rebuild fonts in a smaller format** (appearance doesn’t change) — Rebuilds fonts in the Type1 format, found in PDFs made with LaTeX and the like, into CFF, a smaller format with the same shapes. The glyph shapes are copied with exactly the same coordinates, so the appearance doesn’t change. Type1 fonts are encrypted inside, so compression doesn’t work on them, and they also contain unused parts, so they can shrink to a fraction of their size (iLovePDF and others do the same thing). Fonts in a form that can’t be rebuilt are left as they are"
+          }
+        }
+      }
+    },
+    "**中** — 画像を 150 dpi まで縮め、JPEG を画質「中」で保存し直します。画面で読むには十分です" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Medium** — Downscales images to 150 dpi and re-saves JPEGs at “Medium” quality. Good enough for reading on screen"
+          }
+        }
+      }
+    },
+    "**低** — 画像を 100 dpi まで縮め、JPEG を画質「低」で保存し直します。拡大すると画像の粗さが分かります" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Low** — Downscales images to 100 dpi and re-saves JPEGs at “Low” quality. You can see the images are rough when you zoom in"
+          }
+        }
+      }
+    },
+    "**制限あり**（橙の札）— 開けるけれど、印刷・コピー・編集などが禁止されている PDF。パスワードを入れなくても外せます" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Restricted** (orange badge) — A PDF you can open, but printing, copying, editing, and so on are prohibited. You can remove this without entering a password"
+          }
+        }
+      }
+    },
+    "**図の線を減らす** — matplotlib などで作ったグラフ向け。補助グリッド線と補助目盛を消す、曲線の点を間引く、の 2 つです。圧縮をオンにすると最初から 2 つとも選ばれていて、減らせる本数が「詳細」の中に出ます。**線を消すと見た目が変わります**（点を間引くほうは、見た目はほぼ変わりません）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Thin out figure lines** — For graphs made with matplotlib and similar tools. It covers two things: removing minor grid lines and minor ticks, and simplifying curves. When you turn on Compress, both are selected from the start, and the number of lines that can be removed appears in “Details”. **Removing lines changes the appearance** (simplifying curves barely changes the appearance)"
+          }
+        }
+      }
+    },
+    "**図を画像にする**（最初はオフ）— 点や線がとても多いグラフ（何万点もの散布図など）を、同じ位置・同じ大きさの画像に置き換えます。**図の中の文字は画像になり、選択・検索できなくなります**。本文の文字はそのまま残ります" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Rasterize figures** (off at first) — Replaces graphs with a huge number of points or lines (such as scatter plots with tens of thousands of points) with an image at the same position and size. **Text inside the figure becomes part of the image and can no longer be selected or searched**. The body text stays as it is"
+          }
+        }
+      }
+    },
+    "**構造の圧縮**（最初からオン）— PDF の中の小さな部品をまとめて、データの圧縮をし直します。**見た目は一切変わりません**" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Structural compression** (on from the start) — Groups the small parts inside the PDF together and recompresses the data. **The appearance doesn’t change at all**"
+          }
+        }
+      }
+    },
+    "**目標**に提出先の上限（MB）を入れると、収まりそうなら緑、超えそうなら赤で示します" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter the size limit (MB) of the site you upload to in **Target**, and it shows green if the file is likely to fit and red if it’s likely to go over"
+          }
+        }
+      }
+    },
+    "**結合がオフのとき**: ファイルごとに別々に保存します。ファイルごとに保存のダイアログが出ます（初期の名前は、元の名前に _unlocked・_rotated などを付けたもの）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**When Merge is off**: Each file is saved separately. A save dialog appears for each file (the default name is the original name with _unlocked, _rotated, etc. added)"
+          }
+        }
+      }
+    },
+    "**結合がオンのとき**: 1 つの PDF にして保存します" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**When Merge is on**: Everything is saved as one PDF"
+          }
+        }
+      }
+    },
+    "**自分が権利を持つ書類にだけ使ってください**。他人の書類や、保護を外すことが許されていない書類には使わないでください" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Use this only on documents you have the rights to**. Don’t use it on other people’s documents or on documents whose protection you aren’t allowed to remove"
+          }
+        }
+      }
+    },
+    "**色の無い画像を灰色で保存し直す**（見た目はほぼ変わりません）— 白黒の書類をカラーで読み取ったときのように、RGB（カラー）で保存されているのに白・黒・灰色しか無い画像を、灰色の画像として保存し直します。印鑑・署名・蛍光ペンなど、色の付いた部分が少しでもある画像は、そのままにします" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Re-save colorless images as grayscale** (appearance barely changes) — Re-saves images that are stored as RGB (color) but contain only white, black, and gray, such as a black-and-white document scanned in color, as grayscale images. Images with even a little color, such as a seal stamp, signature, or highlighter, are left as they are"
+          }
+        }
+      }
+    },
+    "**要らないデータを捨てる**（見た目は変わりません）— Illustrator や Photoshop が、自分で編集し直すために PDF に入れておくデータ・ページの小さな縮小画像・画像やページに付いた説明のデータ（撮影や編集の履歴など）を捨てます。Illustrator で保存した PDF では、編集用のデータが大部分を占めていて、大きく減ることがあります。文書全体の説明（題名・作成者など）・しおり・添付ファイル・読み上げ用の構造・フォームは残します" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Discard unneeded data** (appearance doesn’t change) — Discards data that Illustrator and Photoshop put in a PDF so they can edit it again later, small page thumbnails, and descriptive data attached to images and pages (such as capture and editing history). In PDFs saved from Illustrator, the editing data takes up most of the file, so the size can drop a lot. Document-wide information (title, author, etc.), bookmarks, attachments, the structure used for reading aloud, and forms are kept"
+          }
+        }
+      }
+    },
+    "**要パスワード**（赤の札）— 開くのにパスワードが要る PDF。正しいパスワードを入れると外せます" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Password required** (red badge) — A PDF that needs a password to open. You can remove this by entering the correct password"
+          }
+        }
+      }
+    },
+    "**解像度** — 選んだ dpi（300・200・150・100・72）より細かい画像だけを縮めます。それより粗い画像には触りません。**画像が粗くなります**" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Resolution** — Downscales only images finer than the dpi you choose (300, 200, 150, 100, or 72). Coarser images are left untouched. **Images get rougher**"
+          }
+        }
+      }
+    },
+    "**試算する** を押すと、実際に圧縮して大きさを測ります（作った PDF はすぐ消します）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Click **Run trial** to actually compress and measure the size (the PDF it makes is deleted right away)"
+          }
+        }
+      }
+    },
+    "**重複をまとめる**（見た目は変わりません）— 中身がまったく同じ画像・フォント・色の設定などが何回も入っているとき、1 つだけ残して、ほかはその 1 つを使うようにします。結合した PDF に、同じロゴやフォントが元のファイルの数だけ入っているときに効きます。matplotlib の図をたくさん入れた PDF では、図ごとに入っている同じ字形もまとまります。フォントの情報や字幅の表のような小さな部品も、中身が同じならまとめます（ページ・注釈・しおり・フォームの欄・レイヤーのように 1 つずつ別でなければならないものは、まとめません）。「同じ」とみなすのは、データが 1 バイト残らず同じものだけです" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Merge duplicates** (appearance doesn’t change) — When identical images, fonts, color settings, and so on appear many times, only one is kept and the others are made to use it. This helps when a merged PDF contains the same logo or font once for every original file. In PDFs with many matplotlib figures, the identical glyphs included in each figure are merged too. Small parts such as font information and glyph width tables are also merged if their contents are the same (things that must each stay separate, such as pages, annotations, bookmarks, form fields, and layers, are not merged). Only data that is identical down to the last byte counts as “the same”"
+          }
+        }
+      }
+    },
+    "**高** — 300 dpi より細かい画像だけを縮めます。JPEG の画質は変えません。見た目はほとんど変わりません" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**High** — Downscales only images finer than 300 dpi. JPEG quality isn’t changed. The appearance barely changes"
+          }
+        }
+      }
+    },
+    ".txt で保存…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save as .txt…"
+          }
+        }
+      }
+    },
+    "1 つの PDF にして保存" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save as one PDF"
+          }
+        }
+      }
+    },
+    "1 つの PDF にまとめる" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Combine into one PDF"
+          }
+        }
+      }
+    },
+    "1 つ入れてください" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add one file"
+          }
+        }
+      }
+    },
+    "1. PDF を入れる" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1. Add PDFs"
+          }
+        }
+      }
+    },
+    "180°" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "180°"
+          }
+        }
+      }
+    },
+    "2. やりたい操作をオンにする" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2. Turn on the actions you want"
+          }
+        }
+      }
+    },
+    "3. 実行して保存する" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3. Run and save"
+          }
+        }
+      }
+    },
+    "Apple シリコン（M1 以降）の Mac 専用です。macOS 14 Sonoma 以降が必要です。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It works only on Macs with Apple silicon (M1 or later). It requires macOS 14 Sonoma or later."
+          }
+        }
+      }
+    },
+    "Finder で表示" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show in Finder"
+          }
+        }
+      }
+    },
+    "Intel の Mac で動かない" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It doesn’t run on my Intel Mac"
+          }
+        }
+      }
+    },
+    "JPEG の画像は、保存のときに色が少しぶれるので、わずかなぶれは許します。ただし、はっきり色の付いた画素が全体の 0.01% を超える画像（小さな印鑑でも超えます）や、色が少しぶれた画素が 0.5% を超える画像は、そのままにします" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "JPEG images shift colors slightly when saved, so slight shifts are allowed. However, images where clearly colored pixels exceed 0.01% of all pixels (even a small seal stamp goes over this), or where slightly off-color pixels exceed 0.5%, are left as they are"
+          }
+        }
+      }
+    },
+    "JPEG の画質" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "JPEG quality"
+          }
+        }
+      }
+    },
+    "JPEG はもともと灰色の画像の色の分を小さく持っているので、灰色にしても数 % しか減らないことが多いです。保存し直すたびに画質は少し落ちるため、灰色にするだけのときは、1 割以上小さくなるときだけ置き換えます（画質は「高」で保存します。JPEG の画質を選んでいればその画質）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "JPEG already stores the color part of gray images compactly, so converting to grayscale often saves only a few %. Since quality drops a little every time an image is re-saved, when the only change is converting to grayscale, the image is replaced only if it gets at least 10% smaller (it’s saved at “High” quality, or at the JPEG quality you chose, if any)"
+          }
+        }
+      }
+    },
+    "MB 以下" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MB or less"
+          }
+        }
+      }
+    },
+    "MB 以下（1 ファイルごと）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MB or less (per file)"
+          }
+        }
+      }
+    },
+    "Mac に合わせる" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match Mac"
+          }
+        }
+      }
+    },
+    "Mac に最初から入っている部品" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Components built into macOS"
+          }
+        }
+      }
+    },
+    "OCR" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OCR"
+          }
+        }
+      }
+    },
+    "OCR %lld / %lld ページ" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OCR %1$lld / %2$lld ページ"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OCR %1$lld / %2$lld pages"
+          }
+        }
+      }
+    },
+    "OCR する" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Run OCR"
+          }
+        }
+      }
+    },
+    "OCR で文字が見つかりませんでした" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OCR found no text"
+          }
+        }
+      }
+    },
+    "OCR の準備中（初めての時は十数秒かかります）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preparing OCR (the first time can take 10–20 seconds)"
+          }
+        }
+      }
+    },
+    "OCR は読み間違えることがあります（ローマ数字の Ⅰ・Ⅱ、〇、数字など）。式や表は崩れることがあります。提出物に使う前に、元の PDF と見比べてください" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OCR can make mistakes (Roman numerals such as Ⅰ and Ⅱ, 〇, numbers, etc.). Equations and tables may come out jumbled. Before using the text in anything you submit, compare it with the original PDF"
+          }
+        }
+      }
+    },
+    "OCR は読み間違えることがあります（ローマ数字の Ⅰ・Ⅱ、〇、数字など）。式や表は崩れることがあります。提出物に使う前に、元の PDF と見比べてください。横倒しのページは、先に「回転」で向きを直すと読めます。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OCR can misread text (Roman numerals like Ⅰ and Ⅱ, ○, digits, and so on), and formulas and tables may come out jumbled. Compare with the original PDF before you use the text in anything you submit. Pages lying sideways can be read after you fix their orientation with “Rotate”."
+          }
+        }
+      }
+    },
+    "OCR 済み %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld OCR’d"
+          }
+        }
+      }
+    },
+    "OK" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
+    },
+    "PDF" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDF"
+          }
+        }
+      }
+    },
+    "PDF ではないので入れませんでした: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not added because it is not a PDF: %@"
+          }
+        }
+      }
+    },
+    "PDF に付いている保護を外し、保護の無い PDF として保存します。保護には 2 種類あります。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Removes the protection on a PDF and saves it as an unprotected PDF. There are two kinds of protection."
+          }
+        }
+      }
+    },
+    "PDF のページには「このページを何度回して表示するか」という情報があります。回転では、その情報だけを書き換えます。ページの中身（文字や画像）は作り直さないので、画質も大きさも変わりません。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Each PDF page has a setting that says “how many degrees to rotate this page when displaying it.” Rotate changes only that setting. The page contents (text and images) aren’t rebuilt, so neither the image quality nor the size changes."
+          }
+        }
+      }
+    },
+    "PDF の保護を外します。よろしいですか？" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove the protection from these PDFs?"
+          }
+        }
+      }
+    },
+    "PDF の加工を、この Mac の中だけで行うアプリです" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An app that processes PDFs entirely on this Mac"
+          }
+        }
+      }
+    },
+    "PDF の文字を取り出して、コピーしたり .txt に保存したりします" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pulls the text out of PDFs so you can copy it or save it as .txt"
+          }
+        }
+      }
+    },
+    "PDF の文字を取り出す" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get the text out of a PDF"
+          }
+        }
+      }
+    },
+    "PDF はこの Mac の中だけで処理します" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDFs are processed only on this Mac"
+          }
+        }
+      }
+    },
+    "PDF は変わりません。文字はシートでコピー・保存します" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The PDF is not changed. Copy or save the text from the sheet"
+          }
+        }
+      }
+    },
+    "PDF をここにドロップ" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drop PDFs here"
+          }
+        }
+      }
+    },
+    "PDF を丸ごと作り直す道具（Ghostscript など）は使っていません。選んだ部分だけを変え、それ以外はそのまま残すためです。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It doesn’t use tools that rebuild the whole PDF (such as Ghostscript). That way, it changes only the parts you choose and leaves everything else as it is."
+          }
+        }
+      }
+    },
+    "PDF を保存" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save the PDF"
+          }
+        }
+      }
+    },
+    "PDF を入れて、やりたい操作をオンにして、保存するだけです" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Just add PDFs, turn on the actions you want, and save"
+          }
+        }
+      }
+    },
+    "PDF を入れて、やることをオンにしてください" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add PDFs and turn on an action"
+          }
+        }
+      }
+    },
+    "PDF を入れてください" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add a PDF"
+          }
+        }
+      }
+    },
+    "PDF を入れる" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add PDFs"
+          }
+        }
+      }
+    },
+    "PDF を入れると、圧縮したあとの**目安**がカードに出ます（大きさの内訳は「詳細」の中）。目安は見積もりなので、実際とずれます。いつも行う 4 つの分は目安に入っていません（調べるのに画像やフォントのデータを全部読む必要があり、時間がかかるため）。その分、実際は目安より小さくなることがあります" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When you add PDFs, an **Estimate** of the size after compression appears on the card (the size breakdown is in “Details”). The estimate is only an estimate, so the actual result will differ. It doesn’t include the four things that are always done (checking them would mean reading all the image and font data, which takes time). Because of that, the actual file may end up smaller than the estimate"
+          }
+        }
+      }
+    },
+    "PDF を入れると、大きさの内訳を出します" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add a PDF to see a size breakdown"
+          }
+        }
+      }
+    },
+    "PDF を入れると、重い図（描く命令が 5,000 個以上、または線や点のデータが 100 KB 以上の図）を探し、オフのままでも、見つかった数と減らせる見込みを「詳細」の中に出します。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When you add PDFs, the app looks for heavy figures (figures with 5,000 or more drawing commands, or 100 KB or more of line and point data) and, even while this is off, shows in “Details” how many it found and how much they could likely save."
+          }
+        }
+      }
+    },
+    "PDF を追加" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add PDF"
+          }
+        }
+      }
+    },
+    "PDF を追加（ドラッグ＆ドロップでも入れられます）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add PDFs (you can also drag and drop)"
+          }
+        }
+      }
+    },
+    "Type1 以外のフォント（TrueType・OpenType など）は小さくしません。そうしたフォントが大きさの多くを占めているときは、あまり小さくなりません" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fonts other than Type1 (TrueType, OpenType, etc.) aren’t made smaller. When those fonts make up much of the size, the file won’t get much smaller"
+          }
+        }
+      }
+    },
+    "Web ページへのリンク（URL）は残ります" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Web links (URLs) are kept"
+          }
+        }
+      }
+    },
+    "matplotlib などで作ったグラフ向け。他の PDF にはほとんど当てはまりません。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "For charts made with tools like matplotlib. Rarely applies to other PDFs."
+          }
+        }
+      }
+    },
+    "output.pdf" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "output.pdf"
+          }
+        }
+      }
+    },
+    "page.number" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld ページ"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Page %lld"
+          }
+        }
+      }
+    },
+    "qpdf が使う **libjpeg-turbo**（JPEG の読み書き）と **OpenSSL**（暗号）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**libjpeg-turbo** (reading and writing JPEG) and **OpenSSL** (encryption), which qpdf uses"
+          }
+        }
+      }
+    },
+    "qpdf の警告: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "qpdf warning: %@"
+          }
+        }
+      }
+    },
+    "sentence.end" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "。"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "."
+          }
+        }
+      }
+    },
+    "— ページ" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "— pages"
+          }
+        }
+      }
+    },
+    "•" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "•"
+          }
+        }
+      }
+    },
+    "⌘S" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "⌘S"
+          }
+        }
+      }
+    },
+    "「%@」の保存先" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Where to save “%@”"
+          }
+        }
+      }
+    },
+    "「%@」の文字の保存先" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Where to save the text of “%@”"
+          }
+        }
+      }
+    },
+    "「%@」を開くパスワード" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Password to open “%@”"
+          }
+        }
+      }
+    },
+    "「おすすめの順に戻す」で最初の順に戻ります" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“Restore recommended order” returns to the original order"
+          }
+        }
+      }
+    },
+    "「まとめて 1 つの .txt に保存…」— 全部のファイルを、ファイル名とページ番号の見出しを付けて 1 つにまとめます" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“Save all as one .txt…” — Combines all files into one, with headings for file names and page numbers"
+          }
+        }
+      }
+    },
+    "「セキュリティ」の欄に「“LocalPDFTools”は … ブロックされました」と出ているので、**このまま開く** を押します" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The “Security” section shows a message that “LocalPDFTools” was blocked …, so click **Open Anyway**"
+          }
+        }
+      }
+    },
+    "「ファイルごとに保存…」— PDF 1 つにつき .txt を 1 つ作ります" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“Save each file…” — Creates one .txt for each PDF"
+          }
+        }
+      }
+    },
+    "「図を選ぶ…」で図の縮小表示を見ながら、画像にする図を 1 つずつ選べます。「効果なし」と出る図は、画像にしても小さくならない見込みのものです" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "With “Choose figures…”, you can pick the figures to rasterize one by one while looking at their thumbnails. Figures marked “no effect” are ones that likely won’t get smaller as images"
+          }
+        }
+      }
+    },
+    "「詳細」で変えた設定です。品質を選ぶと、品質の設定に置き換わります" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Custom settings from “Details”. Choosing a quality replaces them with that quality’s settings"
+          }
+        }
+      }
+    },
+    "「詳細」で設定を変えると、品質はどれも選ばれていない状態になります。品質を選び直すと、詳細の設定はその品質のものに置き換わります（図を画像にするは、品質では変わりません）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If you change settings in “Details”, no quality is selected anymore. If you choose a quality again, the detailed settings are replaced with that quality’s settings (Rasterize figures isn’t affected by the quality)"
+          }
+        }
+      }
+    },
+    "「詳細」の中では、次の 5 つを自分で選べます。組み合わせられます。大きさの内訳も「詳細」の中に出ます。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In “Details”, you can choose the following five yourself, and combine them. The size breakdown also appears in “Details”."
+          }
+        }
+      }
+    },
+    "いくつかの PDF を、並べた順に 1 つにまとめます" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Combines several PDFs into one, in the order they’re listed"
+          }
+        }
+      }
+    },
+    "いくつでもまとめて入れられます" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add as many as you like"
+          }
+        }
+      }
+    },
+    "いつも最初（動かせません）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Always first (can’t be moved)"
+          }
+        }
+      }
+    },
+    "いつも行う 4 つは、圧縮をオンにしたときだけ行います。解除・回転・結合だけのときは行いません" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The four things that are always done happen only when Compress is on. They aren’t done when you only Unlock, Rotate, or Merge"
+          }
+        }
+      }
+    },
+    "いつも行うこと（選ぶ必要はありません）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Always done (nothing to choose)"
+          }
+        }
+      }
+    },
+    "おすすめの順: 回転 → 結合 → 圧縮" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recommended order: Rotate → Merge → Compress"
+          }
+        }
+      }
+    },
+    "おすすめの順から変えています" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Changed from the recommended order"
+          }
+        }
+      }
+    },
+    "おすすめの順です" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is the recommended order"
+          }
+        }
+      }
+    },
+    "おすすめの順に戻す" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore recommended order"
+          }
+        }
+      }
+    },
+    "この PDF は文字のコピーが禁止されています。本人が権利を持つ書類にだけ使ってください。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copying text is prohibited in this PDF. Use this only on documents you have the rights to."
+          }
+        }
+      }
+    },
+    "この PDF を外す" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove this PDF"
+          }
+        }
+      }
+    },
+    "このアプリは MIT License です。アプリの中に入れている部品は、それぞれのライセンスに従います。ライセンスの文は、下のボタンで開けます。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This app is under the MIT License. The components included in the app follow their own licenses. You can open the license texts with the button below."
+          }
+        }
+      }
+    },
+    "このアプリはインターネットに接続しません。PDF もパスワードも、外に送ることはありません。成績証明書や身分証明書のような大事な書類も、そのまま扱えます。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This app never connects to the internet. Your PDFs and passwords are never sent anywhere. You can use it as is even for important documents like transcripts and ID cards."
+          }
+        }
+      }
+    },
+    "このアプリは個人で作っているので、Apple の審査（公証）を受けていません。最初の 1 回だけ、次の手順で開いてください。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This app is made by an individual, so it hasn’t gone through Apple’s review (notarization). The first time only, open it with these steps."
+          }
+        }
+      }
+    },
+    "このファイルをやめる" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skip this file"
+          }
+        }
+      }
+    },
+    "このファイルを元に戻す" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset this file"
+          }
+        }
+      }
+    },
+    "このフォルダに保存" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save to this folder"
+          }
+        }
+      }
+    },
+    "このヘルプの開き方" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How to open this Help"
+          }
+        }
+      }
+    },
+    "このページの文字をコピー" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copy this page’s text"
+          }
+        }
+      }
+    },
+    "このページを元に戻す" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset this page"
+          }
+        }
+      }
+    },
+    "しおり" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bookmarks"
+          }
+        }
+      }
+    },
+    "しおりあり" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Has bookmarks"
+          }
+        }
+      }
+    },
+    "しおりのある PDF が入っていると、カードに赤字で知らせます" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If a PDF with bookmarks is included, the card warns you in red"
+          }
+        }
+      }
+    },
+    "しおりのある PDF が含まれています" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Some PDFs have bookmarks"
+          }
+        }
+      }
+    },
+    "しおり（目次）と文書内のリンクは残りません（URL のリンクは残ります）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bookmarks (table of contents) and links within the document are not kept (web links are kept)"
+          }
+        }
+      }
+    },
+    "すでに十分圧縮されている PDF は、それ以上小さくなりにくいです。構造の圧縮だけでは、画像は小さくなりません。まず品質を「中」か「低」にしてください。それでも足りなければ、「詳細」の内訳で何が大きいかを確かめ、画像が大きいなら「解像度」や「JPEG の画質」を下げてください。点や線がとても多いグラフが入っているなら、「図を画像にする」で大きく減ることがあります。Type1 以外のフォント（TrueType・OpenType など）が大きいときは、このアプリでは小さくできません。なお、Illustrator で保存した PDF の編集用のデータ・重複した画像やフォント・色の無いカラーの画像・LaTeX などの Type1 のフォントは、圧縮をオンにすれば毎回自動で減らします。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A PDF that’s already well compressed is hard to make any smaller. Structural compression alone doesn’t make images smaller. First, set the quality to “Medium” or “Low”. If that’s still not enough, check the breakdown in “Details” to see what’s large, and if it’s images, lower “Resolution” or “JPEG quality”. If the PDF contains graphs with a huge number of points or lines, “Rasterize figures” can cut the size a lot. When fonts other than Type1 (TrueType, OpenType, etc.) are large, this app can’t make them smaller. Note that editing data in PDFs saved from Illustrator, duplicate images and fonts, color images with no actual color, and Type1 fonts from LaTeX and the like are reduced automatically every time Compress is on."
+          }
+        }
+      }
+    },
+    "すでに十分圧縮されている PDF は、ほとんど小さくならないことや、元より大きくなることがあります。そのときは結果で知らせます" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A PDF that’s already well compressed may hardly shrink, or may even get larger than the original. If that happens, the result tells you"
+          }
+        }
+      }
+    },
+    "すべてコピー" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copy all"
+          }
+        }
+      }
+    },
+    "すべて元に戻す" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset all"
+          }
+        }
+      }
+    },
+    "すべて右に 90°" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rotate all right 90°"
+          }
+        }
+      }
+    },
+    "すべて外す" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove all"
+          }
+        }
+      }
+    },
+    "すべて左に 90°" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rotate all left 90°"
+          }
+        }
+      }
+    },
+    "そのほか" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "More"
+          }
+        }
+      }
+    },
+    "そのまま残す画像:" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Images left as they are:"
+          }
+        }
+      }
+    },
+    "その他" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Other"
+          }
+        }
+      }
+    },
+    "それぞれの PDF からページをそのまま取り出して、新しい PDF に順に並べます。ページを作り直さないので、文字・画質・Web ページへのリンクは変わりません。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pages are taken from each PDF as they are and placed in order in a new PDF. Since pages aren’t rebuilt, text, image quality, and web links don’t change."
+          }
+        }
+      }
+    },
+    "それぞれの元のファイルのフォルダ（保存のときに選び直せます）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Each original file’s folder (you can change it when saving)"
+          }
+        }
+      }
+    },
+    "できないこと・注意" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Limitations and cautions"
+          }
+        }
+      }
+    },
+    "できること" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What it can do"
+          }
+        }
+      }
+    },
+    "どのファイルも目標以下の見込みです" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All files are expected to meet the target"
+          }
+        }
+      }
+    },
+    "どの品質でも、構造の圧縮・図の線を減らす・下の「いつも行うこと」は行います" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "At every quality, Structural compression, Thin out figure lines, and the “Always done” items below are applied"
+          }
+        }
+      }
+    },
+    "どれだけ小さくなるかを先に見る" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "See how much smaller it gets first"
+          }
+        }
+      }
+    },
+    "なし" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "None"
+          }
+        }
+      }
+    },
+    "はじめに" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Getting started"
+          }
+        }
+      }
+    },
+    "ふだんは品質を 3 つから選ぶだけです。細かい設定は「詳細」を押すと開きます。最初は「高」です。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Normally you just pick one of three qualities. Click “Details” to open the detailed settings. “High” is selected at first."
+          }
+        }
+      }
+    },
+    "ほかの操作だけを、ファイルごとに行って別々に保存します。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Only the other actions are done, file by file, and each file is saved separately."
+          }
+        }
+      }
+    },
+    "ほぼ同じ" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About the same"
+          }
+        }
+      }
+    },
+    "まとめて 1 つの .txt に保存…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save all as one .txt…"
+          }
+        }
+      }
+    },
+    "もともと JPEG の画像（写真・カラーのスキャン）だけに効きます。解像度を下げた画像は、ここが「変えない」なら「高」で保存します" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Affects only images that are already JPEG (photos, color scans). Images whose resolution is lowered are saved at “High” when this is “Don’t change”"
+          }
+        }
+      }
+    },
+    "やめる" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "やりたい操作の\nスイッチをオン" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turn on the actions\nyou want"
+          }
+        }
+      }
+    },
+    "やること" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actions"
+          }
+        }
+      }
+    },
+    "やることをオンにしてください" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turn on an action"
+          }
+        }
+      }
+    },
+    "よくある質問" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frequently asked questions"
+          }
+        }
+      }
+    },
+    "アプリの中に入れている部品" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Components included in the app"
+          }
+        }
+      }
+    },
+    "アプリを終了して開き直すと、この言語になります" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quit and reopen the app to switch to this language"
+          }
+        }
+      }
+    },
+    "インターネットにつながず、次の部品だけで処理します" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Everything is processed using only the following components, without connecting to the internet"
+          }
+        }
+      }
+    },
+    "エラーが出た・おかしな動きをした" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I got an error or something behaved strangely"
+          }
+        }
+      }
+    },
+    "オン" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "On"
+          }
+        }
+      }
+    },
+    "オンにした操作は、決まった順番で続けて行います" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The actions you turn on run one after another in a set order"
+          }
+        }
+      }
+    },
+    "オンにした操作を、上から順に行います" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actions that are on run from top to bottom"
+          }
+        }
+      }
+    },
+    "オンにすると、画像にすると小さくなる見込みの図がすべて選ばれます" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When you turn it on, all figures likely to get smaller as images are selected"
+          }
+        }
+      }
+    },
+    "カードには、文字の層があるページと無いページの数が出ます。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The card shows how many pages have a text layer and how many don’t."
+          }
+        }
+      }
+    },
+    "カードの「ページを見て回す…」を押すと、入れた PDF のページがすべて並びます。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Click “View and rotate pages…” on the card to see all the pages of the PDFs you added."
+          }
+        }
+      }
+    },
+    "カードの「文字を見る…」を押すと、入れた PDF の文字がページごとに並びます。そこでコピーしたり、.txt に保存したりします。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Click “View text…” on the card to see the text of the PDFs you added, page by page. From there you can copy it or save it as .txt."
+          }
+        }
+      }
+    },
+    "キャンセルしたので保存しなかったファイル: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not saved because you canceled: %@"
+          }
+        }
+      }
+    },
+    "クリックで右に 90°。右クリックで左回り・180°" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Click to rotate right 90°. Right-click for left or 180°"
+          }
+        }
+      }
+    },
+    "コピー" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copy"
+          }
+        }
+      }
+    },
+    "シートを閉じると OCR は止まります。読み終えたページの結果は残ります" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Closing the sheet stops OCR. Results for pages already read are kept"
+          }
+        }
+      }
+    },
+    "スイッチをオンにすると、カードの中に細かい指定が出ます。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When you turn a switch on, detailed options appear inside the card."
+          }
+        }
+      }
+    },
+    "スキャンした PDF のように文字の層が無いページは、Mac に入っている文字認識（**OCR**）で、ページの絵から文字を読みます。日本語と英語を読みます。読むのは、ページの「OCR する」を押したときだけです。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "For pages without a text layer, such as in scanned PDFs, the text recognition (**OCR**) built into macOS reads the text from the page image. It reads Japanese and English. It reads a page only when you click “Run OCR” on that page."
+          }
+        }
+      }
+    },
+    "スキャンした PDF の文字がコピーできない" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I can’t copy text from a scanned PDF"
+          }
+        }
+      }
+    },
+    "チェックした図を、同じ位置・同じ大きさの画像に置き換えます" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Checked figures are replaced with images of the same position and size"
+          }
+        }
+      }
+    },
+    "ドラッグして並べ替え" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drag to reorder"
+          }
+        }
+      }
+    },
+    "ドラッグ＆ドロップ\nまたは「＋」" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drag and drop\nor click “+”"
+          }
+        }
+      }
+    },
+    "パスをコピー" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copy path"
+          }
+        }
+      }
+    },
+    "パスワード" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Password"
+          }
+        }
+      }
+    },
+    "パスワードが要る PDF %lld つは、シートで開いて読めます" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld PDF that needs a password can be opened and read in the sheet"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld PDFs that need a password can be opened and read in the sheet"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "パスワードが要る PDF があります。「暗号化の解除」にチェックを入れてください" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Some PDFs need a password. Turn on “Unlock”"
+          }
+        }
+      }
+    },
+    "パスワードが要る PDF は、シートで開くときにパスワードを聞きます" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "For a PDF that needs a password, you’re asked for it when the sheet opens the PDF"
+          }
+        }
+      }
+    },
+    "パスワードが要る PDF は、処理の途中でその PDF の番になったときに聞きます。入れたパスワードは、この Mac の中で処理に使うだけです。保存も送信もしません" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "For a PDF that needs a password, you’re asked for it during processing, when that PDF’s turn comes. The password is used only for processing on this Mac. It’s never saved or sent"
+          }
+        }
+      }
+    },
+    "パスワードが要る PDF は、解除するまで中を見られないので、内訳・目安・試算には入りません（圧縮そのものは行います）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDFs that need a password can’t be looked inside until they’re unlocked, so they’re left out of the breakdown, estimate, and trial (compression itself still happens)"
+          }
+        }
+      }
+    },
+    "パスワードが要る PDF は、解除するまで中を見られないので、内訳・目安・試算に入りません（圧縮そのものは行います）。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDFs that need a password can’t be looked inside until they are unlocked, so they are left out of the breakdown, estimate, and trial (they are still compressed)."
+          }
+        }
+      }
+    },
+    "パスワードが要るので、開くまでページ数は分かりません" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The page count is unknown until the PDF is opened with its password"
+          }
+        }
+      }
+    },
+    "パスワードが違いました。もう一度入力してください。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The password was wrong. Please try again."
+          }
+        }
+      }
+    },
+    "パスワードは、実行中に必要になった時点で聞きます" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You’ll be asked for passwords when they are needed during the run"
+          }
+        }
+      }
+    },
+    "パスワードはこの Mac の中で qpdf に渡すだけで、保存も送信もしません。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The password is only passed to qpdf on this Mac. It is never saved or sent anywhere."
+          }
+        }
+      }
+    },
+    "パスワードは保存しません" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passwords aren’t saved"
+          }
+        }
+      }
+    },
+    "パスワードや制限を外す" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove passwords and restrictions"
+          }
+        }
+      }
+    },
+    "パスワードを入れて読む…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter password and read…"
+          }
+        }
+      }
+    },
+    "パスワードを忘れた PDF は開けません。パスワードを探したり破ったりする機能はありません" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A PDF whose password you’ve forgotten can’t be opened. There’s no feature to find or crack passwords"
+          }
+        }
+      }
+    },
+    "パソコンで作った PDF には、見えている文字とは別に、文字のデータ（**文字の層**）が入っています。文字の層があるページは、それをそのまま取り出します。読み間違いはありません。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDFs made on a computer contain text data (a **text layer**) separate from the text you see. For pages with a text layer, that text is extracted as is. There are no misreadings."
+          }
+        }
+      }
+    },
+    "ファイル" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Files"
+          }
+        }
+      }
+    },
+    "ファイルごとに保存…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save each file…"
+          }
+        }
+      }
+    },
+    "ファイルごとに保存のダイアログで決めます（初期値は元の名前＋_unlocked・_rotated などの語）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chosen in a save dialog for each file (default: the original name plus a word like _unlocked or _rotated)"
+          }
+        }
+      }
+    },
+    "ファイルを外に送りません" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your files never leave your Mac"
+          }
+        }
+      }
+    },
+    "ファイルを小さくします。提出先の大きさの上限に合わせたいときに使います" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Makes files smaller. Use it to fit the size limit of the site you upload to"
+          }
+        }
+      }
+    },
+    "ファイルを小さくする" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Make files smaller"
+          }
+        }
+      }
+    },
+    "ファイルを選ぶ…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose files…"
+          }
+        }
+      }
+    },
+    "ファイル名 %lld 文字" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "File name: %lld character"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "File name: %lld characters"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "ファイル名 %lld 文字（上限 %lld）" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ファイル名 %1$lld 文字（上限 %2$lld）"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "File name: %1$lld characters (limit %2$lld)"
+          }
+        }
+      }
+    },
+    "フォント" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fonts"
+          }
+        }
+      }
+    },
+    "フォント %lld 個を小さな形式（CFF）に作り直し" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "rebuilt %lld font in a smaller format (CFF)"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "rebuilt %lld fonts in a smaller format (CFF)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "フォントの作り直しでは、Type1 の暗号を解いて字の描き方を 1 つずつ実行し、出てきた線と曲線を CFF の描き方で書き直します。字の形を整える手がかり（ヒント）も、CFF で書ける範囲で写します。知らない命令があるフォントは作り直しません。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To rebuild a font, the app decrypts the Type1 font, runs each glyph’s drawing instructions one by one, and rewrites the resulting lines and curves as CFF drawing instructions. The clues for shaping glyphs (hints) are also copied as far as CFF can express them. Fonts containing unknown instructions aren’t rebuilt."
+          }
+        }
+      }
+    },
+    "ページと一体で描かれた重い図は画像にできません: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heavy drawings that are part of the page itself can’t be rasterized: %@"
+          }
+        }
+      }
+    },
+    "ページの向きを直す" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fix page orientation"
+          }
+        }
+      }
+    },
+    "ページをクリックするたびに、右へ 90° 回ります" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Each click on a page rotates it 90° to the right"
+          }
+        }
+      }
+    },
+    "ページを回す" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rotate Pages"
+          }
+        }
+      }
+    },
+    "ページを見て回す…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View and rotate pages…"
+          }
+        }
+      }
+    },
+    "ページ上に置かれた大きさに対する細かさ。上げるほどきれいで、大きくなります" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detail relative to the size on the page. Higher is sharper and larger"
+          }
+        }
+      }
+    },
+    "ページ数は一部不明" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "some page counts unknown"
+          }
+        }
+      }
+    },
+    "メニューの「ヘルプ」→「LocalPDFTools のヘルプ」（⌘?）で、いつでも開けます。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can open it any time from the menu: “Help” → “LocalPDFTools Help” (⌘?)."
+          }
+        }
+      }
+    },
+    "ライセンス" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "License"
+          }
+        }
+      }
+    },
+    "ライセンスの文のフォルダが、アプリの中に見つかりませんでした" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The license folder was not found inside the app"
+          }
+        }
+      }
+    },
+    "ライセンスの文を Finder で表示" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show licenses in Finder"
+          }
+        }
+      }
+    },
+    "上から順・ドラッグで並べ替え" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Top to bottom · drag to reorder"
+          }
+        }
+      }
+    },
+    "上の「すべて左に 90°」「すべて右に 90°」で、全ページをまとめて回せます。「すべて元に戻す」で最初の向きに戻ります" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use “Rotate all left 90°” or “Rotate all right 90°” at the top to rotate all pages at once. “Reset all” returns them to their original orientation"
+          }
+        }
+      }
+    },
+    "上へ" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move up"
+          }
+        }
+      }
+    },
+    "上限" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Limit"
+          }
+        }
+      }
+    },
+    "下に、これから行うことが矢印で出ます。保存名と保存先を確かめて、**実行して保存…**（⌘S）を押します。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "At the bottom, the steps to be done are shown with arrows. Check the file name and save location, then click **Run and Save…** (⌘S)."
+          }
+        }
+      }
+    },
+    "下へ" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move down"
+          }
+        }
+      }
+    },
+    "中" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medium"
+          }
+        }
+      }
+    },
+    "中で何をしているか" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How it works"
+          }
+        }
+      }
+    },
+    "中止" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stop"
+          }
+        }
+      }
+    },
+    "中身を調べています…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Analyzing contents…"
+          }
+        }
+      }
+    },
+    "中身を調べられなかった PDF: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Could not analyze: %@"
+          }
+        }
+      }
+    },
+    "今の設定の順" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Current order"
+          }
+        }
+      }
+    },
+    "今後のバージョンで追加" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coming in a future version"
+          }
+        }
+      }
+    },
+    "低" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Low"
+          }
+        }
+      }
+    },
+    "何をするか" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What it does"
+          }
+        }
+      }
+    },
+    "使い方" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How to use"
+          }
+        }
+      }
+    },
+    "使い方の流れ" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Basic workflow"
+          }
+        }
+      }
+    },
+    "使っていないもの" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What it doesn’t use"
+          }
+        }
+      }
+    },
+    "使っている部品" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Components used"
+          }
+        }
+      }
+    },
+    "例: LaTeX で作った約 250 ページの文書（4.2 MB）では、高 2.4 MB・中 2.3 MB・低 2.2 MB でした" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Example: For a document of about 250 pages made with LaTeX (4.2 MB), the results were High 2.4 MB, Medium 2.3 MB, and Low 2.2 MB"
+          }
+        }
+      }
+    },
+    "保存したあとは、結果の欄の「Finder で表示」で保存したファイルを開けます" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "After saving, use “Show in Finder” in the result area to see the saved file"
+          }
+        }
+      }
+    },
+    "保存しなかったファイル: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not saved: %@"
+          }
+        }
+      }
+    },
+    "保存しました" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saved"
+          }
+        }
+      }
+    },
+    "保存しました: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saved: %@"
+          }
+        }
+      }
+    },
+    "保存する前に、できた PDF に保護が残っていないかを確かめます。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Before saving, it checks that no protection remains in the resulting PDF."
+          }
+        }
+      }
+    },
+    "保存できませんでした: %@（%@）" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存できませんでした: %1$@（%2$@）"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Could not save: %1$@ (%2$@)"
+          }
+        }
+      }
+    },
+    "保存先" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save to"
+          }
+        }
+      }
+    },
+    "保存先と保存名" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save location and file name"
+          }
+        }
+      }
+    },
+    "保存先は、最初は元のファイルのフォルダです。「変更…」で選び直せます" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The save location is the original file’s folder at first. You can choose another one with “Change…”"
+          }
+        }
+      }
+    },
+    "保存名" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "File name"
+          }
+        }
+      }
+    },
+    "保存名と保存先を\n確かめて押す（⌘S）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check the name and folder,\nthen click (⌘S)"
+          }
+        }
+      }
+    },
+    "保存名の初期値は、一番上のファイルの名前に _merge を付けたものです。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The default file name is the name of the top file with _merge added."
+          }
+        }
+      }
+    },
+    "保存名の横に文字数（.pdf を含む）が出ます。「上限」に提出先の決まり（例: 50 文字以下）を入れておくと、超えたときに赤字になります" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The character count (including .pdf) appears next to the file name. If you enter the rule of the site you upload to (for example, 50 characters or fewer) in “Limit”, it turns red when the name goes over"
+          }
+        }
+      }
+    },
+    "保護された PDF の中身は、鍵をかけた状態で保存されています。解除では、その鍵を外して書き直すだけで、ページは作り直しません。そのため、文字・画像・ファイルの大きさはほとんど変わりません。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The contents of a protected PDF are stored locked. Unlock just removes that lock and rewrites the file, without rebuilding the pages. So the text, images, and file size barely change."
+          }
+        }
+      }
+    },
+    "保護を外した PDF が暗号化されていないことを確かめてから保存しました。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Checked that the unlocked PDFs are no longer encrypted before saving."
+          }
+        }
+      }
+    },
+    "保護を外す前に、「外して続ける」かどうかを確認します" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Before removing protection, you’re asked whether to “Remove protection and continue”"
+          }
+        }
+      }
+    },
+    "元 %@ → 新 %@" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "元 %1$@ → 新 %2$@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Original %1$@ → New %2$@"
+          }
+        }
+      }
+    },
+    "元のファイルの場所に戻す" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use original location"
+          }
+        }
+      }
+    },
+    "元のファイルは書き換えません" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Original files are never changed"
+          }
+        }
+      }
+    },
+    "入れた PDF をすべて外す（元のファイルは消えません）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove all PDFs from the list (the original files are not deleted)"
+          }
+        }
+      }
+    },
+    "入れた PDF を実際に圧縮して大きさを測ります（作った PDF はすぐ消します）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actually compresses the PDFs to measure the size (the test files are deleted right away)"
+          }
+        }
+      }
+    },
+    "内訳を出せる PDF がありません" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No PDFs can be broken down"
+          }
+        }
+      }
+    },
+    "制限あり" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restricted"
+          }
+        }
+      }
+    },
+    "制限あり %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restricted %lld"
+          }
+        }
+      }
+    },
+    "効果のある図をすべて選ぶ" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select all effective figures"
+          }
+        }
+      }
+    },
+    "印刷・コピーの禁止や、開くときのパスワードを外します" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Removes bans on printing and copying, and passwords needed to open"
+          }
+        }
+      }
+    },
+    "右に 90°" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rotate right 90°"
+          }
+        }
+      }
+    },
+    "右の「やること」で、操作のスイッチをオンにします。オンにした操作だけを、上から順に続けて行います（例: 解除 → 回転 → 結合 → 圧縮）。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In “Actions” on the right, turn on the switches for the actions you want. Only the actions you turn on run, one after another from the top (for example: Unlock → Rotate → Merge → Compress)."
+          }
+        }
+      }
+    },
+    "右クリックすると、左回り・180°・元に戻すを選べます" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Right-click to choose rotate left, 180°, or reset"
+          }
+        }
+      }
+    },
+    "右クリックの「上へ」「下へ」でも動かせます" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can also move them with “Move up” and “Move down” in the right-click menu"
+          }
+        }
+      }
+    },
+    "同じ形の破線が 20 本以上繰り返すもの（補助グリッド線）と、文書の中で一番短い目盛で同じ形が 20 本以上繰り返すもの（補助目盛）を消します。数本の参照線と主目盛は残します" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Removes dashed lines of the same shape repeated 20 or more times (minor grid lines) and the shortest ticks in the document repeated 20 or more times (minor ticks). A few reference lines and the major ticks are kept"
+          }
+        }
+      }
+    },
+    "向きを直した後などに、もう一度 OCR する" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Run OCR again, for example after fixing the orientation"
+          }
+        }
+      }
+    },
+    "品質" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quality"
+          }
+        }
+      }
+    },
+    "品質を選ぶ（高・中・低）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose a quality (High, Medium, Low)"
+          }
+        }
+      }
+    },
+    "回すページはまだありません" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No pages to rotate yet"
+          }
+        }
+      }
+    },
+    "回すページを選んでください" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose pages to rotate"
+          }
+        }
+      }
+    },
+    "回転" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rotate"
+          }
+        }
+      }
+    },
+    "回転: `qpdf --rotate`" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rotate: `qpdf --rotate`"
+          }
+        }
+      }
+    },
+    "回転がオンのとき、文字の抽出の OCR は、ここで直した向きでページを読みます" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When Rotate is on, OCR in Extract Text reads pages in the orientation you set here"
+          }
+        }
+      }
+    },
+    "困ったときに、まず確かめること" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Things to check first when something goes wrong"
+          }
+        }
+      }
+    },
+    "図 %lld 個を画像にし" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "rasterized %lld figure"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "rasterized %lld figures"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "図として分かれておらず、ページと一体で描かれた重い描画は画像にできません。そのページ番号を「詳細」の中に出します" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heavy drawings that aren’t separate figures but are drawn as part of the page itself can’t be rasterized. Their page numbers are shown in “Details”"
+          }
+        }
+      }
+    },
+    "図の線を減らす" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thin out figure lines"
+          }
+        }
+      }
+    },
+    "図を探しています…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Looking for figures…"
+          }
+        }
+      }
+    },
+    "図を探せなかった PDF: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Could not look for figures in: %@"
+          }
+        }
+      }
+    },
+    "図を描いています…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drawing figures…"
+          }
+        }
+      }
+    },
+    "図を画像にする" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rasterize figures"
+          }
+        }
+      }
+    },
+    "図を画像にする: オン（詳細で選んだ図）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rasterize figures: On (figures chosen in Details)"
+          }
+        }
+      }
+    },
+    "図を画像にするときは、図だけを Mac の部品で白い背景に描いて 1 枚の画像にし、図の中身をその画像に差し替えます。画像は画質の落ちない形で保存します。白黒・灰色だけの図は、色の情報を持たない形にして小さくします。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To rasterize figures, the app draws just the figure on a white background with macOS components to make a single image, and replaces the figure’s contents with that image. The image is saved in a lossless format. Figures that are only black, white, and gray are stored without color information to make them smaller."
+          }
+        }
+      }
+    },
+    "図を選ぶ…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose figures…"
+          }
+        }
+      }
+    },
+    "圧縮" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compress"
+          }
+        }
+      }
+    },
+    "圧縮が最後なのは、提出先の大きさの上限に関わるのは、最後にできたファイルの大きさだからです。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compress comes last because what counts for the upload site’s size limit is the size of the final file."
+          }
+        }
+      }
+    },
+    "圧縮したのに、ほとんど小さくならない・大きくなった" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I compressed it, but it barely got smaller, or got larger"
+          }
+        }
+      }
+    },
+    "圧縮をオンにすると、上の方法とは別に、次の 4 つを毎回行います。カードに選ぶ欄はありません。当てはまるものが無い PDF では何もしません。行ったときは、保存したあとの結果に数が出ます。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When Compress is on, the following four things are done every time, separately from the methods above. There’s nothing to choose on the card. For a PDF where none of them applies, nothing happens. When they are done, the counts appear in the result after saving."
+          }
+        }
+      }
+    },
+    "圧縮（フォントの作り直し）: `qpdf --json-object=… --json-stream-data=file` で Type1 のフォントを取り出す → このアプリの中で CFF に書き直す → `qpdf --update-from-json` で /FontFile を /FontFile3（/Type1C）に差し替える" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compress (rebuilding fonts): extract Type1 fonts with `qpdf --json-object=… --json-stream-data=file` → rewrite them as CFF inside this app → replace /FontFile with /FontFile3 (/Type1C) using `qpdf --update-from-json`"
+          }
+        }
+      }
+    },
+    "圧縮（図を画像にする）: qpdf で図だけを並べた一時的な PDF を作る → Core Graphics で描く → `qpdf --update-from-json` で図の中身を画像に差し替える" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compress (rasterizing figures): make a temporary PDF containing only the figures with qpdf → draw them with Core Graphics → replace the figures’ contents with images using `qpdf --update-from-json`"
+          }
+        }
+      }
+    },
+    "圧縮（構造）: `qpdf --object-streams=generate --recompress-flate`" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compress (structure): `qpdf --object-streams=generate --recompress-flate`"
+          }
+        }
+      }
+    },
+    "圧縮（画像）: qpdf で画像を取り出し → ImageIO で作り直し → `qpdf --update-from-json` で元の場所に戻す" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compress (images): extract images with qpdf → rebuild them with ImageIO → put them back in place with `qpdf --update-from-json`"
+          }
+        }
+      }
+    },
+    "圧縮（要らないデータ・重複の付け替え・色の無い画像）: 書き換えた部品だけを `qpdf --update-from-json` で戻す。使われなくなった部品は、qpdf が書き出すときに捨てる" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compress (unneeded data, redirecting duplicates, colorless images): put back only the rewritten parts with `qpdf --update-from-json`. qpdf discards parts that are no longer used when it writes the file"
+          }
+        }
+      }
+    },
+    "圧縮（重複を探す）: `qpdf --json --json-object=… --json-stream-data=file` で候補の部品のデータだけを取り出す" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compress (finding duplicates): extract only the data of candidate parts with `qpdf --json --json-object=… --json-stream-data=file`"
+          }
+        }
+      }
+    },
+    "変えない" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Don’t change"
+          }
+        }
+      }
+    },
+    "変わらない" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unchanged"
+          }
+        }
+      }
+    },
+    "変更…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change…"
+          }
+        }
+      }
+    },
+    "外して続ける" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove protection and continue"
+          }
+        }
+      }
+    },
+    "大きさ" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Size"
+          }
+        }
+      }
+    },
+    "完了" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done"
+          }
+        }
+      }
+    },
+    "実行して保存" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Run and save"
+          }
+        }
+      }
+    },
+    "実行して保存…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Run and Save…"
+          }
+        }
+      }
+    },
+    "実行するとき" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When you run it"
+          }
+        }
+      }
+    },
+    "小さくなる" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Smaller"
+          }
+        }
+      }
+    },
+    "小さな部品をまとめて圧縮し、データの圧縮をし直します。画像や文字は一切変わりません" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Packs small objects together and recompresses the data. Images and text don’t change at all"
+          }
+        }
+      }
+    },
+    "層なし %lld ページ" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "No text layer: %lld page"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "No text layer: %lld pages"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "層なしのページを OCR（%lld）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OCR pages without text (%lld)"
+          }
+        }
+      }
+    },
+    "層なしのページ（スキャンなど）は、シートで OCR できます" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pages without a text layer (such as scans) can be OCR’d in the sheet"
+          }
+        }
+      }
+    },
+    "左に 90°" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rotate left 90°"
+          }
+        }
+      }
+    },
+    "左の並びの上から順に、1 つの PDF にまとめます。順番は行をドラッグして変えられます。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The PDFs are combined into one, in order from the top of the list on the left. You can change the order by dragging rows."
+          }
+        }
+      }
+    },
+    "折れ線の点を、元の線からのずれが 0.1 ポイント以内に収まるように減らします。見た目はほぼ変わりません" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reduces the points of polylines while staying within 0.1 point of the original line. Looks almost the same"
+          }
+        }
+      }
+    },
+    "拡張子 .pdf も含めた文字数" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Character count including the .pdf extension"
+          }
+        }
+      }
+    },
+    "描く命令 %@ 個 · ページ上 %lld × %lld ポイント" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "描く命令 %1$@ 個 · ページ上 %2$lld × %3$lld ポイント"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ drawing operations · %2$lld × %3$lld points on the page"
+          }
+        }
+      }
+    },
+    "提出先の大きさの上限。入れると、超えそうかを色で示します（0 は無し）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The size limit of the site you upload to. Colors show whether files are likely to exceed it (0 means none)"
+          }
+        }
+      }
+    },
+    "提出先の文字数の上限（0 は上限なし）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The file name length limit of the site you upload to (0 means no limit)"
+          }
+        }
+      }
+    },
+    "操作" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Operations"
+          }
+        }
+      }
+    },
+    "操作と qpdf の命令" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actions and qpdf commands"
+          }
+        }
+      }
+    },
+    "操作の順番" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Order of operations"
+          }
+        }
+      }
+    },
+    "操作をオンにする" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turn on actions"
+          }
+        }
+      }
+    },
+    "操作を行う順番" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Order of Operations"
+          }
+        }
+      }
+    },
+    "文字の層" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text layer"
+          }
+        }
+      }
+    },
+    "文字の層 %lld ページ" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Text layer: %lld page"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Text layer: %lld pages"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "文字の層がありません（スキャンした画像など）。OCR で読めます。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No text layer (for example, a scanned image). It can be read with OCR."
+          }
+        }
+      }
+    },
+    "文字の層があるページはそのまま取り出し、無いページは OCR で読みます" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text is taken directly from pages with a text layer; other pages are read with OCR"
+          }
+        }
+      }
+    },
+    "文字の層なし" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No text layer"
+          }
+        }
+      }
+    },
+    "文字の層を調べています…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Checking for text layers…"
+          }
+        }
+      }
+    },
+    "文字の層（文字のデータ）が無いためです。「文字の抽出」のシートで、ページの「OCR する」を押すと読めます。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "That’s because it has no text layer (text data). In the “Extract Text” sheet, click “Run OCR” on the page to read it."
+          }
+        }
+      }
+    },
+    "文字の抽出" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extract Text"
+          }
+        }
+      }
+    },
+    "文字の抽出は PDF を変えないので、この流れには入りません。カードの「文字を見る…」から行います。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extract Text doesn’t change the PDF, so it isn’t part of this flow. Use “View text…” on its card instead."
+          }
+        }
+      }
+    },
+    "文字の抽出は別の流れです" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extract Text is a separate flow"
+          }
+        }
+      }
+    },
+    "文字は「文字を見る…」のシートでコピー・保存します。PDF も加工するなら、ほかの操作もオンに" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copy or save the text from the “View text…” sheet. To also process the PDFs, turn on other actions"
+          }
+        }
+      }
+    },
+    "文字を見る…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View text…"
+          }
+        }
+      }
+    },
+    "暗号の方式: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Encryption: %@"
+          }
+        }
+      }
+    },
+    "暗号化された PDF が無いので、外すものがありません" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No PDFs are encrypted, so there is nothing to remove"
+          }
+        }
+      }
+    },
+    "暗号化された PDF はありません" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No encrypted PDFs"
+          }
+        }
+      }
+    },
+    "暗号化されている PDF には「制限あり」「要パスワード」の札が付きます。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Encrypted PDFs get a “Restricted” or “Password required” badge."
+          }
+        }
+      }
+    },
+    "暗号化の解除" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlock"
+          }
+        }
+      }
+    },
+    "暗号化の解除: `qpdf --decrypt`（パスワードは引数ではなく、他のプログラムから見えない形で渡します）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlock: `qpdf --decrypt` (the password is passed not as an argument but in a way other programs can’t see)"
+          }
+        }
+      }
+    },
+    "暗号化の解除がいつも最初なのは、後にすると結合のときにパスワードを他のプログラムから見える形で渡すしかなくなるためです。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlock always comes first because doing it later would mean passing passwords during merging in a way other programs could see."
+          }
+        }
+      }
+    },
+    "暗号化の解除はいつも最初" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlock always comes first"
+          }
+        }
+      }
+    },
+    "暗号化の解除はいつも最初です" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlock always comes first"
+          }
+        }
+      }
+    },
+    "暗号化（編集・印刷などの制限）のある PDF は、制限を付けたまま保存しました。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDFs with encryption (restrictions on editing, printing, etc.) were saved with the restrictions kept."
+          }
+        }
+      }
+    },
+    "曲線の点を %lld → %lld 個に間引き" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "曲線の点を %1$lld → %2$lld 個に間引き"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "simplified curves from %1$lld to %2$lld points"
+          }
+        }
+      }
+    },
+    "曲線の点を間引く" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simplify curves"
+          }
+        }
+      }
+    },
+    "最初に開こうとしたら「開かれていません」と出た" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I got a “Not Opened” message the first time I tried to open it"
+          }
+        }
+      }
+    },
+    "札にマウスを乗せると、何が禁止されているかが出ます" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hover over a badge to see what is prohibited"
+          }
+        }
+      }
+    },
+    "構造の圧縮（見た目は変わらない）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Structural compression (no visual change)"
+          }
+        }
+      }
+    },
+    "横倒しのページは、先に「回転」で向きを直すと読めます" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sideways pages can be read if you fix their orientation with “Rotate” first"
+          }
+        }
+      }
+    },
+    "横倒しや逆さまのページの向きを、ページごとに直します" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fixes sideways or upside-down pages, page by page"
+          }
+        }
+      }
+    },
+    "次の PDF の暗号化（開くときのパスワード、編集・印刷などの制限）を外した PDF を保存します。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The following PDFs will be saved without their encryption (open password and restrictions on editing, printing, etc.)."
+          }
+        }
+      }
+    },
+    "次の PDF は編集・印刷などが制限されています。結合すると、できあがる PDF にはこの制限が残りません。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The following PDFs restrict editing, printing, etc. When merged, the resulting PDF will not keep these restrictions."
+          }
+        }
+      }
+    },
+    "残らない" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not kept"
+          }
+        }
+      }
+    },
+    "残らないもの" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What isn’t kept"
+          }
+        }
+      }
+    },
+    "減らせる線は見つかりませんでした" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No lines to reduce were found"
+          }
+        }
+      }
+    },
+    "点や線がとても多いグラフを、同じ位置・同じ大きさの画像に置き換えます。本文の文字はそのまま残ります" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Replaces charts with a huge number of points or lines with images of the same position and size. Body text stays as it is"
+          }
+        }
+      }
+    },
+    "点や線がとても多いグラフ向け。図の中の文字は画像になります。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "For charts with a huge number of points or lines. Text inside the figure becomes part of the image."
+          }
+        }
+      }
+    },
+    "画像" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Images"
+          }
+        }
+      }
+    },
+    "画像 %lld 個の JPEG の画質を下げ" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "lowered the JPEG quality of %lld image"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "lowered the JPEG quality of %lld images"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "画像 %lld 個の解像度を下げ" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "lowered the resolution of %lld image"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "lowered the resolution of %lld images"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "画像にした後の方が大きくなった図は、元のまま残します。その数は結果で知らせます" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Figures that get larger after rasterizing are left as they were. The result tells you how many"
+          }
+        }
+      }
+    },
+    "画像にする" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rasterize"
+          }
+        }
+      }
+    },
+    "画像にする図はまだありません" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No figures to rasterize yet"
+          }
+        }
+      }
+    },
+    "画像は、PDF から画像のデータを取り出し、Mac に入っている画像の部品で縮小・再圧縮して、元の場所に戻します。ページの他の部分（文字・フォント）には触りません。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "For images, the app extracts the image data from the PDF, downscales and recompresses it with the image components built into macOS, and puts it back in the same place. Other parts of the page (text and fonts) are left untouched."
+          }
+        }
+      }
+    },
+    "画質" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Image quality"
+          }
+        }
+      }
+    },
+    "画質の落ちない形（可逆）の画像は、すべての画素で赤・緑・青がぴったり同じときだけ灰色にします。画素の値は 1 つも変わらず、圧縮する前の画素のデータは 3 分の 1 になります（圧縮した後の減り方は画像によります）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Images in a format that doesn’t lose quality (lossless) are converted to grayscale only when red, green, and blue are exactly equal in every pixel. Not a single pixel value changes, and the uncompressed pixel data shrinks to one third (how much the compressed size drops depends on the image)"
+          }
+        }
+      }
+    },
+    "画面に出たエラーの文は、右のボタンでコピーできます。[Issues](https://github.com/mhiroshijsg-dot/LocalPDFTools/issues) に、エラーの文と、何をしたかを書いてください。書類そのものや、個人の情報は載せないでください。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can copy the error message shown on screen with the button to its right. Please post the error message and what you did in [Issues](https://github.com/mhiroshijsg-dot/LocalPDFTools/issues). Don’t include the documents themselves or any personal information."
+          }
+        }
+      }
+    },
+    "画面の言語" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Display language"
+          }
+        }
+      }
+    },
+    "画面は日本語と英語に対応しています。最初は Mac の言語の設定に合わせます。設定（⌘,）の「言語」で、このアプリだけを日本語か English にできます。変えたら、アプリを終了して開き直すと切り替わります。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The app is available in Japanese and English. By default it follows your Mac’s language setting. In Settings (⌘,), use “Language” to switch just this app to 日本語 or English. Quit and reopen the app for the change to take effect."
+          }
+        }
+      }
+    },
+    "白黒のスキャンなど一部の形式の画像は、作り直すとかえって大きくなったり扱えなかったりするので、触りません。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Some kinds of images, such as black-and-white scans, are left untouched, because rebuilding them would make them larger or they can’t be handled."
+          }
+        }
+      }
+    },
+    "目安" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estimate"
+          }
+        }
+      }
+    },
+    "目安は式による見積もりで、実際とずれます。正確な数字は「試算する」で出します。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The estimate comes from a formula and can differ from the result. Use “Run trial” for exact numbers."
+          }
+        }
+      }
+    },
+    "目標" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Target"
+          }
+        }
+      }
+    },
+    "目標を超えそうなファイル: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Likely to exceed the target: %@"
+          }
+        }
+      }
+    },
+    "禁止されている操作: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not allowed: %@"
+          }
+        }
+      }
+    },
+    "窓にドラッグ＆ドロップするか、ツールバーの「＋」（⌘O）で追加します。左に上から順に並び、行をドラッグすると順番を変えられます。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drag and drop PDFs onto the window, or add them with “+” (⌘O) in the toolbar. They’re listed on the left from top to bottom, and you can drag rows to change the order."
+          }
+        }
+      }
+    },
+    "結合" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Merge"
+          }
+        }
+      }
+    },
+    "結合: `qpdf --empty --pages`" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Merge: `qpdf --empty --pages`"
+          }
+        }
+      }
+    },
+    "結合したら、しおり（目次）が消えた" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "My bookmarks (table of contents) disappeared after merging"
+          }
+        }
+      }
+    },
+    "結合するには 2 つ以上の PDF を入れてください" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add two or more PDFs to merge"
+          }
+        }
+      }
+    },
+    "結合ではしおりと PDF の中のリンクは残りません。しおりが必要なら、結合しないで別々に保存してください。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Merging doesn’t keep bookmarks or links within the PDF. If you need bookmarks, save the files separately without merging."
+          }
+        }
+      }
+    },
+    "結合をオフにすると" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When Merge is off"
+          }
+        }
+      }
+    },
+    "結果はいつも新しいファイルとして保存します。元と同じファイルを保存先に選ぶと、保存せずに止まります。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Results are always saved as new files. If you choose the original file itself as the save destination, it stops without saving."
+          }
+        }
+      }
+    },
+    "線を数えています…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Counting lines…"
+          }
+        }
+      }
+    },
+    "編集用のデータなど要らないデータ %lld 個を捨て" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "discarded %lld piece of unneeded data such as editing data"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "discarded %lld pieces of unneeded data such as editing data"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "縮める画像: %lld 個中 %lld 個（%lld dpi より細かいもの）" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "縮める画像: %1$lld 個中 %2$lld 個（%3$lld dpi より細かいもの）"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Images to shrink: %2$lld of %1$lld (finer than %3$lld dpi)"
+          }
+        }
+      }
+    },
+    "自分が権利を持つ書類（自分の成績証明書やスコアレポートなど）にだけ使ってください。元のファイルは変わりません。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use this only on documents you have the rights to (such as your own transcripts or score reports). The original files are not changed."
+          }
+        }
+      }
+    },
+    "色の無い画像 %lld 個を灰色で保存し直し" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "re-saved %lld colorless image as grayscale"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "re-saved %lld colorless images as grayscale"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "色の無い画像の、細かい決まり" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Details on colorless images"
+          }
+        }
+      }
+    },
+    "行う操作が無いので保存しなかったファイル: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not saved because there was nothing to do: %@"
+          }
+        }
+      }
+    },
+    "行う操作にチェックを入れてください" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turn on an action"
+          }
+        }
+      }
+    },
+    "行う順番は、重複を探す → 図を画像にする → 図の線を減らす → 画像の縮小・画質・灰色 → フォントの作り直し → 重複の付け替えと要らないデータを捨てる → 構造の圧縮 です。画像にした図は、線を減らす・画像を縮めるの対象から外します。重複としてまとめる画像は、残す 1 つだけを作り直します。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The order is: find duplicates → rasterize figures → thin out figure lines → image downscaling, quality, and grayscale → rebuild fonts → redirect duplicates and discard unneeded data → structural compression. Rasterized figures are excluded from line thinning and image downscaling. For images merged as duplicates, only the one that’s kept is rebuilt."
+          }
+        }
+      }
+    },
+    "行をドラッグして並べ替えられます。オンにした操作だけを、この順に行います。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drag rows to reorder. Only the actions you turn on run, in this order."
+          }
+        }
+      }
+    },
+    "表示の「完了」を押して閉じます（「ゴミ箱に入れる」は押さないでください）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Click “Done” to close the message (don’t click “Move to Trash”)"
+          }
+        }
+      }
+    },
+    "補助グリッド線 %lld 本を消し" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "removed %lld minor grid line"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "removed %lld minor grid lines"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "補助グリッド線と補助目盛を消す" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove minor grid lines and minor ticks"
+          }
+        }
+      }
+    },
+    "補助目盛 %lld 本を消し" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "removed %lld minor tick"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "removed %lld minor ticks"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "要パスワード" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Password required"
+          }
+        }
+      }
+    },
+    "要パスワード %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Password required %lld"
+          }
+        }
+      }
+    },
+    "見た目" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appearance"
+          }
+        }
+      }
+    },
+    "見た目が変わります" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Changes the appearance"
+          }
+        }
+      }
+    },
+    "見た目が変わります（図の中の文字は選択・検索できなくなります）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Changes the appearance (text inside figures can no longer be selected or searched)"
+          }
+        }
+      }
+    },
+    "解像度" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resolution"
+          }
+        }
+      }
+    },
+    "解像度は 150・200・300 dpi から選びます（最初は 200 dpi）。上げるほどきれいで、大きくなります" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose a resolution of 150, 200, or 300 dpi (200 dpi at first). Higher is sharper but larger"
+          }
+        }
+      }
+    },
+    "解除" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlock"
+          }
+        }
+      }
+    },
+    "解除も結合もオンにしないで回転や圧縮だけをしたときは、保護を付けたまま保存します（黙って外すことはしません）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If you only Rotate or Compress without turning on Unlock or Merge, the file is saved with its protection still on (it never removes it without telling you)"
+          }
+        }
+      }
+    },
+    "解除を後にすると、結合するときに、パスワードを他のプログラムからも見える形で渡すしかなくなります。パスワードを守るため、解除は最初から動かせないようにしています。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If Unlock came later, the only way to merge would be to pass the password in a form other programs can also see. To protect your password, Unlock is fixed at the start and can’t be moved."
+          }
+        }
+      }
+    },
+    "触らない画像 %lld 個" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld image left untouched"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld images left untouched"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "言語" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Language"
+          }
+        }
+      }
+    },
+    "設定（⌘,）を開き、行をドラッグして並べ替えます" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Settings (⌘,) and drag rows to reorder them"
+          }
+        }
+      }
+    },
+    "試算" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trial"
+          }
+        }
+      }
+    },
+    "試算する" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Run trial"
+          }
+        }
+      }
+    },
+    "詳細" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Details"
+          }
+        }
+      }
+    },
+    "詳細の中の方法と、見た目への影響" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Methods in Details and how they affect appearance"
+          }
+        }
+      }
+    },
+    "読み直す" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Read again"
+          }
+        }
+      }
+    },
+    "読んだ文字を PDF に埋め込むこと（検索できる PDF にすること）はしません" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It doesn’t embed the recognized text into the PDF (it doesn’t make a searchable PDF)"
+          }
+        }
+      }
+    },
+    "読んでいます…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reading…"
+          }
+        }
+      }
+    },
+    "選んだ dpi より細かい画像だけを縮めます。それより粗い画像には触りません" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shrinks only images finer than the chosen dpi. Coarser images are left alone"
+          }
+        }
+      }
+    },
+    "選んだ図: %@ → 約 %@（目安）" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選んだ図: %1$@ → 約 %2$@（目安）"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chosen figures: %1$@ → about %2$@ (estimate)"
+          }
+        }
+      }
+    },
+    "選んだ方法による" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Depends on the method"
+          }
+        }
+      }
+    },
+    "重い図 %lld 個のうち %lld 個を画像にする" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重い図 %1$lld 個のうち %2$lld 個を画像にする"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rasterize %2$lld of %1$lld heavy figures"
+          }
+        }
+      }
+    },
+    "重い図 %lld 個（オンにすると約 %@ 減らせる見込み・目安）" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重い図 %1$lld 個（オンにすると約 %2$@ 減らせる見込み・目安）"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heavy figures: %1$lld (turning this on saves about %2$@, estimate)"
+          }
+        }
+      }
+    },
+    "重い図 %lld 個（画像にしても小さくならない見込み）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heavy figures: %lld (not expected to get smaller as images)"
+          }
+        }
+      }
+    },
+    "重い図は見つかりませんでした" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No heavy figures were found"
+          }
+        }
+      }
+    },
+    "重複していた部品 %lld 個を 1 つにまとめ" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "merged %lld duplicate object"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "merged %lld duplicate objects"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "重複は、まず部品の一覧で「長さと中身の説明が同じ」ものを探し、それだけのデータを取り出して指紋（SHA-256）で比べます。まとめた方への参照を付け替えると、使われなくなった重複と、捨てた要らないデータは、保存するときに PDF から無くなります。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To find duplicates, the app first looks in the list of parts for ones with “the same length and the same description of contents,” then extracts only their data and compares fingerprints (SHA-256). Once references are redirected to the one that’s kept, the unused duplicates and the discarded unneeded data are removed from the PDF when it’s saved."
+          }
+        }
+      }
+    },
+    "開くのにパスワードが要ります。パスワードはここで 1 回だけ聞き、保存しません。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A password is needed to open this. You’ll be asked once here, and it is not saved."
+          }
+        }
+      }
+    },
+    "開くのにパスワードが要る PDF は、ページを表示できないので、ここでは回せません。先に解除して保存した PDF を入れ直すと回せます" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A PDF that needs a password to open can’t show its pages, so it can’t be rotated here. Unlock and save it first, then add that PDF again to rotate it"
+          }
+        }
+      }
+    },
+    "開くのにパスワードが要る PDF は、必要になった時点で小さな窓で聞きます。入れたパスワードはその場の処理に使うだけで、どこにも保存しません。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "For a PDF that needs a password to open, a small window asks for it when it’s needed. The password you enter is used only for that task and is never saved anywhere."
+          }
+        }
+      }
+    },
+    "開くのにパスワードが要るので、ページを表示できません（このファイルは回せません）。パスワードは実行中にだけ聞きます。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This PDF needs a password to open, so its pages can’t be shown (it can’t be rotated). The password is asked only during the run."
+          }
+        }
+      }
+    },
+    "開くのにパスワードが要る（パスワードは実行中に聞きます）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Needs a password to open (asked during the run)"
+          }
+        }
+      }
+    },
+    "開けるが、編集・印刷などが制限されている" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opens, but editing, printing, etc. are restricted"
+          }
+        }
+      }
+    },
+    "順番の変え方" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How to change the order"
+          }
+        }
+      }
+    },
+    "順番は設定（⌘,）で変えられます。暗号化の解除はいつも最初です。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change the order in Settings (⌘,). Unlock always comes first."
+          }
+        }
+      }
+    },
+    "高" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "High"
+          }
+        }
+      }
+    },
+    "（作り直しても小さくならなかった %lld 個は元のまま）" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : " (%lld image that did not get smaller was left as is)"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : " (%lld images that did not get smaller were left as is)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "（合計）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " (total)"
+          }
+        }
+      }
+    },
+    "（画像にしても小さくならなかった図 %lld 個は元のまま）" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : " (%lld figure that did not get smaller was left as is)"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : " (%lld figures that did not get smaller were left as is)"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

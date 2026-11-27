@@ -6,9 +6,9 @@ struct HelpTopicGroup: Identifiable {
     var id: String { title }
 
     static let all: [HelpTopicGroup] = [
-        HelpTopicGroup(title: "使い方", topics: [.introduction, .flow, .order]),
-        HelpTopicGroup(title: "操作", topics: Operation.allCases.map(HelpTopic.operation)),
-        HelpTopicGroup(title: "そのほか", topics: [.faq, .components]),
+        HelpTopicGroup(title: String(localized: "使い方"), topics: [.introduction, .flow, .order]),
+        HelpTopicGroup(title: String(localized: "操作"), topics: Operation.allCases.map(HelpTopic.operation)),
+        HelpTopicGroup(title: String(localized: "そのほか"), topics: [.faq, .components]),
     ]
 }
 

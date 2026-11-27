@@ -1,7 +1,7 @@
 import PDFEngine
 import SwiftUI
 
-/// 設定の窓（⌘,）: 操作を行う順番。行をドラッグして並べ替える。
+/// 設定の窓（⌘,）: 言語と、操作を行う順番。順番は行をドラッグして並べ替える。
 /// MEMO(2026-11-26・by claude): 上下の矢印ボタンは使いにくいと言われたので、ドラッグに変えた。
 /// 右クリックの「上へ」「下へ」も残す（ドラッグしにくいとき用）。
 struct SettingsView: View {
@@ -11,6 +11,8 @@ struct SettingsView: View {
     var body: some View {
         let order = OperationOrder.reorderable(from: orderRaw)
         VStack(alignment: .leading, spacing: 14) {
+            LanguageSettingsSection()
+            Divider()
             VStack(alignment: .leading, spacing: 3) {
                 Text("操作を行う順番").font(.title3.weight(.semibold))
                 Text("行をドラッグして並べ替えられます。オンにした操作だけを、この順に行います。")
@@ -47,7 +49,7 @@ struct SettingsView: View {
                     }
                     HStack(spacing: 4) {
                         OperationIcon(operation: Operation(step), size: 16)
-                        Text(step == .decrypt ? "解除" : Operation(step).title).font(.callout)
+                        Text(step == .decrypt ? String(localized: "解除") : Operation(step).title).font(.callout)
                     }
                 }
                 Spacer()
@@ -88,7 +90,7 @@ private struct StepRow: View {
             OperationIcon(operation: operation, size: 28)
             VStack(alignment: .leading, spacing: 1) {
                 Text(operation.title).font(.body.weight(.medium))
-                Text(isPinned ? "いつも最初（動かせません）" : operation.summary)
+                Text(isPinned ? String(localized: "いつも最初（動かせません）") : operation.summary)
                     .font(.caption).foregroundStyle(.secondary)
             }
             Spacer()

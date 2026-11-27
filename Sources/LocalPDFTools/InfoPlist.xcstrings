@@ -1,0 +1,22 @@
+{
+  "sourceLanguage" : "ja",
+  "strings" : {
+    "NSHumanReadableCopyright" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDF はこの Mac の中だけで処理します。"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDFs are processed only on this Mac."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

@@ -126,11 +126,11 @@ final class WorkFile: Identifiable {
         var lines: [String] = []
         switch encryption.status {
         case .notEncrypted: return ""
-        case .restricted: lines.append("開けるが、編集・印刷などが制限されている")
-        case .passwordRequired: lines.append("開くのにパスワードが要る（パスワードは実行中に聞きます）")
+        case .restricted: lines.append(String(localized: "開けるが、編集・印刷などが制限されている"))
+        case .passwordRequired: lines.append(String(localized: "開くのにパスワードが要る（パスワードは実行中に聞きます）"))
         }
-        if let method = encryption.method { lines.append("暗号の方式: \(method)") }
-        if let summary = encryption.deniedSummary { lines.append("禁止されている操作: \(summary)") }
+        if let method = encryption.method { lines.append(String(localized: "暗号の方式: \(method)")) }
+        if let summary = encryption.deniedSummary { lines.append(String(localized: "禁止されている操作: \(summary)")) }
         return lines.joined(separator: "\n")
     }
 }

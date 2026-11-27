@@ -22,8 +22,8 @@ struct PlanSummaryView: View {
     }
 
     private var result: String {
-        if workspace.merges { return "1 つの PDF にして保存" }
-        return workspace.files.count > 1 ? "\(workspace.files.count) つの PDF を別々に保存" : "PDF を保存"
+        if workspace.merges { return String(localized: "1 つの PDF にして保存") }
+        return workspace.files.count > 1 ? String(localized: "\(workspace.files.count) つの PDF を別々に保存") : String(localized: "PDF を保存")
     }
 
 }

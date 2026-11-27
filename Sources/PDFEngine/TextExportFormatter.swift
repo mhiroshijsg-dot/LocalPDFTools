@@ -20,18 +20,25 @@ public struct TextExportFormatter {
     }
 
     private func body(_ file: FileEntry) -> String {
-        guard let pages = file.pages else { return "（パスワードが要るため、文字を読んでいません）\n" }
+        guard let pages = file.pages else { return String(localized: "（パスワードが要るため、文字を読んでいません）", bundle: .engine) + "\n" }
         return pages.map { page in
-            "--- \(page.pageNumber) ページ\(page.source == .ocr ? "（OCR）" : "") ---\n" + content(page)
+            "--- " + heading(page) + " ---\n" + content(page)
         }.joined(separator: "\n\n") + "\n"
+    }
+
+    /// 例: 「3 ページ（OCR）」
+    private func heading(_ page: PageText) -> String {
+        page.source == .ocr
+            ? String(localized: "\(page.pageNumber) ページ（OCR）", bundle: .engine)
+            : String(localized: "\(page.pageNumber) ページ", bundle: .engine)
     }
 
     private func content(_ page: PageText) -> String {
         let text = page.text.trimmingCharacters(in: .newlines)
         switch page.source {
         case .textLayer: return text
-        case .ocr: return text.isEmpty ? "（OCR で文字が見つかりませんでした）" : text
-        case .none: return "（文字の層なし・OCR していません）"
+        case .ocr: return text.isEmpty ? String(localized: "（OCR で文字が見つかりませんでした）", bundle: .engine) : text
+        case .none: return String(localized: "（文字の層なし・OCR していません）", bundle: .engine)
         }
     }
 }

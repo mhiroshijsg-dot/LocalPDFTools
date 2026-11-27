@@ -64,7 +64,7 @@ final class Workspace {
         }
         for url in urls {
             guard url.pathExtension.lowercased() == "pdf" else {
-                messages.append(.error("PDF ではないので入れませんでした: \(url.lastPathComponent)"))
+                messages.append(.error(String(localized: "PDF ではないので入れませんでした: \(url.lastPathComponent)")))
                 continue
             }
             do {
@@ -152,15 +152,15 @@ final class Workspace {
 
     /// 実行できない理由（実行できるなら nil）
     var blocker: String? {
-        if files.isEmpty { return "PDF を入れてください" }
-        if selected.isEmpty { return "行う操作にチェックを入れてください" }
-        if merges && files.count < 2 { return "結合するには 2 つ以上の PDF を入れてください" }
+        if files.isEmpty { return String(localized: "PDF を入れてください") }
+        if selected.isEmpty { return String(localized: "行う操作にチェックを入れてください") }
+        if merges && files.count < 2 { return String(localized: "結合するには 2 つ以上の PDF を入れてください") }
         if !selected.contains(.decrypt) && files.contains(where: \.isLocked) {
-            return "パスワードが要る PDF があります。「暗号化の解除」にチェックを入れてください"
+            return String(localized: "パスワードが要る PDF があります。「暗号化の解除」にチェックを入れてください")
         }
         if !merges && !files.contains(where: { !$0.effectiveSteps(Array(selected)).isEmpty }) {
-            if selected.contains(.rotate) { return "回すページを選んでください" }
-            return "暗号化された PDF が無いので、外すものがありません"
+            if selected.contains(.rotate) { return String(localized: "回すページを選んでください") }
+            return String(localized: "暗号化された PDF が無いので、外すものがありません")
         }
         return nil
     }

@@ -1,0 +1,478 @@
+{
+  "sourceLanguage" : "ja",
+  "strings" : {
+    "%lld ページ" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Page %lld"
+          }
+        }
+      }
+    },
+    "%lld ページ目を画像にできなかったので、OCR できませんでした: %@" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld ページ目を画像にできなかったので、OCR できませんでした: %2$@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Could not render page %1$lld as an image, so OCR was not possible: %2$@"
+          }
+        }
+      }
+    },
+    "%lld ページ（OCR）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Page %lld (OCR)"
+          }
+        }
+      }
+    },
+    "1 色 %lld ビットの画像" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Image with %lld bit per color"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Image with %lld bits per color"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "PDF として読めません: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cannot read this as a PDF: %@"
+          }
+        }
+      }
+    },
+    "RC4（%lld ビット）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RC4 (%lld-bit)"
+          }
+        }
+      }
+    },
+    "list.bullet" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "・"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• "
+          }
+        }
+      }
+    },
+    "list.separator" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "、"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ", "
+          }
+        }
+      }
+    },
+    "list.separator.short" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "・"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ", "
+          }
+        }
+      }
+    },
+    "qpdf が失敗しました（終了コード %d）。qpdf の報告: %@" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "qpdf が失敗しました（終了コード %1$d）。qpdf の報告: %2$@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "qpdf failed (exit code %1$d). qpdf reported: %2$@"
+          }
+        }
+      }
+    },
+    "qpdf が見つかりません。探した場所: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "qpdf was not found. Looked in: %@"
+          }
+        }
+      }
+    },
+    "なし" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "None"
+          }
+        }
+      }
+    },
+    "パスワードが違います: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wrong password: %@"
+          }
+        }
+      }
+    },
+    "パスワードの入力をやめたので、このファイルは処理しませんでした: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This file was skipped because the password entry was canceled: %@"
+          }
+        }
+      }
+    },
+    "フォームへの入力" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filling in forms"
+          }
+        }
+      }
+    },
+    "ページの追加・削除・並べ替え" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adding, deleting, or reordering pages"
+          }
+        }
+      }
+    },
+    "ページ上で描かれている場所が分からない画像" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Image whose position on the page is unknown"
+          }
+        }
+      }
+    },
+    "中" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medium"
+          }
+        }
+      }
+    },
+    "低" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Low"
+          }
+        }
+      }
+    },
+    "保存先が入力のファイルと同じです。元のファイルを壊さないため、別の名前か場所を選んでください: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The destination is the same as an input file. To protect the original, choose a different name or location: %@"
+          }
+        }
+      }
+    },
+    "内容の編集" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editing content"
+          }
+        }
+      }
+    },
+    "出力のファイルができていません。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The output file was not created."
+          }
+        }
+      }
+    },
+    "印刷" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Printing"
+          }
+        }
+      }
+    },
+    "印刷用の色（CMYK）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Print colors (CMYK)"
+          }
+        }
+      }
+    },
+    "圧縮されていない画像" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uncompressed image"
+          }
+        }
+      }
+    },
+    "対応していない形式（%@）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unsupported format (%@)"
+          }
+        }
+      }
+    },
+    "対応していない色の形式" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unsupported color format"
+          }
+        }
+      }
+    },
+    "形だけの画像（ImageMask）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shape-only image (ImageMask)"
+          }
+        }
+      }
+    },
+    "文字や画像のコピー" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copying text and images"
+          }
+        }
+      }
+    },
+    "最低" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lowest"
+          }
+        }
+      }
+    },
+    "注釈の追加" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adding annotations"
+          }
+        }
+      }
+    },
+    "白黒スキャン（%@）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Black-and-white scan (%@)"
+          }
+        }
+      }
+    },
+    "色の読み替え（/Decode）付き" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Has a color remapping (/Decode)"
+          }
+        }
+      }
+    },
+    "行う操作がありません。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There is nothing to do."
+          }
+        }
+      }
+    },
+    "解除したはずの出力がまだ暗号化されていたので、保存をやめました: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The output was still encrypted after unlocking, so it was not saved: %@"
+          }
+        }
+      }
+    },
+    "読み上げ機能での読み取り" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reading by screen readers"
+          }
+        }
+      }
+    },
+    "透明度や形の抜きに使う画像" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Image used for transparency or masking"
+          }
+        }
+      }
+    },
+    "開くのにパスワードが要る PDF です。「暗号化の解除」にチェックを入れてください: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This PDF needs a password to open. Turn on “Unlock”: %@"
+          }
+        }
+      }
+    },
+    "高" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "High"
+          }
+        }
+      }
+    },
+    "高画質の印刷" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "High-quality printing"
+          }
+        }
+      }
+    },
+    "（OCR で文字が見つかりませんでした）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(OCR found no text)"
+          }
+        }
+      }
+    },
+    "（パスワードが要るため、文字を読んでいません）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(Not read because a password is required)"
+          }
+        }
+      }
+    },
+    "（文字の層なし・OCR していません）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(No text layer; OCR not run)"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

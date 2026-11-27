@@ -73,6 +73,8 @@ Views/Help/HelpWindowView.swift  左に項目の一覧（Models/Help/HelpTopicGr
 | `AppDelegate.swift` | SwiftUI だけでは決められない振る舞い。窓を閉じたらアプリも終わる |
 | `AppInfo.swift` | アプリ名 |
 | `Assets.xcassets` | アプリのアイコン（AppIcon）。中の PNG は `scripts/make_icon.swift` が作るので、手で描き換えない |
+| `Localizable.xcstrings` | 画面の文の英訳（String Catalog）。鍵は日本語の文そのもの。数で形が変わる英語は複数形の形で持つ |
+| `InfoPlist.xcstrings` | Info.plist の文（著作権の欄）の日本語と英語 |
 
 ### Views/（画面の見た目）
 
@@ -95,7 +97,8 @@ Views/Help/HelpWindowView.swift  左に項目の一覧（Models/Help/HelpTopicGr
 | `TextExtractionSheet.swift` | 文字の抽出のシート。全ファイルのページごとの文字・読み間違いの注意・OCR の進み具合と中止・.txt の保存（まとめて 1 つ / ファイルごと）。閉じたら OCR は止める |
 | `FileTextSection.swift` | 文字の抽出のシートのファイル 1 つ分（「層なしのページを OCR」・すべてコピー・パスワードが要るときの「パスワードを入れて読む…」） |
 | `PageTextView.swift` | 文字の抽出のシートの 1 ページ分（文字の層 / OCR / 層なしの札・文字・「OCR する」「読み直す」・コピー） |
-| `SettingsView.swift` | 設定の窓（⌘,）。操作を行う順番（解除はいつも最初・残りはドラッグか右クリックで並べ替え・順番の見本・おすすめの順に戻す） |
+| `LanguageSettingsSection.swift` | 設定の窓の「言語」の欄（変えたら、開き直すと切り替わると知らせる） |
+| `SettingsView.swift` | 設定の窓（⌘,）。言語と、操作を行う順番（解除はいつも最初・残りはドラッグか右クリックで並べ替え・順番の見本・おすすめの順に戻す） |
 
 `WorkspaceView.swift`・`RotatePagesSheet.swift`・`TextExtractionSheet.swift`・`Help/HelpWindowView.swift` の末尾の `#Preview` は、Xcode のプレビュー（右側にその場で描かれる画面）の設定。
 
@@ -135,6 +138,7 @@ Views/Help/HelpWindowView.swift  左に項目の一覧（Models/Help/HelpTopicGr
 ### Models/Help/（ヘルプの中身）
 
 説明の文章はここにだけ書く。新しい操作を作ったら、`Topics/` に項目を足し、`HelpTopicGroup.swift` の並びにも入れる。
+文は 1 つのリテラルで書く（`+` でつなぐと英訳の鍵が作れない）。英訳は `Localizable.xcstrings` に足す。
 
 | ファイル | 役割 |
 |---|---|
@@ -159,6 +163,7 @@ Views/Help/HelpWindowView.swift  左に項目の一覧（Models/Help/HelpTopicGr
 | `CompressionPreset.swift` | 圧縮の品質（高 300 dpi・中 150 dpi と JPEG 中・低 100 dpi と JPEG 低）。選ぶと詳細の設定をまとめて書き換える。今の設定がどの品質かも判定する |
 | `Operation.swift` | 操作の名前と一言とアイコン（文字の抽出は PDF の保存の流れに入らないので `step` が nil） |
 | `OperationOrder.swift` | 操作の順番の設定（解除はいつも最初・おすすめは 回転 → 結合 → 圧縮） |
+| `AppLanguage.swift` | 画面の言語（Mac に合わせる・日本語・English）。このアプリの AppleLanguages を書き換える。切り替わるのは次の起動から |
 | `SuggestedName.swift` | 保存名の初期値（`一番上の名前_merge.pdf`・`元の名前_unlocked_rotated_compressed.pdf`・文字は `元の名前.txt`・まとめたら `一番上の名前_merge.txt`） |
 | `ThumbnailCache.swift` | 縮小表示を作って覚えておく（同じページを何度も描かない） |
 | `OutputName.swift` | 保存名に `.pdf` を付ける・文字数を数える・上限を超えたかを判定する |
@@ -177,6 +182,9 @@ Views/Help/HelpWindowView.swift  左に項目の一覧（Models/Help/HelpTopicGr
 
 | ファイル | 役割 |
 |---|---|
+| `Localizable.xcstrings` | エンジンの文（エラーなど）の英訳 |
+| `EngineBundle.swift` | エンジンの文の訳を引く場所（`String(localized: "…", bundle: .engine)`） |
+| `ListText.swift` | 語を並べる区切り（日本語「、」「・」・英語「, 」）と箇条書きの頭 |
 | `QPDFRunner.swift` | qpdf のコマンドを呼ぶ。.app の中（Xcode の ⌘R も含む）では同梱の qpdf、テストでは Homebrew の qpdf を使う |
 | `QPDFPassword.swift` | qpdf にパスワードを渡す方法。引数ではなく標準入力で渡す（引数は他のプログラムから見えるため） |
 | `PDFPipeline.swift` | 解除 → 回転 → 結合 → 圧縮 を指定の順に続けて行い、最後の 1 つだけ保存先へ置く。パスワードは要る時点で聞き（違えば聞き直す）、そのまま qpdf に渡す。結合の後に回すときは通しのページ番号に直す |

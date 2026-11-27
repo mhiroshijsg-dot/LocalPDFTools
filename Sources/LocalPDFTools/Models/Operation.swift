@@ -8,22 +8,22 @@ enum Operation: String, CaseIterable, Identifiable {
 
     var title: String {
         switch self {
-        case .decrypt: return "暗号化の解除"
-        case .rotate: return "回転"
-        case .merge: return "結合"
-        case .compress: return "圧縮"
-        case .text: return "文字の抽出"
+        case .decrypt: return String(localized: "暗号化の解除")
+        case .rotate: return String(localized: "回転")
+        case .merge: return String(localized: "結合")
+        case .compress: return String(localized: "圧縮")
+        case .text: return String(localized: "文字の抽出")
         }
     }
 
     /// 名前の下に出す一言（何をするか）
     var summary: String {
         switch self {
-        case .decrypt: return "パスワードや制限を外す"
-        case .rotate: return "ページの向きを直す"
-        case .merge: return "1 つの PDF にまとめる"
-        case .compress: return "ファイルを小さくする"
-        case .text: return "PDF の文字を取り出す"
+        case .decrypt: return String(localized: "パスワードや制限を外す")
+        case .rotate: return String(localized: "ページの向きを直す")
+        case .merge: return String(localized: "1 つの PDF にまとめる")
+        case .compress: return String(localized: "ファイルを小さくする")
+        case .text: return String(localized: "PDF の文字を取り出す")
         }
     }
 

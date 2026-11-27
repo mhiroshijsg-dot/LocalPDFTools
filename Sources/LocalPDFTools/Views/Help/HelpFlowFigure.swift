@@ -43,7 +43,7 @@ struct HelpFlowFigure: View {
         )
     }
 
-    private func step<Picture: View>(_ number: Int, title: String, caption: String,
+    private func step<Picture: View>(_ number: Int, title: LocalizedStringKey, caption: LocalizedStringKey,
                                      @ViewBuilder picture: () -> Picture) -> some View {
         VStack(spacing: 8) {
             picture()

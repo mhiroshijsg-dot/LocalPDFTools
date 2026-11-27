@@ -3,7 +3,7 @@
 PDF の**結合・回転・暗号化の解除・圧縮・文字の抽出**を、**あなたの Mac の中だけで**行うアプリです。
 ファイルをインターネットに送らないので、成績証明書や身分証明書のような大事な書類も安心して扱えます。
 
-*A macOS app to merge, rotate, unlock, compress, and extract text from PDFs entirely on your Mac — no uploads. The interface is in Japanese.*
+*English: [README.en.md](README.en.md) — A macOS app to merge, rotate, unlock, compress, and extract text from PDFs entirely on your Mac. The interface is in Japanese and English.*
 
 ---
 
@@ -113,6 +113,10 @@ PDF の**結合・回転・暗号化の解除・圧縮・文字の抽出**を、
 ### 保存名の文字数
 - 保存名の横に文字数（`.pdf` を含む）が出ます。「上限」に提出先の決まり（例：50 文字以下）を入れておくと、超えたときに赤字になります。
 
+### 画面の言語
+- 画面は日本語と英語に対応しています。最初は Mac の言語の設定に合わせます（日本語でも英語でもない Mac では英語）。
+- **設定（⌘,）**の「言語」で、このアプリだけを日本語か English にできます。変えたら、アプリを終了して開き直すと切り替わります。
+
 ## プライバシー
 
 - このアプリはインターネットに接続しません。PDF もパスワードも、外に送ることはありません。
@@ -134,6 +138,9 @@ PDF の**結合・回転・暗号化の解除・圧縮・文字の抽出**を、
 
 `LocalPDFTools.xcodeproj` を開いて ⌘R で起動、⌘U で検査（テスト）が走ります。
 コードの構成は [`Sources/README.md`](Sources/README.md) にあります。
+
+画面の文の英訳は `Localizable.xcstrings`（String Catalog）にあります。鍵は日本語の文そのものなので、画面の文はこれまでどおり日本語で書き、英訳を Catalog に足します。
+検査は日本語の画面の文を確かめるので、スキームの設定で日本語（`-AppleLanguages (ja)`）で走らせています。
 
 配布用の zip を作るには：
 

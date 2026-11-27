@@ -18,7 +18,7 @@ struct OperationChip: View {
 
     /// 矢印の中では短い名前にする
     private var shortTitle: String {
-        operation == .decrypt ? "解除" : operation.title
+        operation == .decrypt ? String(localized: "解除") : operation.title
     }
 
     /// 札と札の間の矢印

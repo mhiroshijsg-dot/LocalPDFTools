@@ -22,7 +22,7 @@ struct QPDFEncryptionJSON: Decodable {
         switch encrypt.parameters.method {
         case "AESv3": return "AES-256"
         case "AESv2": return "AES-128"
-        case "RC4": return "RC4（\(encrypt.parameters.bits) ビット）"
+        case "RC4": return String(localized: "RC4（\(encrypt.parameters.bits) ビット）", bundle: .engine)
         default: return encrypt.parameters.method
         }
     }

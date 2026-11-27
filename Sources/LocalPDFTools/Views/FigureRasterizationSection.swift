@@ -91,10 +91,10 @@ struct FigureRasterizationSection: View {
     private var heavyPagesNote: some View {
         let notes = workspace.files.compactMap { file -> String? in
             guard let pages = model.figureReports[file.id]?.heavyPages, !pages.isEmpty else { return nil }
-            return "\(file.fileName) の \(pages.map(String.init).joined(separator: "・")) ページ"
+            return String(localized: "\(file.fileName) の \(ListText.joinShort(pages.map(String.init))) ページ")
         }
         if !notes.isEmpty {
-            Text("ページと一体で描かれた重い図は画像にできません: " + notes.joined(separator: "、"))
+            Text(String(localized: "ページと一体で描かれた重い図は画像にできません: \(ListText.join(notes))"))
                 .font(.caption).foregroundStyle(.secondary)
         }
     }
@@ -103,7 +103,7 @@ struct FigureRasterizationSection: View {
     private var errorsNote: some View {
         let failed = workspace.files.filter { model.figureErrors[$0.id] != nil }
         if !failed.isEmpty {
-            Text("図を探せなかった PDF: " + failed.map(\.fileName).joined(separator: "、"))
+            Text(String(localized: "図を探せなかった PDF: \(ListText.join(failed.map(\.fileName)))"))
                 .font(.caption).foregroundStyle(.red)
                 .help(failed.compactMap { model.figureErrors[$0.id] }.joined(separator: "\n"))
         }

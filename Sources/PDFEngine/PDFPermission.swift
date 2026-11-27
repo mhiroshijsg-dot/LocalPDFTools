@@ -12,14 +12,14 @@ public enum PDFPermission: String, CaseIterable, Sendable {
 
     public var title: String {
         switch self {
-        case .printLow: return "印刷"
-        case .printHigh: return "高画質の印刷"
-        case .extract: return "文字や画像のコピー"
-        case .modifyAssembly: return "ページの追加・削除・並べ替え"
-        case .modifyOther: return "内容の編集"
-        case .modifyAnnotations: return "注釈の追加"
-        case .modifyForms: return "フォームへの入力"
-        case .accessibility: return "読み上げ機能での読み取り"
+        case .printLow: return String(localized: "印刷", bundle: .engine)
+        case .printHigh: return String(localized: "高画質の印刷", bundle: .engine)
+        case .extract: return String(localized: "文字や画像のコピー", bundle: .engine)
+        case .modifyAssembly: return String(localized: "ページの追加・削除・並べ替え", bundle: .engine)
+        case .modifyOther: return String(localized: "内容の編集", bundle: .engine)
+        case .modifyAnnotations: return String(localized: "注釈の追加", bundle: .engine)
+        case .modifyForms: return String(localized: "フォームへの入力", bundle: .engine)
+        case .accessibility: return String(localized: "読み上げ機能での読み取り", bundle: .engine)
         }
     }
 }

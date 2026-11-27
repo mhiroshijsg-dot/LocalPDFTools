@@ -2,7 +2,7 @@ import SwiftUI
 
 /// ファイルの横に付ける小さな札（「しおりあり」など）。記号と色で中身が一目で分かるようにする
 struct Badge: View {
-    let text: String
+    let text: LocalizedStringKey
     let symbol: String
     var tint: Color = .secondary
 
