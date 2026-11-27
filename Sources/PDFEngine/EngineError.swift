@@ -13,6 +13,7 @@ public enum EngineError: LocalizedError, Equatable {
     case passwordCancelled(path: String)
     case nothingToDo
     case pageNotRendered(page: Int, path: String)
+    case invalidPageRanges(reason: String)
 
     public var errorDescription: String? {
         switch self {
@@ -38,6 +39,8 @@ public enum EngineError: LocalizedError, Equatable {
             return "行う操作がありません。"
         case .pageNotRendered(let page, let path):
             return "\(page) ページ目を画像にできなかったので、OCR できませんでした: \(path)"
+        case .invalidPageRanges(let reason):
+            return "分けるページの指定が正しくありません: \(reason)"
         }
     }
 }

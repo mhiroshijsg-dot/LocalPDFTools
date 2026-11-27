@@ -25,6 +25,19 @@ struct FilePanels {
         return panel.runModal() == .OK ? panel.url : nil
     }
 
+    /// 分割: 新しいフォルダを作る場所を選ばせる（キャンセルなら nil）。message に何というフォルダを作るかを出す
+    func chooseSplitLocation(startingAt folder: URL?, message: String) -> URL? {
+        let panel = NSOpenPanel()
+        panel.canChooseFiles = false
+        panel.canChooseDirectories = true
+        panel.canCreateDirectories = true
+        panel.allowsMultipleSelection = false
+        panel.prompt = "ここに作る"
+        panel.message = message
+        panel.directoryURL = folder
+        return panel.runModal() == .OK ? panel.url : nil
+    }
+
     /// 保存先を選ばせる（キャンセルなら nil）。folder のフォルダ・suggestedName の名前で開き、そこで選び直せる。
     /// 既にあるファイルを選ぶと、ダイアログが上書きしてよいかを確認する。
     func chooseDestination(suggestedName: String, in folder: URL?, message: String? = nil) -> URL? {

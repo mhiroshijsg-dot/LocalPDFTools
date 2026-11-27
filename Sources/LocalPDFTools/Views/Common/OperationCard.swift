@@ -6,6 +6,8 @@ struct OperationCard<Details: View>: View {
     @Binding var isOn: Bool
     /// まだ作っていない操作は false（スイッチの代わりに「今後のバージョンで追加」を出す）
     var isAvailable = true
+    /// ほかの操作と同時に使えないとき、その理由（結合と分割）。オフのときはスイッチを押せなくして理由を出す
+    var blockedReason: String? = nil
     @ViewBuilder var details: () -> Details
 
     var body: some View {
@@ -17,6 +19,8 @@ struct OperationCard<Details: View>: View {
                     Text(operation.summary).font(.callout).foregroundStyle(.secondary)
                     if !isAvailable {
                         Text("今後のバージョンで追加").font(.caption).foregroundStyle(.secondary)
+                    } else if let blockedReason, !isOn {
+                        Text(blockedReason).font(.caption).foregroundStyle(.secondary)
                     }
                 }
                 Spacer(minLength: 8)
@@ -24,6 +28,7 @@ struct OperationCard<Details: View>: View {
                     Toggle(operation.title, isOn: $isOn.animation(.snappy(duration: 0.2)))
                         .toggleStyle(.switch)
                         .labelsHidden()
+                        .disabled(blockedReason != nil && !isOn)
                 }
             }
             if isOn && isAvailable {

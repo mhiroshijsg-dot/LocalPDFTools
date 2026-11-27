@@ -34,9 +34,10 @@ LocalPDFToolsApp.swift          起動の入口。作業台の窓 1 つと、ヘ
    ↓
 Views/WorkspaceView.swift       作業台（窓全体）。左に PDF の並び、右にやること（操作のカード）、下に保存
    ↓ 「実行して保存…」が押されたら
-Models/WorkspaceRunner.swift    保護を外す確認 → 保存ダイアログ → 処理 → 結果
+Models/WorkspaceRunner.swift    保護を外す確認 → 保存ダイアログ（分割は場所を選ぶダイアログ 1 回）→ 処理 → 結果
    ↓
 PDFEngine/PDFPipeline.swift     解除 → 回転 → 結合 → 圧縮 を指定の順に続けて行う（パスワードは要る時点で聞く）
+PDFEngine/PDFPipeline+Split.swift  分割のとき: 解除 → 回転 → 分割 → 圧縮 を続けて行い、新しいフォルダにまとめて置く
    ↓
 PDFEngine/PDFDecryptor・PDFRotator・PDFMerger・PDFCompressor   それぞれ qpdf を呼ぶ
    ↓
@@ -88,6 +89,13 @@ Views/Help/HelpWindowView.swift  左に項目の一覧（Models/Help/HelpTopicGr
 | `FigureRowView.swift` | 図を選ぶシートの 1 行（チェック・縮小表示・ページ・描く命令の数・今の大きさ → 目安・効果なし） |
 | `SaveBar.swift` | これから行うこと（`PlanSummaryView`）・保存名（結合のとき・1 ファイルのとき）・保存先と「変更…」・「実行して保存…」とできない理由 |
 | `PlanSummaryView.swift` | 「解除 → 回転 → 結合 → 1 つの PDF にして保存」のように、オンにした操作を実行する順に矢印でつないで見せる |
+| `SplitDetailsView.swift` | 分割のカードの中身（分け方・「ページを見て分ける…」・いくつに分かれるか・しおりの注意） |
+| `SplitOptionsForm.swift` | 分け方の選ぶ欄（1 ページずつ・N ページごと・範囲を書く・切れ目を選ぶ）と、分け方ごとの指定。カードとシートで使う |
+| `SplitPagesSheet.swift` | 分割のシート（印刷の画面の形）。左にページの縮小表示、右に分け方とできるファイル |
+| `FileSplitSection.swift` | 分割のシートのファイル 1 つ分（縮小表示と、ページの間の切れ目） |
+| `SplitPageCell.swift` | 分割のシートの縮小表示 1 枚分（ページ番号・何番目のファイルに入るか） |
+| `CutGapButton.swift` | ページの間の切れ目（はさみと点線）。押すと切れ目を付け外しする |
+| `SplitPreviewList.swift` | 分割のシートの「できるファイル」（名前とページ数） |
 | `RotatePagesSheet.swift` | 回転のシート。全ファイルのページを並べ、「すべて右に 90°」など |
 | `FilePagesSection.swift` | 回転のシートのファイル 1 つ分（ページの縮小表示。クリックで回す） |
 | `PageThumbnailView.swift` | 縮小表示 1 枚分（画像・ページ番号・「右に 90°」の札・回すページは青い枠） |
@@ -112,12 +120,13 @@ Views/Help/HelpWindowView.swift  左に項目の一覧（Models/Help/HelpTopicGr
 | `DropZone.swift` | PDF がまだ無いときの大きな案内（「ここにドロップ」・「ファイルを選ぶ…」・この Mac の中だけで処理する旨） |
 | `OutputNameField.swift` | 保存名の入力欄・文字数・文字数の上限（上限を超えると赤字） |
 | `OutcomeView.swift` | 保存後の緑のカード（保存した名前と場所・「元 → 新」の大きさ・ファイル名の文字数・Finder で表示） |
+| `SplitOutcomeView.swift` | 分割して保存した後の緑のカード（作ったフォルダ・ファイルの数・合計と一番大きいファイル・一覧・Finder で表示） |
 | `MessageList.swift` | エラー・警告（赤字）とお知らせの一覧。記号付きの帯で出す。右にコピーボタン |
 | `Badge.swift` | ファイル名の横の小さな札（記号と色付き） |
 | `SymbolTile.swift` | 色の付いた角丸の四角に白い記号。操作の印とヘルプの項目の印の共通の形 |
 | `OperationIcon.swift` | 操作の印（`SymbolTile`）。解除は橙・回転は青・結合は紫など、操作ごとの色もここで決める |
 | `OperationChip.swift` | 流れの矢印の中の、操作 1 つ分の小さな札（印＋短い名前）と矢印。「これから行うこと」とヘルプの順番の図で使う |
-| `OperationCard.swift` | 操作 1 つ分のカード（印・名前・一言・スイッチ。オンのときだけ詳しい内容） |
+| `OperationCard.swift` | 操作 1 つ分のカード（印・名前・一言・スイッチ。オンのときだけ詳しい内容。結合と分割のように同時に使えないときは理由を出してスイッチを止める） |
 | `FirstPageThumbnail.swift` | ファイルの行に出す 1 ページ目の小さな絵（パスワードが要る PDF は鍵の印） |
 
 ### Views/Help/（ヘルプの窓）
@@ -144,22 +153,24 @@ Views/Help/HelpWindowView.swift  左に項目の一覧（Models/Help/HelpTopicGr
 | `HelpEffect.swift` | 「画質: 変わらない」などの札 1 枚（気を付けてほしい変化は橙） |
 | `HelpIcon.swift` | 項目の印（操作の項目は操作と同じ色、それ以外は灰色） |
 | `HelpAttachment.swift` | 文章の他に出すもの（流れの図・順番の図・ライセンスのボタン） |
-| `Topics/HelpTopic+*.swift` | 項目ごとの文章（はじめに・使い方の流れ・操作の順番・操作 5 つ・よくある質問・使っている部品） |
+| `Topics/HelpTopic+*.swift` | 項目ごとの文章（はじめに・使い方の流れ・操作の順番・操作 6 つ・よくある質問・使っている部品） |
 
 ### Models/（画面の状態と、ボタンを押したときの動き）
 
 | ファイル | 役割 |
 |---|---|
 | `Workspace.swift` | 作業台の状態（ファイルの並び・チェックした操作・保存名・保存先・結果）と、実行できない理由・保護が外れるファイル |
-| `WorkspaceRunner.swift` | 「実行して保存…」の流れ。結合ありなら保存ダイアログ 1 回、結合なしならファイルごとに保存ダイアログ（キャンセルしたものは飛ばして最後に知らせる） |
+| `WorkspaceRunner.swift` | 「実行して保存…」の流れ。結合ありなら保存ダイアログ 1 回、結合なしならファイルごとに保存ダイアログ（キャンセルしたものは飛ばして最後に知らせる）。分割ありなら場所を 1 回選び、ファイルごとに新しいフォルダを作る |
+| `SplitModel.swift` | 分割のやり方の選択（分け方・N・書いた範囲・切れ目）。ページの間を押したときの切れ目の付け外し |
+| `SplitMode.swift` | 分割の分け方 4 つの名前と、PDF が 1 つのときだけ使えるか |
 | `WorkFile.swift` | 入れた PDF 1 つ分（情報・暗号化の状態・ページの回し方・縮小表示・圧縮の分析の結果・ページごとの文字）。パスワードは持たない |
 | `TextExtractionModel.swift` | 文字の抽出の状態。文字の層を読む（スイッチをオンにしたとき）・OCR（押したときだけ。中止できる）・.txt の保存の結果 |
 | `TextExportRunner.swift` | 文字を .txt に保存する流れ（まとめて 1 つ / ファイルごとに保存ダイアログ。キャンセルしたものは飛ばして知らせる） |
 | `CompressionModel.swift` | 圧縮のやり方の選択・分析（圧縮をオンにしたときに初めて行う。重い図を探すのもここ）・目安・試算（押したときだけ。中止できる）・図の選択と縮小表示（シートを開いたときだけ描く） |
 | `CompressionPreset.swift` | 圧縮の品質（高 300 dpi・中 150 dpi と JPEG 中・低 100 dpi と JPEG 低）。選ぶと詳細の設定をまとめて書き換える。今の設定がどの品質かも判定する |
 | `Operation.swift` | 操作の名前と一言とアイコン（文字の抽出は PDF の保存の流れに入らないので `step` が nil） |
-| `OperationOrder.swift` | 操作の順番の設定（解除はいつも最初・おすすめは 回転 → 結合 → 圧縮） |
-| `SuggestedName.swift` | 保存名の初期値（`一番上の名前_merge.pdf`・`元の名前_unlocked_rotated_compressed.pdf`・文字は `元の名前.txt`・まとめたら `一番上の名前_merge.txt`） |
+| `OperationOrder.swift` | 操作の順番の設定（解除はいつも最初・おすすめは 回転 → 結合 → 分割 → 圧縮。新しく足した操作は 1 つ前の操作の後ろに入れる） |
+| `SuggestedName.swift` | 保存名の初期値（`一番上の名前_merge.pdf`・`元の名前_unlocked_rotated_compressed.pdf`・分割のフォルダは `元の名前_split`・文字は `元の名前.txt`・まとめたら `一番上の名前_merge.txt`） |
 | `ThumbnailCache.swift` | 縮小表示を作って覚えておく（同じページを何度も描かない） |
 | `OutputName.swift` | 保存名に `.pdf` を付ける・文字数を数える・上限を超えたかを判定する |
 | `UserMessage.swift` | 画面に出すお知らせ 1 件（エラー・警告・お知らせの区別と文） |
@@ -168,7 +179,7 @@ Views/Help/HelpWindowView.swift  左に項目の一覧（Models/Help/HelpTopicGr
 
 | ファイル | 役割 |
 |---|---|
-| `FilePanels.swift` | 「開く」「フォルダを選ぶ」「保存」（PDF・.txt）のダイアログ |
+| `FilePanels.swift` | 「開く」「フォルダを選ぶ」「保存」（PDF・.txt）のダイアログと、分割で新しいフォルダを作る場所を選ぶダイアログ |
 | `PasswordPrompt.swift` | パスワードが要る時点で 1 回聞く小窓。読んだらすぐ入力欄を空にし、どこにも保存しない |
 | `UnlockConfirmation.swift` | 「PDF の保護を外します。よろしいですか？」の確認 |
 | `DesktopActions.swift` | Finder でファイルを表示する・文字をコピーする |
@@ -180,7 +191,14 @@ Views/Help/HelpWindowView.swift  左に項目の一覧（Models/Help/HelpTopicGr
 | `QPDFRunner.swift` | qpdf のコマンドを呼ぶ。.app の中（Xcode の ⌘R も含む）では同梱の qpdf、テストでは Homebrew の qpdf を使う |
 | `QPDFPassword.swift` | qpdf にパスワードを渡す方法。引数ではなく標準入力で渡す（引数は他のプログラムから見えるため） |
 | `PDFPipeline.swift` | 解除 → 回転 → 結合 → 圧縮 を指定の順に続けて行い、最後の 1 つだけ保存先へ置く。パスワードは要る時点で聞き（違えば聞き直す）、そのまま qpdf に渡す。結合の後に回すときは通しのページ番号に直す |
-| `PipelineStep.swift` | 続けて行える操作（解除・回転・結合・圧縮） |
+| `PipelineStep.swift` | 続けて行える操作（解除・回転・結合・分割・圧縮） |
+| `PDFPipeline+Split.swift` | 分割の流れ。解除 → 回転 → 分割 → 圧縮 を指定の順に行い、新しいフォルダにまとめて置く。分割の後に回すときは元のページ番号で当てる |
+| `SplitPlan.swift` | 分割のやり方（1 ページずつ・N ページごと・範囲・切れ目）を、ファイルごとのページの範囲にする |
+| `PageRangeParser.swift` | 「1-3, 5, 8-」のように書いた範囲を読む（全角・「、」・前後の空白も読む） |
+| `PDFSplitter.swift` | 分割。範囲ごとに `qpdf --empty --pages 入力 1-3 --`、同じページ数ずつなら `qpdf --split-pages=N` 1 回。暗号化としおりは引き継がれない |
+| `SplitPiece.swift` | 分けたファイル 1 つ分（場所・元のページ番号・大きさ）と名前の付け方（`元の名前_p1-3.pdf`） |
+| `SplitOutcome.swift` | 分割して保存した結果（作ったフォルダ・分けたファイル・合計と一番大きいファイルの大きさ） |
+| `FolderOutputWriter.swift` | 新しいフォルダに保存する。一時フォルダで中身を作ってからフォルダごと移す。同じ名前があれば「名前 2」にして、既にあるフォルダには触らない |
 | `PDFCompressor.swift` | 圧縮。順番は 重複を探す → 図を画像にする → 線を減らす → 画像の縮小・再圧縮・灰色 → Type1 フォントを CFF に → 重複の付け替えと要らないデータを捨てる。すべて `qpdf --update-from-json` で差し戻す。構造の圧縮は `--object-streams=generate --recompress-flate --compression-level=9`。中止できる。要らないデータ・重複・色の無い画像・フォントの作り直しの 4 つは、選ぶ欄なしでいつも行う |
 | `ImageRecompressor.swift` | 画像 1 つの作り直し（Mac 標準の画像処理）。JPEG は縮小・画質、可逆の画像は縮小だけ。色の無い RGB の画像は灰色にする（JPEG は灰色にするだけなら 1 割以上小さくなるときだけ）。小さくならなければ作り直さない |
 | `ColorlessPixels.swift` | RGB の画像が色の無い画像かの判定（可逆はぴったり同じとき・JPEG は少しのぶれを許すが印鑑などの色があれば不可） |
@@ -231,7 +249,7 @@ Views/Help/HelpWindowView.swift  左に項目の一覧（Models/Help/HelpTopicGr
 | `TextExportFormatter.swift` | .txt の中身を作る（ページの見出し・OCR の印・文字の無いページや読んでいないファイルも黙って空にしない） |
 | `PDFMerger.swift` | 結合。`qpdf --empty --pages a.pdf b.pdf -- 出力.pdf` |
 | `PDFRotator.swift` | 回転。`qpdf 入力 出力 --rotate=+90:1,3` |
-| `RotationPlan.swift` | ページごとに「時計回りに何回 90° 回すか」と、それを qpdf の引数にする処理 |
+| `RotationPlan.swift` | ページごとに「時計回りに何回 90° 回すか」と、それを qpdf の引数にする処理（分けたファイルの分だけ取り出す slice も） |
 | `OutputWriter.swift` | 保存の共通処理。入力と同じファイルには保存させない・一時ファイルに作ってから保存先へ移す（失敗しても既存のファイルを壊さない） |
 | `PDFDecryptor.swift` | 暗号化の解除。`qpdf --decrypt`。保存先へ移す前に、出力が本当に暗号化なしかを確かめる |
 | `PDFEncryptionInspector.swift` | 暗号化の状態を調べる。`qpdf --requires-password` と `qpdf --json --json-key=encrypt` |

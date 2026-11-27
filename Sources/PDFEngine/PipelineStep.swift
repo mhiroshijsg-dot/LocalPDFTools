@@ -4,5 +4,7 @@ public enum PipelineStep: String, CaseIterable, Sendable {
     case decrypt
     case rotate
     case merge
+    /// 分割。結合とは同時に行わない（出力がいくつもになるので、PDFPipeline.runSplit で行う）
+    case split
     case compress
 }

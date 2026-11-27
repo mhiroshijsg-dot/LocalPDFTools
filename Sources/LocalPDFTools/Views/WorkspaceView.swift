@@ -7,6 +7,7 @@ struct WorkspaceView: View {
     @Bindable var workspace: Workspace
     @State private var showsRotateSheet = false
     @State private var showsTextSheet = false
+    @State private var showsSplitSheet = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -14,16 +15,18 @@ struct WorkspaceView: View {
                 FileListView(workspace: workspace)
                     .frame(minWidth: 420, maxWidth: .infinity, maxHeight: .infinity)
                 Divider()
-                OperationListView(workspace: workspace, showsRotateSheet: $showsRotateSheet, showsTextSheet: $showsTextSheet)
+                OperationListView(workspace: workspace, showsRotateSheet: $showsRotateSheet, showsTextSheet: $showsTextSheet,
+                                  showsSplitSheet: $showsSplitSheet)
                     .frame(width: 330)
                     .frame(maxHeight: .infinity, alignment: .top)
                     .background(Color(nsColor: .windowBackgroundColor))
             }
-            if !workspace.messages.isEmpty || !workspace.outcomes.isEmpty {
+            if !workspace.messages.isEmpty || !workspace.outcomes.isEmpty || !workspace.splitOutcomes.isEmpty {
                 Divider()
                 ScrollView {
                     VStack(alignment: .leading, spacing: 8) {
                         ForEach(workspace.outcomes, id: \.destination) { OutcomeView(outcome: $0) }
+                        ForEach(workspace.splitOutcomes, id: \.folder) { SplitOutcomeView(outcome: $0) }
                         MessageList(messages: workspace.messages)
                     }
                     .padding(16)
@@ -64,6 +67,9 @@ struct WorkspaceView: View {
         }
         .sheet(isPresented: $showsTextSheet) {
             TextExtractionSheet(workspace: workspace)
+        }
+        .sheet(isPresented: $showsSplitSheet) {
+            SplitPagesSheet(workspace: workspace)
         }
     }
 

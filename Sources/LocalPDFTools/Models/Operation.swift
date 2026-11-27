@@ -2,7 +2,7 @@ import PDFEngine
 
 /// 画面の「操作」の欄に並ぶもの
 enum Operation: String, CaseIterable, Identifiable {
-    case decrypt, rotate, merge, compress, text
+    case decrypt, rotate, merge, split, compress, text
 
     var id: String { rawValue }
 
@@ -11,6 +11,7 @@ enum Operation: String, CaseIterable, Identifiable {
         case .decrypt: return "暗号化の解除"
         case .rotate: return "回転"
         case .merge: return "結合"
+        case .split: return "分割"
         case .compress: return "圧縮"
         case .text: return "文字の抽出"
         }
@@ -22,6 +23,7 @@ enum Operation: String, CaseIterable, Identifiable {
         case .decrypt: return "パスワードや制限を外す"
         case .rotate: return "ページの向きを直す"
         case .merge: return "1 つの PDF にまとめる"
+        case .split: return "いくつかの PDF に分ける"
         case .compress: return "ファイルを小さくする"
         case .text: return "PDF の文字を取り出す"
         }
@@ -32,6 +34,7 @@ enum Operation: String, CaseIterable, Identifiable {
         case .decrypt: return "lock.open.fill"
         case .rotate: return "rotate.right"
         case .merge: return "doc.on.doc.fill"
+        case .split: return "scissors"
         case .compress: return "arrow.down.right.and.arrow.up.left"
         case .text: return "text.viewfinder"
         }
@@ -43,6 +46,7 @@ enum Operation: String, CaseIterable, Identifiable {
         case .decrypt: return .decrypt
         case .rotate: return .rotate
         case .merge: return .merge
+        case .split: return .split
         case .compress: return .compress
         case .text: return nil
         }
@@ -53,6 +57,7 @@ enum Operation: String, CaseIterable, Identifiable {
         case .decrypt: self = .decrypt
         case .rotate: self = .rotate
         case .merge: self = .merge
+        case .split: self = .split
         case .compress: self = .compress
         }
     }

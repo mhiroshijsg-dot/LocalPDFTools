@@ -6,6 +6,7 @@ struct OperationListView: View {
     @Bindable var workspace: Workspace
     @Binding var showsRotateSheet: Bool
     @Binding var showsTextSheet: Bool
+    @Binding var showsSplitSheet: Bool
     @AppStorage(OperationOrder.storageKey) private var orderRaw = ""
 
     var body: some View {
@@ -17,7 +18,7 @@ struct OperationListView: View {
                 }
                 .padding(.bottom, 4)
                 ForEach([PipelineStep.decrypt] + OperationOrder.reorderable(from: orderRaw), id: \.self) { step in
-                    OperationCard(operation: Operation(step), isOn: binding(step)) {
+                    OperationCard(operation: Operation(step), isOn: binding(step), blockedReason: blockedReason(step)) {
                         details(step)
                     }
                 }
@@ -43,6 +44,15 @@ struct OperationListView: View {
                 set: { isOn in
                     if isOn { workspace.selected.insert(step) } else { workspace.selected.remove(step) }
                 })
+    }
+
+    /// 結合と分割は同時にオンにできない（片方がオンなら、もう片方のスイッチを押せなくする）
+    private func blockedReason(_ step: PipelineStep) -> String? {
+        switch step {
+        case .merge where workspace.splits: return "分割と同時には使えません"
+        case .split where workspace.merges: return "結合と同時には使えません"
+        default: return nil
+        }
     }
 
     @ViewBuilder
@@ -79,6 +89,8 @@ struct OperationListView: View {
                 Label("しおりのある PDF が含まれています", systemImage: "exclamationmark.triangle.fill")
                     .foregroundStyle(.red)
             }
+        case .split:
+            SplitDetailsView(workspace: workspace, showsSplitSheet: $showsSplitSheet)
         case .compress:
             CompressionDetailsView(workspace: workspace)
         }

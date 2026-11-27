@@ -10,7 +10,7 @@ extension HelpTopic {
             HelpSection(
                 heading: "アプリの中に入れている部品",
                 bullets: [
-                    "**qpdf** — PDF の中身を読み書きする部品。解除・回転・結合・圧縮で使います（Apache License 2.0）",
+                    "**qpdf** — PDF の中身を読み書きする部品。解除・回転・結合・分割・圧縮で使います（Apache License 2.0）",
                     "qpdf が使う **libjpeg-turbo**（JPEG の読み書き）と **OpenSSL**（暗号）",
                 ]
             ),
@@ -30,6 +30,7 @@ extension HelpTopic {
                     "暗号化の解除: `qpdf --decrypt`（パスワードは引数ではなく、他のプログラムから見えない形で渡します）",
                     "回転: `qpdf --rotate`",
                     "結合: `qpdf --empty --pages`",
+                    "分割: 同じページ数ずつなら `qpdf --split-pages=N`、範囲ごとなら `qpdf --empty --pages 入力 1-3 --`",
                     "圧縮（構造）: `qpdf --object-streams=generate --recompress-flate`",
                     "圧縮（画像）: qpdf で画像を取り出し → ImageIO で作り直し → `qpdf --update-from-json` で元の場所に戻す",
                     "圧縮（重複を探す）: `qpdf --json --json-object=… --json-stream-data=file` で候補の部品のデータだけを取り出す",

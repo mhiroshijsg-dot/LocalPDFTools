@@ -7,10 +7,14 @@ import PDFEngine
 enum OperationOrder {
     /// 設定に覚えるときの名前
     static let storageKey = "operationOrder"
-    /// おすすめの順（解除の後ろ）。圧縮が最後なのは、提出先のサイズ上限に効くのは最後の大きさだから
-    static let recommended: [PipelineStep] = [.rotate, .merge, .compress]
+    /// おすすめの順（解除の後ろ）。圧縮が最後なのは、提出先のサイズ上限に効くのは最後の大きさだから。
+    /// 結合と分割は同時には選べない（画面でどちらかしかオンにできない）
+    static let recommended: [PipelineStep] = [.rotate, .merge, .split, .compress]
 
-    /// 設定の文字（例: "merge,rotate"）を順番にする。知らない名前は捨て、足りない操作はおすすめの順で後ろに足す
+    /// 設定の文字（例: "merge,rotate"）を順番にする。知らない名前は捨てる。
+    /// 足りない操作（前の版の設定に無い、新しく足した操作）は、おすすめの順で 1 つ前にある操作のすぐ後ろに入れる。
+    /// MEMO(2026-11-27・by claude): 分割を足したとき、前の版で覚えた「回転,結合,圧縮」の後ろに付けると
+    /// 圧縮の後に分割することになり、おすすめの順と変わってしまうため
     static func reorderable(from raw: String) -> [PipelineStep] {
         var order: [PipelineStep] = []
         for name in raw.split(separator: ",") {
@@ -18,7 +22,15 @@ enum OperationOrder {
                 order.append(step)
             }
         }
-        return order + recommended.filter { !order.contains($0) }
+        for (index, step) in recommended.enumerated() where !order.contains(step) {
+            if let previous = recommended[..<index].last(where: order.contains),
+               let position = order.firstIndex(of: previous) {
+                order.insert(step, at: position + 1)
+            } else {
+                order.insert(step, at: 0)
+            }
+        }
+        return order
     }
 
     static func raw(_ order: [PipelineStep]) -> String {

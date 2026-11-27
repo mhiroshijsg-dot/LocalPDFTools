@@ -116,6 +116,7 @@ final class WorkFile: Identifiable {
             case .decrypt: return isEncrypted
             case .rotate: return plan.hasChanges
             case .merge: return false
+            case .split: return true
             case .compress: return true
             }
         }

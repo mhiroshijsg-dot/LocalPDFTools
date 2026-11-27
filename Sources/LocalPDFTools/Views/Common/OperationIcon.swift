@@ -18,6 +18,7 @@ struct OperationIcon: View {
         case .decrypt: return .orange
         case .rotate: return .blue
         case .merge: return .purple
+        case .split: return .pink
         case .compress: return .green
         case .text: return .teal
         }

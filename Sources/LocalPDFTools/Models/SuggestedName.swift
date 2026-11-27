@@ -13,6 +13,16 @@ enum SuggestedName {
         baseName(url) + steps.compactMap(suffix).joined() + ".pdf"
     }
 
+    /// 分割: 分けた PDF を入れる新しいフォルダの名前（元の名前_split）
+    static func splitFolder(_ url: URL) -> String {
+        baseName(url) + "_split"
+    }
+
+    /// 元の名前（拡張子なし）。分けた PDF の名前（元の名前_p1-3.pdf）の頭に使う
+    static func baseName(_ url: URL) -> String {
+        url.deletingPathExtension().lastPathComponent
+    }
+
     /// 文字の抽出（1 ファイル分）: 元の名前.txt
     static func text(_ url: URL) -> String {
         baseName(url) + ".txt"
@@ -27,12 +37,8 @@ enum SuggestedName {
         switch step {
         case .decrypt: return "_unlocked"
         case .rotate: return "_rotated"
-        case .merge: return nil
+        case .merge, .split: return nil
         case .compress: return "_compressed"
         }
-    }
-
-    private static func baseName(_ url: URL) -> String {
-        url.deletingPathExtension().lastPathComponent
     }
 }

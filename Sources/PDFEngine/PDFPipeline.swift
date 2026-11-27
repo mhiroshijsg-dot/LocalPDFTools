@@ -1,6 +1,6 @@
 import Foundation
 
-/// 解除・回転・結合・圧縮を、指定の順に続けて行い、最後の 1 つだけを保存先へ置く。
+/// 解除・回転・結合・圧縮を、指定の順に続けて行い、最後の 1 つだけを保存先へ置く（分割は PDFPipeline+Split.swift）。
 /// 途中のファイルは保存先と同じディスクの一時フォルダに作り、終わったら（失敗しても）消す。
 /// MEMO(2026-11-26・by claude): 1 回の qpdf にまとめない。結合の `--pages` でファイルごとのパスワードを渡すには
 /// 引数（`ps` で他のプログラムから見える）に入れるしかないので、解除は 1 ファイルずつ標準入力で渡して先に済ませる。
@@ -91,6 +91,9 @@ public struct PDFPipeline {
                     warnings += total.warnings
                     total.warnings = []
                     compressionResult = total
+                case .split:
+                    // 分割は出力がいくつもになるので runSplit で行う
+                    throw EngineError.nothingToDo
                 }
             }
 
@@ -110,7 +113,7 @@ public struct PDFPipeline {
     }
 
     /// 1 ファイルの暗号化を外す。パスワードが要るときだけ聞き、違っていたら聞き直す
-    private func decrypt(_ file: PipelineFile, input: URL, into output: URL,
+    func decrypt(_ file: PipelineFile, input: URL, into output: URL,
                          askPassword: PasswordProvider) async throws -> [String] {
         let decryptor = PDFDecryptor(runner: runner)
         guard file.encryption == .passwordRequired else {
@@ -130,7 +133,7 @@ public struct PDFPipeline {
     }
 
     /// ページ数を qpdf で数える（パスワードが要らない PDF だけ）
-    private func pageCount(of url: URL) async throws -> Int {
+    func pageCount(of url: URL) async throws -> Int {
         let output = try await runner.runChecked(["--show-npages", url.path])
         guard let count = Int(output.standardOutput.trimmingCharacters(in: .whitespacesAndNewlines)) else {
             throw EngineError.unreadablePDF(path: url.path)

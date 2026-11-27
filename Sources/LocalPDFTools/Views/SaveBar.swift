@@ -13,7 +13,12 @@ struct SaveBar: View {
                     PlanSummaryView(workspace: workspace)
                 }
                 Grid(alignment: .leading, horizontalSpacing: 10, verticalSpacing: 8) {
-                    if workspace.hasSingleOutput {
+                    if workspace.splits {
+                        GridRow {
+                            fieldLabel("フォルダ名")
+                            splitFolderRow
+                        }
+                    } else if workspace.hasSingleOutput {
                         GridRow {
                             fieldLabel("保存名")
                             OutputNameField(name: $workspace.outputName)
@@ -73,6 +78,23 @@ struct SaveBar: View {
 
     private func fieldLabel(_ text: String) -> some View {
         Text(text).foregroundStyle(.secondary).gridColumnAlignment(.trailing)
+    }
+
+    /// 分割: 分けた PDF を入れる新しいフォルダの名前（ファイルが 1 つのときだけ書き換えられる）
+    @ViewBuilder
+    private var splitFolderRow: some View {
+        if workspace.files.count == 1 {
+            HStack(spacing: 8) {
+                TextField("フォルダ名", text: $workspace.splitFolderName)
+                    .textFieldStyle(.roundedBorder)
+                    .frame(minWidth: 200, maxWidth: 340)
+                Text("中は \(SuggestedName.baseName(workspace.files[0].url))_p1-3.pdf など")
+                    .font(.callout).foregroundStyle(.secondary).lineLimit(1).truncationMode(.middle)
+            }
+        } else {
+            Text("ファイルごとに「元の名前_split」を新しく作ります（中は 元の名前_p1-3.pdf など）")
+                .font(.callout).foregroundStyle(.secondary)
+        }
     }
 
     private var folderRow: some View {

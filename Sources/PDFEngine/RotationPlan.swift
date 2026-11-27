@@ -24,6 +24,11 @@ public struct RotationPlan: Equatable, Sendable {
         return RotationPlan(quarterTurns: turns)
     }
 
+    /// 分割した後の 1 ファイル分（pages は 1 から数えた元のページ番号）。指定の無いページは「回さない」
+    public func slice(_ pages: ClosedRange<Int>) -> RotationPlan {
+        RotationPlan(quarterTurns: pages.map { quarterTurns.indices.contains($0 - 1) ? quarterTurns[$0 - 1] : 0 })
+    }
+
     public var pageCount: Int { quarterTurns.count }
     public var hasChanges: Bool { quarterTurns.contains { $0 != 0 } }
 

@@ -95,15 +95,18 @@ public final class QPDFRunner: @unchecked Sendable {
 
         // MEMO(2026-11-25・by claude): 出力が多いとパイプが詰まって qpdf が止まるので、
         // 終了を待つ前に標準出力と標準エラーを別々のスレッドで読み切る。
+        // MEMO(2026-11-27・by claude): 標準エラーは DispatchQueue.global ではなく専用のスレッドで読む。
+        // global で読むと、qpdf を同時に 60 回ほど呼んだとき（全部の検査をまとめて走らせたとき）に、
+        // 待っている側が GCD のスレッド（上限 64）を使い切り、読む側が始まれずに全部止まった。
         var errData = Data()
-        let group = DispatchGroup()
-        group.enter()
-        DispatchQueue.global().async {
+        let finished = DispatchSemaphore(value: 0)
+        let reader = Thread {
             errData = errPipe.fileHandleForReading.readDataToEndOfFile()
-            group.leave()
+            finished.signal()
         }
+        reader.start()
         let outData = outPipe.fileHandleForReading.readDataToEndOfFile()
-        group.wait()
+        finished.wait()
         process.waitUntilExit()
 
         return Output(exitCode: process.terminationStatus,

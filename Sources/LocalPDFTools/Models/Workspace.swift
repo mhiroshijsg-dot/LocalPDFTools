@@ -33,12 +33,18 @@ final class Workspace {
     }
     /// 文字の抽出の状態（読んだ文字・OCR・保存の結果）
     let text = TextExtractionModel()
+    /// 分割のやり方
+    let split = SplitModel()
     /// 自分で書き換えた保存名（nil なら初期値を使う）
     private var customName: String?
+    /// 自分で書き換えた、分けた PDF を入れるフォルダの名前（nil なら初期値を使う）
+    private var customFolderName: String?
     /// 「変更…」で選んだ保存先。その作業の間だけ使う（ファイルをすべて外すかアプリを閉じたら、元のファイルの場所に戻る）
     private(set) var chosenFolder: URL?
     var messages: [UserMessage] = []
     var outcomes: [OperationOutcome] = []
+    /// 分割して保存した結果（ファイルごとに 1 つ）
+    var splitOutcomes: [SplitOutcome] = []
     var isWorking = false
 
     var totalPages: Int? {
@@ -46,13 +52,14 @@ final class Workspace {
     }
     var totalBytes: Int64 { files.reduce(0) { $0 + $1.byteSize } }
     var merges: Bool { selected.contains(.merge) }
+    var splits: Bool { selected.contains(.split) }
 
     // MARK: ファイル
 
     /// ドロップや「開く」で入ったファイルを、末尾に足す（暗号化の状態もここで調べる）
     func add(_ urls: [URL]) async {
         messages = []
-        outcomes = []
+        clearResults()
         isWorking = true
         defer { isWorking = false }
         let runner: QPDFRunner
@@ -84,14 +91,17 @@ final class Workspace {
     func remove(_ file: WorkFile) {
         text.forget(file)
         files.removeAll { $0.id == file.id }
-        outcomes = []
+        clearResults()
+        split.forgetCuts()
         compression.invalidateTrial()
         if files.isEmpty { clear() }
     }
 
     func move(fromOffsets source: IndexSet, toOffset destination: Int) {
         files.move(fromOffsets: source, toOffset: destination)
-        outcomes = []
+        clearResults()
+        // 一番上のファイルが変わると、切れ目を選んだファイルも変わる
+        split.forgetCuts()
     }
 
     func removeAll() {
@@ -103,9 +113,17 @@ final class Workspace {
         compression.invalidateTrial()
         text.reset()
         customName = nil
+        customFolderName = nil
+        split.forgetCuts()
         chosenFolder = nil
         messages = []
+        clearResults()
+    }
+
+    /// 保存した結果の欄を空にする
+    func clearResults() {
         outcomes = []
+        splitOutcomes = []
     }
 
     // MARK: 文字の抽出
@@ -117,8 +135,15 @@ final class Workspace {
 
     // MARK: 保存名と保存先
 
-    /// 保存名の欄を出すか（結合しないで複数のファイルを保存するときは、名前はファイルごとのダイアログで決める）
-    var hasSingleOutput: Bool { !files.isEmpty && (merges || files.count == 1) }
+    /// 保存名の欄を出すか（結合しないで複数のファイルを保存するときは、名前はファイルごとのダイアログで決める。
+    /// 分割のときは保存名ではなくフォルダ名の欄を出す）
+    var hasSingleOutput: Bool { !files.isEmpty && !splits && (merges || files.count == 1) }
+
+    /// 分けた PDF を入れる新しいフォルダの名前（ファイルが 1 つのときの欄。複数なら ファイルごとに 元の名前_split）
+    var splitFolderName: String {
+        get { customFolderName ?? files.first.map { SuggestedName.splitFolder($0.url) } ?? "" }
+        set { customFolderName = newValue }
+    }
 
     var suggestedName: String {
         guard let first = files.first else { return "" }
@@ -135,6 +160,8 @@ final class Workspace {
     /// 表示する保存先（nil は「それぞれの元のフォルダ」）
     var saveFolder: URL? {
         if let chosenFolder { return chosenFolder }
+        // 分割は場所を 1 回だけ選ぶので、一番上のファイルの場所から始める
+        if splits { return files.first?.url.deletingLastPathComponent() }
         return hasSingleOutput ? files.first?.url.deletingLastPathComponent() : nil
     }
 
@@ -155,6 +182,8 @@ final class Workspace {
         if files.isEmpty { return "PDF を入れてください" }
         if selected.isEmpty { return "行う操作にチェックを入れてください" }
         if merges && files.count < 2 { return "結合するには 2 つ以上の PDF を入れてください" }
+        if merges && splits { return "結合と分割は同時にはできません。どちらかをオフにしてください" }
+        if splits, let reason = splitBlocker { return reason }
         if !selected.contains(.decrypt) && files.contains(where: \.isLocked) {
             return "パスワードが要る PDF があります。「暗号化の解除」にチェックを入れてください"
         }
@@ -169,7 +198,27 @@ final class Workspace {
     /// 解除なしでも、結合すると制限付きのファイルの制限は外れる（qpdf の結合は暗号化を引き継がない）
     var filesLosingProtection: [WorkFile] {
         if selected.contains(.decrypt) { return files.filter(\.isEncrypted) }
-        if merges { return files.filter(\.isEncrypted) }
+        if merges || splits { return files.filter(\.isEncrypted) }
         return []
+    }
+
+    /// 分割できない理由（できるなら nil）
+    private var splitBlocker: String? {
+        if split.mode.needsSingleFile && files.count > 1 {
+            return "「\(split.mode.title)」は PDF が 1 つのときだけ使えます"
+        }
+        if split.mode == .cuts && files.first?.isLocked == true {
+            return "パスワードが要る PDF はページを見られないので、切れ目を選べません"
+        }
+        if files.count == 1, let count = files[0].pageCount, case .failure(let error) = split.ranges(pageCount: count) {
+            return error.localizedDescription
+        }
+        if files.count == 1 {
+            let name = splitFolderName.trimmingCharacters(in: .whitespaces)
+            if name.isEmpty { return "フォルダ名を入れてください" }
+            if name.contains("/") || name.contains(":") { return "フォルダ名に「/」「:」は使えません" }
+            if name.hasPrefix(".") { return "フォルダ名を「.」で始めると Finder に表示されません" }
+        }
+        return nil
     }
 }

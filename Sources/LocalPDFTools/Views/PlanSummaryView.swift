@@ -15,13 +15,20 @@ struct PlanSummaryView: View {
                 OperationChip(operation: Operation(step))
                 OperationChip.arrow
             }
-            Label(result, systemImage: workspace.merges ? "doc.fill" : "doc.on.doc")
+            Label(result, systemImage: workspace.splits ? "folder.fill" : workspace.merges ? "doc.fill" : "doc.on.doc")
                 .font(.callout.weight(.semibold))
         }
         .lineLimit(1)
     }
 
     private var result: String {
+        if workspace.splits {
+            if workspace.files.count == 1, let count = workspace.files[0].pageCount,
+               case .success(let ranges) = workspace.split.ranges(pageCount: count) {
+                return "\(ranges.count) つの PDF に分けて、新しいフォルダに保存"
+            }
+            return "ファイルごとに分けて、新しいフォルダに保存"
+        }
         if workspace.merges { return "1 つの PDF にして保存" }
         return workspace.files.count > 1 ? "\(workspace.files.count) つの PDF を別々に保存" : "PDF を保存"
     }

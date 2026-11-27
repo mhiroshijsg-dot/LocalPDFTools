@@ -19,6 +19,7 @@ extension HelpTopic {
         case .decrypt: return .decrypt
         case .rotate: return .rotate
         case .merge: return .merge
+        case .split: return .split
         case .compress: return .compress
         case .text: return .text
         }
