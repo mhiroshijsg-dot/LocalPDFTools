@@ -62,6 +62,7 @@ Models/TextExportRunner.swift   まとめて 1 つか、ファイルごとに保
 メニュー「ヘルプ」→「LocalPDFTools のヘルプ」（Views/Help/HelpCommands.swift）
    ↓ ヘルプの窓を開く（開いていた項目は設定 HelpTopic.selectionKey に覚えてある）
 Views/Help/HelpWindowView.swift  左に項目の一覧（Models/Help/HelpTopicGroup.swift）、右に説明（HelpTopicView）
+   ↓ 左上の欄に語を入れると、左は検索の一覧（HelpSearchResults。探すのは Models/Help/HelpSearch.swift）
 ```
 
 ## LocalPDFTools/（アプリ本体）
@@ -137,8 +138,10 @@ Views/Help/HelpWindowView.swift  左に項目の一覧（Models/Help/HelpTopicGr
 | ファイル | 役割 |
 |---|---|
 | `HelpCommands.swift` | メニュー「ヘルプ」→「LocalPDFTools のヘルプ」（⌘?）。標準の「ヘルプは利用できません」を置き換える |
-| `HelpWindowView.swift` | ヘルプの窓。左に項目の一覧（見出しごと）、右に説明。開いている項目は設定に覚える |
-| `HelpTopicView.swift` | 項目 1 つ分の説明（印と見出し・「見た目: 変わらない」などの札・図・段落のカード） |
+| `HelpWindowView.swift` | ヘルプの窓。左に項目の一覧（見出しごと）、右に説明。開いている項目は設定に覚える。左上の欄でヘルプの中を探せる |
+| `HelpSearchResults.swift` | 検索しているときの左側。見つかった所を項目ごとに並べる（見出しと前後の文）。押すと右にその説明 |
+| `HelpHighlight.swift` | 探した語に黄色い印を付ける（一覧と説明の両方） |
+| `HelpTopicView.swift` | 項目 1 つ分の説明（印と見出し・「見た目: 変わらない」などの札・図・段落のカード）。検索の一覧から来たら、見つかった段落まで動かす |
 | `HelpSectionCard.swift` | 段落のまとまり 1 つ分のカード（見出し・文・箇条書き。**太字**・`命令`・リンクが効く） |
 | `HelpFlowFigure.swift` | 使い方の流れの図（PDF を入れる → 操作をオンにする → 実行して保存） |
 | `HelpOrderFigure.swift` | 操作の順番の図（今の設定の順） |
@@ -153,6 +156,8 @@ Views/Help/HelpWindowView.swift  左に項目の一覧（Models/Help/HelpTopicGr
 |---|---|
 | `HelpTopic.swift` | 項目 1 つ分（見出し・一言・影響の札・図・段落）。窓の id・開いている項目を覚える設定の名前 |
 | `HelpTopicGroup.swift` | サイドバーの見出し（使い方・操作・そのほか）と並び |
+| `HelpSearch.swift` | ヘルプの中を探す（表示中の言語の文で。空白で区切った語がすべて入っている所。大文字と小文字・全角と半角は区別しない） |
+| `HelpSearchHit.swift` | 検索で見つかった所 1 つ（項目と段落のまとまり・一覧に出す前後の文） |
 | `HelpSection.swift` | 段落のまとまり 1 つ分（見出し・文・箇条書き） |
 | `HelpEffect.swift` | 「画質: 変わらない」などの札 1 枚（気を付けてほしい変化は橙） |
 | `HelpIcon.swift` | 項目の印（操作の項目は操作と同じ色、それ以外は灰色） |

@@ -3,12 +3,14 @@ import SwiftUI
 /// ヘルプの段落のまとまり 1 つ分のカード: 見出し・文・箇条書き
 struct HelpSectionCard: View {
     let section: HelpSection
+    /// 検索した語（印を付ける。検索していなければ空）
+    var terms: [String] = []
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(section.heading).font(.headline)
+            Text(HelpHighlight.apply(terms, to: section.heading)).font(.headline)
             ForEach(section.paragraphs, id: \.self) { paragraph in
-                Text(Self.styled(paragraph))
+                Text(HelpHighlight.apply(terms, to: Self.styled(paragraph)))
                     .fixedSize(horizontal: false, vertical: true)
             }
             if !section.bullets.isEmpty {
@@ -16,7 +18,7 @@ struct HelpSectionCard: View {
                     ForEach(section.bullets, id: \.self) { bullet in
                         HStack(alignment: .firstTextBaseline, spacing: 7) {
                             Text("•").foregroundStyle(.secondary)
-                            Text(Self.styled(bullet))
+                            Text(HelpHighlight.apply(terms, to: Self.styled(bullet)))
                                 .fixedSize(horizontal: false, vertical: true)
                         }
                     }
